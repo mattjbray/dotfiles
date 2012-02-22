@@ -5,7 +5,7 @@ FILES=$DIR/*
 
 for f in $FILES
 do
-    if [ `basename $f` != `basename $0` ]
+    if [ `basename $f` != `basename $0` -a `basename $f` != README ]
     then
         ln -s $f $HOME/.`basename $f`
     fi
