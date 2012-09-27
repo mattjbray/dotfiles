@@ -1,4 +1,5 @@
 alias s='screen'
+alias git-dotfiles='git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME'
 
 _dir_chomp () {
     local IFS=/ c=1 n d
