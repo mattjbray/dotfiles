@@ -2,12 +2,13 @@ First time setup:
     
     $ mkdir ~/.dotfiles.git
     $ echo "alias git-dotfiles='git --git-dir=$HOME/.dotfiles.git/ \
-         --work-tree=$HOME'" >> ~/.bash_aliases
+        --work-tree=$HOME'" >> ~/.bash_aliases
     $ source ~/.bashrc
     $ git-dotfiles init
     $ git-dotfiles add .bash_aliases
     $ git-dotfiles commit -m 'Initial commit'
-    $ git-dotfiles remote add origin git@github.com:GITHUB_USERNAME/dotfiles.git
+    $ git-dotfiles remote add origin \
+        git@github.com:GITHUB_USERNAME/dotfiles.git
     $ git-dotfiles push origin master
 
 Setup on a new machine:
