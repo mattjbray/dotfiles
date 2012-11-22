@@ -20,3 +20,14 @@ export PATH=$PATH:$HOME/.local/bin
 
 set -o vi
 shopt -s cdspell
+
+# RVM
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+# RVM bash completion
+[[ -r "$HOME/.rvm/scripts/completion" ]] && source "$HOME/.rvm/scripts/completion"
+# RVM PS1 functions
+[[ -s "$HOME/.rvm/contrib/ps1_functions" ]] && source "$HOME/.rvm/contrib/ps1_functions"
+
+source /usr/share/git/git-prompt.sh
+export PS1='\u@\h:$(_dir_chomp "$(pwd)" 20)$(__git_ps1)$ '
+PATH="/usr/local/heroku/bin:$PATH"
