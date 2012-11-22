@@ -17,7 +17,6 @@ _dir_chomp () {
 
 export EDITOR=/usr/bin/vim
 export PATH=$PATH:$HOME/.local/bin
-export PS1='\u@\h:$(_dir_chomp "$(pwd)" 20)$(__git_ps1)$ '
 
 set -o vi
 shopt -s cdspell
