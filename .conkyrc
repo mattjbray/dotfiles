@@ -1,0 +1,9 @@
+out_to_console yes
+out_to_x no
+background no
+update_interval 2
+total_run_times 0
+use_spacer none
+
+TEXT
+${if_up eth0}${downspeedf eth0}K/s ${upspeedf eth0}K/s ::$endif ${cpu}% ${loadavg} :: ${acpitemp}c :: $memperc% ($mem) :: ${battery_short} :: ${time %a %b %d %I:%M%P}
