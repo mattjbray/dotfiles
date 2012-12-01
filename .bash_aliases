@@ -20,6 +20,7 @@ export PATH=$PATH:$HOME/.local/bin
 
 set -o vi
 shopt -s cdspell
+shopt -s checkwinsize
 
 # RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
