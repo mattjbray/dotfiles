@@ -45,8 +45,15 @@ source $ZSH/oh-my-zsh.sh
 # Bind reverse history search to C-R
 bindkey "^R" history-incremental-search-backward
 
-# Load RVM into a shell session *as a function*
-[[ -s "/home/matt/.rvm/scripts/rvm" ]] && source "/home/matt/.rvm/scripts/rvm" 
+#
+# Aliases
+#
 
 # Alias for git dotfiles repository
 alias git-dotfiles="git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
+
+# Alias for screen
+alias s="screen"
+
+# Load RVM into a shell session *as a function*
+[[ -s "/home/matt/.rvm/scripts/rvm" ]] && source "/home/matt/.rvm/scripts/rvm" 
