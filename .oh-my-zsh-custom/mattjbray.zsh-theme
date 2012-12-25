@@ -1,4 +1,4 @@
-PROMPT='> '
+PROMPT='$ '
 
 RPS1='$(vi_mode_prompt_info)%{$reset_color%} $(git_prompt_info) %F{green}%~%f'
 
