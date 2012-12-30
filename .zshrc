@@ -55,5 +55,12 @@ alias git-dotfiles="git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
 # Alias for screen
 alias s="screen"
 
+#
+# RVM
+#
+
 # Load RVM into a shell session *as a function*
-[[ -s "/home/matt/.rvm/scripts/rvm" ]] && source "/home/matt/.rvm/scripts/rvm" 
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+# Add RVM to PATH for scripting
+export PATH=$PATH:$HOME/.rvm/bin
