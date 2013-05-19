@@ -18,3 +18,5 @@ Setup on a new machine:
     $ shopt -s dotglob # Include .files in *
     $ mv -i ~/dotfiles.git/* ~/
     $ rmdir ~/dotfiles.git
+    $ git-dotfiles submodule init
+    $ git-dotfiles submodule update
