@@ -44,6 +44,8 @@ set hidden " Allow hidden buffers
 
 set number " Show line numbers
 
+set wildmenu " Show command completions
+
 " Tab settings
 set tabstop=2
 set shiftwidth=2
