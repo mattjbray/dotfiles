@@ -31,7 +31,6 @@ Bundle 'garbas/vim-snipmate'
 Bundle 'honza/vim-snippets'
 Bundle 'scrooloose/nerdtree'
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'Lokaltog/powerline'
 Bundle 'klen/python-mode'
 
 " End Vundle
@@ -107,6 +106,8 @@ noremap <leader>gs :Gstatus<CR>
 noremap <leader>gw :Gwrite<CR>
 
 " Powerline
-source ~/.vim/bundle/powerline/powerline/bindings/vim/plugin/powerline.vim
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
 set laststatus=2
 set encoding=utf-8
