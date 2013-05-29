@@ -73,3 +73,6 @@ export PATH=$PATH:$HOME/.rvm/bin
 
 # tmuxinator
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+
+# Add npm installed binaries to PATH
+export PATH=/usr/local/share/npm/bin:$PATH
