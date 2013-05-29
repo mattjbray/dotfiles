@@ -38,6 +38,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
+# Prioritize /usr/local/bin
+export PATH=/usr/local/bin:$PATH
+
 export PATH=$PATH:$HOME/.local/bin
 export EDITOR=vim
 
