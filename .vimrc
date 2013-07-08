@@ -15,7 +15,6 @@ Bundle 'gmarik/vundle'
 
 Bundle 'L9'
 Bundle 'tpope/vim-fugitive'
-Bundle 'FuzzyFinder'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'othree/html5.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
@@ -32,6 +31,7 @@ Bundle 'honza/vim-snippets'
 Bundle 'scrooloose/nerdtree'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'klen/python-mode'
+Bundle 'Shougo/unite.vim'
 
 " End Vundle
 
@@ -86,11 +86,10 @@ vnoremap > >gv
 
 " Plugin settings
 
-" FuzzyFinder
-noremap <leader>f :FufFile<CR>
-noremap <leader>F :FufFileWithCurrentBufferDir<CR>
-noremap <leader>b :FufBuffer<CR>
-noremap <leader>r :FufRenewCache<CR>
+" Unite
+noremap <leader>f :Unite -start-insert file<CR>
+noremap <leader>F :UniteWithBufferDir -start-insert file<CR>
+noremap <leader>b :Unite -start-insert buffer<CR>
 
 " NERDTree
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
