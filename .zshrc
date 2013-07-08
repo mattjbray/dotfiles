@@ -33,14 +33,27 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(
+  bundler
+  fabric
   gem
   git
   heroku
-  ruby
+  node
+  npm
+  pip
+  python
   rails
+  rails3
+  rails4
+  rake
+  rsync
+  ruby
   rvm
+  tmux
   tmuxinator
   vi-mode
+  virtualenv
+  vundle
   )
 
 source $ZSH/oh-my-zsh.sh
