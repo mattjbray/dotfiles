@@ -46,6 +46,11 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
+# Set xterm-256color
+if [[ -n "$DISPLAY" && "$TERM" == "xterm" ]]; then
+  export TERM=xterm-256color
+fi
+
 # Prioritize /usr/local/bin
 export PATH=/usr/local/bin:$PATH
 
