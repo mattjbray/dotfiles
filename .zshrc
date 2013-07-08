@@ -78,6 +78,10 @@ export EDITOR=vim
 # Bind reverse history search to C-R
 bindkey "^R" history-incremental-search-backward
 
+# Vi mode: allow deletion past insertion point
+zle -A .backward-kill-word   vi-backward-kill-word
+zle -A .backward-delete-char vi-backward-delete-char
+
 #
 # Aliases
 #
