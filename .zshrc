@@ -78,6 +78,9 @@ export EDITOR=vim
 # Bind reverse history search to C-R
 bindkey "^R" history-incremental-search-backward
 
+# C-e in insert mode jumps to end of line
+bindkey "^E" end-of-line
+
 # Vi mode: allow deletion past insertion point
 zle -A .backward-kill-word   vi-backward-kill-word
 zle -A .backward-delete-char vi-backward-delete-char
