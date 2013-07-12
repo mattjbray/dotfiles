@@ -1,6 +1,3 @@
-" Reload vimrc on write
-autocmd! bufwritepost .vimrc source %
-
 " Vundle
 
 set nocompatible
