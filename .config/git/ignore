@@ -2,3 +2,4 @@
 *.pyc
 **doc/tags
 *.db
+*.DS_Store
