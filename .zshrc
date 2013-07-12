@@ -110,3 +110,24 @@ export PATH=$PATH:$HOME/.rvm/bin
 
 # Add npm installed binaries to PATH
 export PATH=/usr/local/share/npm/bin:$PATH
+
+# Optimor stuff
+
+# Activate bmvenv
+alias bmvenv="source ~/bmvenv/bin/activate && export PYTHONPATH=/home/mattjbray/dev/optimor/billmonitor:/home/mattjbray/dev/optimor/billmonitor/backend"
+
+alias enable_incontract='DEBUG_ENV=production backend/script/debug/bmfeature -a in-contract'
+alias set_crawl='DEBUG_ENV=production backend/script/debug/set_state.py --to=crawl --production'
+alias set_parse='DEBUG_ENV=production backend/script/debug/set_state.py --to=parse --production'
+alias set_idle='DEBUG_ENV=production backend/script/debug/set_state.py --to=retrieve.Idle --production'
+alias force_plan_analysis='DEBUG_ENV=production backend/script/debug/set_state.py --parse --checked --production'
+alias crawl_locally='backend/script/debug/crawl_locally.py --production -vc1'
+alias crawl_test='backend/script/debug/crawl_all.py --production -v -c10'
+alias crawl_all='backend/script/debug/crawl_all.py --production -v'
+alias parse_locally='backend/script/debug/parse_locally.py --production -v --save'
+alias user_info='backend/script/debug/user_info.py --env=production'
+alias deploy_backend='build/script/hotfix production deploy -b'
+alias account_email='backend/script/debug/find_accounts.py --production --email'
+alias account_phone='backend/script/debug/find_accounts.py --production --phone'
+#alias test_framework="JARS=`echo /../crawlers/lib/*.jar | sed 's/ /:/g'`;jython -J-cp $JARS crawlers/python/tests/framework_tests.py"
+alias fix_engine_failed="DEBUG_ENV=production backend/script/debug/engine_failed.py --fixall"
