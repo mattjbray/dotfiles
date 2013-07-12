@@ -1,6 +1,0 @@
-[submodule ".oh-my-zsh"]
-	path = .oh-my-zsh
-	url = git://github.com/robbyrussell/oh-my-zsh.git
-[submodule ".oh-my-fish"]
-	path = .oh-my-fish
-	url = git@github.com:bpinto/oh-my-fish.git
