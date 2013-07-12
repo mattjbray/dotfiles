@@ -88,6 +88,14 @@ noremap <leader>f :Unite -start-insert file<CR>
 noremap <leader>F :UniteWithBufferDir -start-insert file<CR>
 noremap <leader>b :Unite -start-insert buffer<CR>
 
+autocmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()"{{{
+  " FuzzyFinder style actions
+  imap <silent><buffer><expr> <C-j> unite#do_action('split')
+  imap <silent><buffer><expr> <C-k> unite#do_action('vsplit')
+  imap <silent><buffer><expr> <C-l> unite#do_action('tabopen')
+endfunction"}}}
+
 " NERDTree
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 noremap <leader>t :NERDTreeToggle<CR>
