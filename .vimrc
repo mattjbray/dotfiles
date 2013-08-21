@@ -99,6 +99,7 @@ endfunction"}}}
 " NERDTree
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 noremap <leader>t :NERDTreeToggle<CR>
+noremap <leader>T :NERDTreeFind<CR>
 
 " Fugitive
 " Autodelete hidden fugitive buffers
