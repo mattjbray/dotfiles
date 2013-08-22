@@ -92,9 +92,6 @@ zle -A .backward-delete-char vi-backward-delete-char
 # Alias for git dotfiles repository
 alias git-dotfiles="git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
 
-# Alias for screen
-alias s="screen"
-
 #
 # RVM
 #
