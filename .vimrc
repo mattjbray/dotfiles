@@ -119,3 +119,7 @@ python powerline_setup()
 python del powerline_setup
 set laststatus=2
 set encoding=utf-8
+
+" Filetype specific settings
+
+autocmd FileType javascript,ruby set foldmethod=indent
