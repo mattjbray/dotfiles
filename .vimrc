@@ -29,6 +29,9 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'klen/python-mode'
 Bundle 'Shougo/unite.vim'
+Bundle 'tsaleh/vim-matchit'
+Bundle 'kana/vim-textobj-user'
+Bundle 'nelstrom/vim-textobj-rubyblock'
 
 " End Vundle
 
