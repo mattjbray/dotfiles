@@ -33,6 +33,7 @@ Bundle 'tsaleh/vim-matchit'
 Bundle 'kana/vim-textobj-user'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'Shutnik/jshint2.vim'
+Bundle 'Valloric/YouCompleteMe'
 
 " End Vundle
 
