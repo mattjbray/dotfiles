@@ -51,6 +51,7 @@ plugins=(
   rvm
   tmux
   tmuxinator
+  vagrant
   vi-mode
   virtualenv
   vundle
