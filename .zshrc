@@ -57,6 +57,11 @@ plugins=(
   vundle
   )
 
+# Load RVM into a shell session *as a function*
+# Do this before sourcing oh-my-zsh
+# (see https://github.com/robbyrussell/oh-my-zsh/pull/2107)
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
@@ -97,11 +102,8 @@ alias git-dotfiles="git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
 # RVM
 #
 
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
 # Add RVM to PATH for scripting
-export PATH=$PATH:$HOME/.rvm/bin
+export PATH=$HOME/.rvm/bin:$PATH
 
 # tmuxinator
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
