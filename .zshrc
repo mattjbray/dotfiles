@@ -114,7 +114,7 @@ export PATH=/usr/local/share/npm/bin:$PATH
 # Optimor stuff
 
 # Activate bmvenv
-alias bmvenv="source ~/bmvenv/bin/activate && export PYTHONPATH=/home/mattjbray/dev/optimor/billmonitor:/home/mattjbray/dev/optimor/billmonitor/backend"
+alias bmvenv='source ~/bmvenv/bin/activate && export PYTHONPATH=`pwd`:`pwd`/backend'
 
 alias enable_incontract='DEBUG_ENV=production backend/script/debug/bmfeature -a in-contract'
 alias set_crawl='DEBUG_ENV=production backend/script/debug/set_state.py --to=crawl --production'
