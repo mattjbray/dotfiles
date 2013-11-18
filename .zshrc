@@ -60,7 +60,11 @@ plugins=(
 # Load RVM into a shell session *as a function*
 # Do this before sourcing oh-my-zsh
 # (see https://github.com/robbyrussell/oh-my-zsh/pull/2107)
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
+  source "$HOME/.rvm/scripts/rvm"
+elif [[ -s "/etc/profile.d/rvm.sh" ]]; then
+  source "/etc/profile.d/rvm.sh"
+fi
 
 source $ZSH/oh-my-zsh.sh
 
