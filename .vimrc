@@ -36,6 +36,7 @@
     Bundle 'Valloric/YouCompleteMe'
     Bundle 'jondkinney/dragvisuals.vim'
     Bundle 'jondkinney/vmath.vim'
+    Bundle "mattn/emmet-vim"
 
 "====[ General ]====
 
