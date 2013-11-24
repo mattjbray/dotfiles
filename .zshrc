@@ -1,137 +1,95 @@
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+#====[ antigen ]====
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="mattjbray"
+  source "$HOME/.antigen/antigen.zsh"
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+  antigen-use oh-my-zsh
 
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
+  antigen-bundles <<EOBUNDLES
+    rvm
+    tmux
+    vi-mode
 
-# Comment this out to disable bi-weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
+    zsh-users/zsh-syntax-highlighting
+    arialdomartini/oh-my-git
+EOBUNDLES
 
-# Uncomment to change how many often would you like to wait before auto-updates occur? (in days)
-# export UPDATE_ZSH_DAYS=13
+  antigen theme arialdomartini/oh-my-git-themes arialdo-granzestyle
 
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
+  antigen-apply
 
-# Uncomment following line if you want to disable autosetting terminal title.
-DISABLE_AUTO_TITLE="true"
+#====[ Vim ]====
 
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
+  export EDITOR=vim
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(
-  bundler
-  fabric
-  gem
-  git
-  heroku
-  node
-  npm
-  pip
-  python
-  rails
-  rails3
-  rails4
-  rake
-  rsync
-  ruby
-  rvm
-  tmux
-  tmuxinator
-  vagrant
-  vi-mode
-  virtualenv
-  vundle
-  )
+  # c-e in insert mode jumps to end of line
+  bindkey "^E" end-of-line
 
-# Load RVM into a shell session *as a function*
-# Do this before sourcing oh-my-zsh
-# (see https://github.com/robbyrussell/oh-my-zsh/pull/2107)
-if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
-  source "$HOME/.rvm/scripts/rvm"
-elif [[ -s "/etc/profile.d/rvm.sh" ]]; then
-  source "/etc/profile.d/rvm.sh"
-fi
+  # c-r in insert mode opens reverse history search
+  bindkey "^R" history-incremental-search-backward
 
-source $ZSH/oh-my-zsh.sh
+  # allow deletion past insertion point
+  zle -A .backward-kill-word   vi-backward-kill-word
+  zle -A .backward-delete-char vi-backward-delete-char
 
-# Customize to your needs...
+#====[ Alias for git dotfiles repository ]====
 
-# Set xterm-256color
-if [[ -n "$DISPLAY" && "$TERM" == "xterm" ]]; then
-  export TERM=xterm-256color
-fi
+  alias git-dotfiles="git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
 
-# Prioritize /usr/local/bin
-export PATH=/usr/local/bin:$PATH
+#====[ RVM ]====
 
-export PATH=$HOME/.local/bin:$PATH
-export EDITOR=vim
+  # Load RVM into a shell session *as a function*
+  if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
+    source "$HOME/.rvm/scripts/rvm"
+  elif [[ -s "/etc/profile.d/rvm.sh" ]]; then
+    source "/etc/profile.d/rvm.sh"
+  fi
 
-#
-# Key bindings
-#
+#====[ Optimor ]====
 
-# Bind reverse history search to C-R
-bindkey "^R" history-incremental-search-backward
+  # Activate bmvenv
+  alias bmvenv=\
+    'source ../venv/bin/activate && export PYTHONPATH=`pwd`:`pwd`/backend'
 
-# C-e in insert mode jumps to end of line
-bindkey "^E" end-of-line
+  alias enable_incontract=\
+    'DEBUG_ENV=production backend/script/debug/bmfeature -a in-contract'
 
-# Vi mode: allow deletion past insertion point
-zle -A .backward-kill-word   vi-backward-kill-word
-zle -A .backward-delete-char vi-backward-delete-char
+  alias set_crawl=\
+    'DEBUG_ENV=production backend/script/debug/set_state.py \
+    --to=crawl --production'
 
-#
-# Aliases
-#
+  alias set_parse=\
+    'DEBUG_ENV=production backend/script/debug/set_state.py \
+    --to=parse --production'
 
-# Alias for git dotfiles repository
-alias git-dotfiles="git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
+  alias set_idle=\
+    'DEBUG_ENV=production backend/script/debug/set_state.py \
+    --to=retrieve.Idle --production'
 
-#
-# RVM
-#
+  alias force_plan_analysis=\
+    'DEBUG_ENV=production backend/script/debug/set_state.py \
+    --parse --checked --production'
 
-# Add RVM to PATH for scripting
-export PATH=$HOME/.rvm/bin:$PATH
+  alias crawl_locally=\
+    'backend/script/debug/crawl_locally.py --production -vc1'
 
-# tmuxinator
-[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+  alias crawl_test=\
+    'backend/script/debug/crawl_all.py --production -v -c10'
 
-# Add npm installed binaries to PATH
-export PATH=/usr/local/share/npm/bin:$PATH
+  alias crawl_all=\
+    'backend/script/debug/crawl_all.py --production -v'
 
-# Optimor stuff
+  alias parse_locally=\
+    'backend/script/debug/parse_locally.py --production -v --save'
 
-# Activate bmvenv
-alias bmvenv='source ~/bmvenv/bin/activate && export PYTHONPATH=`pwd`:`pwd`/backend'
+  alias user_info='backend/script/debug/user_info.py --env=production'
 
-alias enable_incontract='DEBUG_ENV=production backend/script/debug/bmfeature -a in-contract'
-alias set_crawl='DEBUG_ENV=production backend/script/debug/set_state.py --to=crawl --production'
-alias set_parse='DEBUG_ENV=production backend/script/debug/set_state.py --to=parse --production'
-alias set_idle='DEBUG_ENV=production backend/script/debug/set_state.py --to=retrieve.Idle --production'
-alias force_plan_analysis='DEBUG_ENV=production backend/script/debug/set_state.py --parse --checked --production'
-alias crawl_locally='backend/script/debug/crawl_locally.py --production -vc1'
-alias crawl_test='backend/script/debug/crawl_all.py --production -v -c10'
-alias crawl_all='backend/script/debug/crawl_all.py --production -v'
-alias parse_locally='backend/script/debug/parse_locally.py --production -v --save'
-alias user_info='backend/script/debug/user_info.py --env=production'
-alias deploy_backend='build/script/hotfix production deploy -b'
-alias account_email='backend/script/debug/find_accounts.py --production --email'
-alias account_phone='backend/script/debug/find_accounts.py --production --phone'
-#alias test_framework="JARS=`echo /../crawlers/lib/*.jar | sed 's/ /:/g'`;jython -J-cp $JARS crawlers/python/tests/framework_tests.py"
-alias fix_engine_failed="DEBUG_ENV=production backend/script/debug/engine_failed.py --fixall"
+  alias deploy_backend='build/script/hotfix production deploy -b'
+
+  alias account_email=\
+    'backend/script/debug/find_accounts.py --production --email'
+
+  alias account_phone=\
+    'backend/script/debug/find_accounts.py --production --phone'
+
+  alias fix_engine_failed=\
+    "DEBUG_ENV=production backend/script/debug/engine_failed.py --fixall"
