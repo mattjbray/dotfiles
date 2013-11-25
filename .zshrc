@@ -87,3 +87,8 @@ EOBUNDLES
 
   alias fix_engine_failed="DEBUG_ENV=production \
     backend/script/debug/engine_failed.py --fixall"
+
+#====[ PATH ]====
+
+  # Prioritize /usr/local/bin
+  export PATH=/usr/local/bin:$PATH
