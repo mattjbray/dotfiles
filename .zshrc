@@ -8,6 +8,7 @@
     rvm
     tmux
     vi-mode
+    vundle
 
     zsh-users/zsh-syntax-highlighting
     arialdomartini/oh-my-git
