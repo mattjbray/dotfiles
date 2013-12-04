@@ -92,10 +92,15 @@ EOBUNDLES
     backend/script/debug/engine_failed.py --fixall"
 
   grep_logs() {
+    if (($1==frontend)); then
+      subdir=''
+    else
+      subdir="$1/"
+    fi
     servers=('bmstack01' 'bmstack02')
     for server in $servers; do
       echo "------------[  $server ]------------"
-      ssh $server "sudo -u optimor grep -r $2 /var/releases/$1/current/$1/log"
+      ssh $server "sudo -u optimor grep -r $2 /var/releases/$1/current/${subdir}log"
       echo "------------[ /$server ]------------\n"
     done
   }
