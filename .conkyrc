@@ -6,4 +6,4 @@ total_run_times 0
 use_spacer none
 
 TEXT
-${if_up eth0}${downspeedf eth0}K/s ${upspeedf eth0}K/s ::$endif ${cpu}% ${loadavg} :: ${acpitemp}c :: $memperc% ($mem) :: ${battery_short} :: ${time %a %b %d %I:%M%P}
+${if_up eth0}${downspeedf eth0}K/s ${upspeedf eth0}K/s ::$endif ${cpu}% ${loadavg} :: ${acpitemp}c :: $memperc% ($mem) :: ${battery_short} :: Vol ${exec amixer get Master -M | grep -oE "[[:digit:]]*%"} :: ${time %a %b %d %I:%M%P}
