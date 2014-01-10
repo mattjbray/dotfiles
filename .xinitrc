@@ -28,7 +28,15 @@
 
 #====[ Notifications ]====
 
-  exec dunst --geometry x1+0-0 &
+  dunst &
+
+#====[ Sound ]====
+
+  /usr/bin/start-pulseaudio-x11
+
+#====[ Volume keys ]====
+
+  xbindkeys
 
 #====[ Window Manager ]====
 
