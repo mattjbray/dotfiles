@@ -74,6 +74,18 @@
 "/usr/bin/pulseaudio-ctl up"
   XF86AudioRaiseVolume
 
+"/usr/bin/kbdlight down"
+  XF86KbdBrightnessDown
+
+"/usr/bin/kbdlight up"
+  XF86KbdBrightnessUp
+
+"/usr/bin/chromium"
+  XF86LaunchA
+
+"/usr/bin/st"
+  XF86LaunchB
+
 ##################################
 # End of xbindkeys configuration #
 ##################################
