@@ -96,7 +96,7 @@ EOBUNDLES
     backend/script/debug/engine_failed.py --fixall"
 
   grep_logs() {
-    if (($1==frontend)); then
+    if [[ $1 == frontend ]] ; then
       subdir=''
     else
       subdir="$1/"
