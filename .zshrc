@@ -84,7 +84,7 @@ EOBUNDLES
 
   alias user_info='backend/script/debug/user_info.py --env=production'
 
-  alias deploy_backend='build/script/hotfix production deploy -b'
+  alias deploy_backend='infrastructure/script/deploy_backend production deploy -b'
 
   alias account_email='backend/script/debug/find_accounts.py \
     --production --email'
