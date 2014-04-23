@@ -71,9 +71,9 @@
     " Highlight the 80th column
     call matchadd('ColorColumn', '\%81v', 100)
 
-"====[ Set foldmethod=indent for javascript and ruby files ]======
+"====[ Set foldmethod=indent for javascript, jst and ruby files ]======
 
-    autocmd FileType javascript,ruby set foldmethod=indent
+    autocmd FileType javascript,jst,ruby set foldmethod=indent
 
 "====[ Make tabs, trailing whitespace, and non-breaking spaces visible ]======
 
