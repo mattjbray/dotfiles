@@ -6,4 +6,4 @@ total_run_times 0
 use_spacer none
 
 TEXT
-${if_up eth0}${downspeedf eth0}K/s ${upspeedf eth0}K/s ::$endif ${cpu}% ${loadavg} :: ${acpitemp}c :: $memperc% ($mem) :: ${battery_short} :: Vol ${exec amixer get Master -M | grep -oE "[[:digit:]]*%"} :: ${time %a %b %d %I:%M%P}
+${exec amixer sget Master|grep %|head -n1|awk '{print $5 $6}'} :: ${if_up wlp2s0}${downspeedf wlp2s0}K/s ${upspeedf wlp2s0}K/s (${wireless_essid wlp2s0}:${addr wlp2s0}) :: $endif${cpu}% ${loadavg} :: ${acpitemp}c :: $memperc% ($mem) :: ${battery_short} :: ${time %a %b %d %I:%M%P}
