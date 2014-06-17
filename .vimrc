@@ -29,7 +29,6 @@
     Bundle 'scrooloose/nerdtree'
     Bundle 'altercation/vim-colors-solarized'
     Bundle 'klen/python-mode'
-    Bundle 'Shougo/unite.vim'
     Bundle 'tsaleh/vim-matchit'
     Bundle 'kana/vim-textobj-user'
     Bundle 'nelstrom/vim-textobj-rubyblock'
@@ -124,21 +123,6 @@
 
     " Don't interfere with YouCompleteMe
     let g:pymode_rope_complete_on_dot = 0
-
-"====[ Unite ]====
-
-    call unite#filters#matcher_default#use(['matcher_fuzzy'])
-    noremap <leader>f :Unite -start-insert file<CR>
-    noremap <leader>F :UniteWithBufferDir -start-insert file<CR>
-    noremap <leader>b :Unite -start-insert buffer<CR>
-
-    autocmd FileType unite call s:unite_my_settings()
-    function! s:unite_my_settings()"{{{
-      " FuzzyFinder style actions
-      imap <silent><buffer><expr> <C-j> unite#do_action('split')
-      imap <silent><buffer><expr> <C-k> unite#do_action('vsplit')
-      imap <silent><buffer><expr> <C-l> unite#do_action('tabopen')
-    endfunction"}}}
 
 "====[ NERDTree ]====
 
