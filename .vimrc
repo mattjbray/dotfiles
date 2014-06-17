@@ -16,7 +16,7 @@
     Bundle 'othree/html5.vim'
     Bundle 'nathanaelkane/vim-indent-guides'
     Bundle 'sjl/gundo.vim'
-    Bundle 'tpope/vim-projectile'
+    Bundle 'tpope/vim-projectionist'
     Bundle 'tpope/vim-repeat'
     Bundle 'tpope/vim-surround'
     Bundle 'tpope/vim-ragtag'
