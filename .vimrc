@@ -120,6 +120,11 @@
 "====[ Plugin settings ]====
 "===========================
 
+"====[ Python-mode ]====
+
+    " Don't interfere with YouCompleteMe
+    let g:pymode_rope_complete_on_dot = 0
+
 "====[ Unite ]====
 
     call unite#filters#matcher_default#use(['matcher_fuzzy'])
