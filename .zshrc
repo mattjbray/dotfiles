@@ -1,29 +1,12 @@
-#====[ antigen ]====
+#====[ prezto ]====
 
-  if [ ! -f "$HOME/.antigen/antigen.zsh" ]; then
-    git clone https://github.com/zsh-users/antigen.git "$HOME/.antigen"
+  if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+    source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
   fi
 
-  source "$HOME/.antigen/antigen.zsh"
+#====[ Functions ]====
 
-  antigen-use oh-my-zsh
-
-  antigen-bundles <<EOBUNDLES
-    brew
-    osx
-    rvm
-    tmux
-    vi-mode
-    virtualenv
-    vundle
-
-    zsh-users/zsh-syntax-highlighting
-    arialdomartini/oh-my-git
-EOBUNDLES
-
-  antigen theme arialdomartini/oh-my-git-themes arialdo-granzestyle
-
-  antigen-apply
+  calc() { echo "$@" | bc -l ; }
 
 #====[ Vim ]====
 
@@ -43,73 +26,42 @@ EOBUNDLES
 
   alias git-dotfiles="git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
 
-#====[ RVM ]====
+#====[ Aliases ]====
 
-  # Load RVM into a shell session *as a function*
-  if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
-    source "$HOME/.rvm/scripts/rvm"
-  elif [[ -s "/etc/profile.d/rvm.sh" ]]; then
-    source "/etc/profile.d/rvm.sh"
-  fi
+  alias switch-wifi='sudo netctl-auto switch-to'
 
 #====[ Optimor ]====
 
-  # Activate bmvenv
-  alias bmvenv='source ~/bmvenv/bin/activate \
-    && export PYTHONPATH=`pwd`:`pwd`/backend'
+  export PATH_OPTIMOR='/opt/optimor'
+  export PATH=$PATH_OPTIMOR/bin/inpath:$PATH
 
-  alias enable_incontract='DEBUG_ENV=production \
-    backend/script/debug/bmfeature -a in-contract'
-
-  alias set_crawl='DEBUG_ENV=production backend/script/debug/set_state.py \
-    --to=crawl --production'
-
-  alias set_parse='DEBUG_ENV=production backend/script/debug/set_state.py \
-    --to=parse --production'
-
-  alias set_idle='DEBUG_ENV=production backend/script/debug/set_state.py \
-    --to=retrieve.Idle --production'
-
-  alias force_plan_analysis='DEBUG_ENV=production \
-    backend/script/debug/set_state.py --parse --checked --production'
-
-  alias crawl_locally='backend/script/debug/crawl_locally.py --production -vc1'
-
-  alias crawl_test='backend/script/debug/crawl_all.py --production -v -c10'
-
-  alias crawl_all='backend/script/debug/crawl_all.py --production -v'
-
-  alias parse_locally='backend/script/debug/parse_locally.py \
-    --production -v --save'
-
-  alias user_info='backend/script/debug/user_info.py --env=production'
-
-  alias deploy_backend='infrastructure/script/deploy_backend production deploy -b'
-
-  alias account_email='backend/script/debug/find_accounts.py \
-    --production --email'
-
-  alias account_phone='backend/script/debug/find_accounts.py \
-    --production --phone'
-
-  alias fix_engine_failed="DEBUG_ENV=production \
-    backend/script/debug/engine_failed.py --fixall"
-
-  grep_logs() {
-    if [[ $1 == frontend ]] ; then
-      subdir=''
-    else
-      subdir="$1/"
-    fi
-    servers=('bmstack01' 'bmstack02')
-    for server in $servers; do
-      echo "------------[  $server ]------------"
-      ssh $server "sudo -u optimor grep -r $2 /var/releases/$1/current/${subdir}log"
-      echo "------------[ /$server ]------------\n"
-    done
+  bmenv() {
+    tmux attach -t $1 || (export BMENV=$1 && cd /opt/optimor/src/billmonitor/$1 && tmux new-session -s $1)
   }
+
+  bmvenv() {
+    source /opt/optimor/bin/python_envs/$1/bin/activate
+    export PYTHONPATH=`pwd`:`pwd`/backend
+    export LD_LIBRARY_PATH=`pwd`/engine/cxx/lib
+  }
+
+  if [ -n "${BMENV+x}" ]; then
+    bmvenv $BMENV
+  fi
+
+  alias cbenv='source /opt/optimor/src/ansible/venv/bin/activate && source /opt/optimor/src/ansible/hacking/env-setup'
+  alias cookbooks='tmux attach-session -t cookbooks || (cd /opt/optimor/src/optimor-cookbooks && tmux new-session -s cookbooks)'
+
+  alias bmdebug='tmux attach-session -t debug || (cd /opt/optimor/src/billmonitor/debug && tmux new-session -s debug)'
+  alias bmfrontend='tmux attach-session -t frontend || (cd /opt/optimor/src/billmonitor-frontend/master && tmux new-session -s frontend)'
+  alias tbackend='tmux attach-session -t theia-backend || (cd /opt/optimor/src/billmonitor/theia && tmux new-session -s theia-backend)'
+  alias tfrontend='tmux attach-session -t theia-frontend || (cd /opt/optimor/src/theia-frontend/master && tmux new-session -s theia-frontend)'
+
+  alias infab='cat doc/some_fabs.md | grep -iC 2'
 
 #====[ PATH ]====
 
-  # Prioritize /usr/local/bin
-  export PATH=/usr/local/bin:$PATH
+  export PATH=$HOME/.local/bin:$PATH
+  export PATH=$HOME/.cabal/bin:$PATH
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
