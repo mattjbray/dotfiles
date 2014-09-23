@@ -52,6 +52,8 @@
     set ignorecase
     set smartcase
 
+    set grepprg=ack
+
 "====[ Tab settings ]====
 
     set tabstop=2
