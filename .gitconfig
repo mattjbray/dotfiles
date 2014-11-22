@@ -3,5 +3,6 @@
 	name = Matt Bray
 [core]
 	excludesfile = ~/.config/git/ignore
+	editor = vim
 [push]
 	default = tracking
