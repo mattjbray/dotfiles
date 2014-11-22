@@ -127,6 +127,9 @@
     " Don't interfere with YouCompleteMe
     let g:pymode_rope_complete_on_dot = 0
 
+    " Don't regenerate .ropeproject on save
+    let g:pymode_rope_regenerate_on_write = 0
+
 "====[ NERDTree ]====
 
     let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
