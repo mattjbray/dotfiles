@@ -136,6 +136,10 @@
     noremap <leader>t :NERDTreeToggle<CR>
     noremap <leader>T :NERDTreeFind<CR>
 
+"====[ Dispatch ]====
+
+    noremap <leader>m :Make<CR>
+
 "====[ Fugitive ]====
 
     " Autodelete hidden fugitive buffers
