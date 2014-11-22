@@ -38,6 +38,10 @@
 
   xbindkeys
 
+#====[ System tray ]====
+
+  stalonetray &
+
 #====[ Window Manager ]====
 
   /usr/bin/dwm
