@@ -3,43 +3,45 @@
     set nocompatible
     filetype off
 
-    set rtp+=~/.vim/bundle/vundle
-    call vundle#rc()
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
 
-    Bundle 'gmarik/vundle'
+    Plugin 'gmarik/Vundle.vim'
 
 "====[ Vundle Plugins ]====
 
-    "Bundle 'L9'
-    Bundle 'tpope/vim-fugitive'
-    Bundle 'airblade/vim-gitgutter'
-    "Bundle 'othree/html5.vim'
-    "Bundle 'nathanaelkane/vim-indent-guides'
-    "Bundle 'sjl/gundo.vim'
-    Bundle 'tpope/vim-dispatch'
-    Bundle 'tpope/vim-projectionist'
-    Bundle 'tpope/vim-repeat'
-    Bundle 'tpope/vim-surround'
-    "Bundle 'tpope/vim-ragtag'
-    Bundle 'tpope/vim-rails'
-    Bundle 'tpope/vim-unimpaired'
-    "Bundle 'MarcWeber/vim-addon-mw-utils'
-    "Bundle 'tomtom/tlib_vim'
-    "Bundle 'garbas/vim-snipmate'
-    "Bundle 'honza/vim-snippets'
-    Bundle 'scrooloose/nerdtree'
-    Bundle 'altercation/vim-colors-solarized'
-    Bundle 'klen/python-mode'
-    "Bundle 'tsaleh/vim-matchit'
-    "Bundle 'kana/vim-textobj-user'
-    "Bundle 'nelstrom/vim-textobj-rubyblock'
-    "Bundle 'Shutnik/jshint2.vim'
-    Bundle 'Valloric/YouCompleteMe'
-    "Bundle 'jondkinney/dragvisuals.vim'
-    "Bundle 'jondkinney/vmath.vim'
-    "Bundle 'mattn/emmet-vim'
-    "Bundle 'derekwyatt/vim-scala'
-    Bundle 'briancollins/vim-jst'
+    "Plugin 'L9'
+    Plugin 'tpope/vim-fugitive'
+    Plugin 'airblade/vim-gitgutter'
+    "Plugin 'othree/html5.vim'
+    "Plugin 'nathanaelkane/vim-indent-guides'
+    "Plugin 'sjl/gundo.vim'
+    Plugin 'tpope/vim-dispatch'
+    Plugin 'tpope/vim-projectionist'
+    Plugin 'tpope/vim-repeat'
+    Plugin 'tpope/vim-surround'
+    "Plugin 'tpope/vim-ragtag'
+    Plugin 'tpope/vim-rails'
+    Plugin 'tpope/vim-unimpaired'
+    "Plugin 'MarcWeber/vim-addon-mw-utils'
+    "Plugin 'tomtom/tlib_vim'
+    "Plugin 'garbas/vim-snipmate'
+    "Plugin 'honza/vim-snippets'
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'altercation/vim-colors-solarized'
+    Plugin 'klen/python-mode'
+    "Plugin 'tsaleh/vim-matchit'
+    "Plugin 'kana/vim-textobj-user'
+    "Plugin 'nelstrom/vim-textobj-rubyblock'
+    "Plugin 'Shutnik/jshint2.vim'
+    Plugin 'Valloric/YouCompleteMe'
+    "Plugin 'jondkinney/dragvisuals.vim'
+    "Plugin 'jondkinney/vmath.vim'
+    "Plugin 'mattn/emmet-vim'
+    "Plugin 'derekwyatt/vim-scala'
+    Plugin 'briancollins/vim-jst'
+
+    call vundle#end()
 
 "====[ General ]====
 
