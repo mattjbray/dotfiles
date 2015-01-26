@@ -20,4 +20,4 @@ Setup on a new machine:
     $ rmdir ~/dotfiles.git
     $ chsh -s /usr/bin/zsh
     $ zsh
-    $ vundle
+    $ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
