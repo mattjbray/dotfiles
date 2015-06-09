@@ -40,6 +40,8 @@
     "Plugin 'mattn/emmet-vim'
     "Plugin 'derekwyatt/vim-scala'
     Plugin 'briancollins/vim-jst'
+    Plugin 'bitc/vim-hdevtools'
+    Plugin 'scrooloose/syntastic'
 
     call vundle#end()
 
@@ -176,3 +178,20 @@
 
     vmap <expr>  ++  VMATH_YankAndAnalyse()
     nmap         ++  vip++
+
+"====[ syntastic ]====
+
+    set statusline+=%#warningmsg#
+    set statusline+=%{SyntasticStatuslineFlag()}
+    set statusline+=%*
+
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 0
+
+"====[ hdevtools ]====
+
+    noremap <leader>ht :HdevtoolsType<CR>
+    noremap <leader>hi :HdevtoolsInfo<CR>
+    noremap <leader>hc :HdevtoolsClear<CR>
