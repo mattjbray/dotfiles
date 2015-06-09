@@ -154,15 +154,6 @@
     noremap <leader>gs :Gstatus<CR>
     noremap <leader>gw :Gwrite<CR>
 
-"====[ Powerline ]======
-
-    let $PYTHONPATH='/usr/lib/python3.4/site-packages'
-    python from powerline.vim import setup as powerline_setup
-    python powerline_setup()
-    python del powerline_setup
-    set laststatus=2
-    set encoding=utf-8
-
 "====[ Dragvisuals ]======
 
     vmap  <expr>  <LEFT>   DVB_Drag('left')
