@@ -13,7 +13,7 @@
     "Plugin 'L9'
     Plugin 'tpope/vim-fugitive'
     Plugin 'airblade/vim-gitgutter'
-    "Plugin 'othree/html5.vim'
+    Plugin 'othree/html5.vim'
     "Plugin 'nathanaelkane/vim-indent-guides'
     "Plugin 'sjl/gundo.vim'
     Plugin 'tpope/vim-dispatch'
