@@ -42,6 +42,8 @@
     Plugin 'briancollins/vim-jst'
     Plugin 'bitc/vim-hdevtools'
     Plugin 'scrooloose/syntastic'
+    Plugin 'jistr/vim-nerdtree-tabs'
+    Plugin 'kien/ctrlp.vim'
 
     call vundle#end()
 
@@ -137,8 +139,8 @@
 "====[ NERDTree ]====
 
     let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
-    noremap <leader>t :NERDTreeToggle<CR>
-    noremap <leader>T :NERDTreeFind<CR>
+    noremap <leader>t :NERDTreeTabsToggle<CR>
+    noremap <leader>T :NERDTreeTabsFind<CR>
 
 "====[ Dispatch ]====
 
