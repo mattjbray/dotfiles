@@ -170,13 +170,12 @@ layers configuration."
 (defun neotree-project-dir ()
   "Open NeoTree using the git root."
   (interactive)
-  (let ((project-dir (projectile-project-root))
+  (let ((project-dir (projectile-project-p))
         (file-name (buffer-file-name)))
     (if project-dir
-        (progn
-          (neotree-dir project-dir)
-          (neotree-find file-name))
-      (message "Could not find git project root."))))
+        (neotree-dir project-dir)
+      (message "Could not find project root."))
+    (neotree-find file-name)))
 
 (defun set-pythonpath-from-project ()
   (let ((project-root (projectile-project-root)))
