@@ -20,4 +20,6 @@ Setup on a new machine:
     $ rmdir ~/dotfiles.git
     $ chsh -s /usr/bin/zsh
     $ zsh
-    $ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    $ # setup vim
+    $ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    $ vim +PluginInstall +qall
