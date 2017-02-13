@@ -39,10 +39,13 @@ values."
      helm
      auto-completion
      ;; better-defaults
+     csv
+     docker
      elixir
      elm
      emacs-lisp
      git
+     idris
      (haskell :variables
               haskell-enable-hindent-style "johan-tibell"
               haskell-completion-backend 'intero)
@@ -54,10 +57,18 @@ values."
      nginx
      ocaml
      org
+     osx
      purescript
+     python
+     ranger
+     ruby
      (shell :variables
-            shell-default-shell 'shell)
+            ;; shell-default-height 30
+            ;; shell-default-position 'bottom
+            shell-default-shell 'shell
+            )
      spell-checking
+     sql
      syntax-checking
      version-control
      yaml
@@ -352,7 +363,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (evil avy dash origami packed auto-complete simple-httpd yasnippet skewer-mode idris-mode prop-menu org eclim elixir-mode smartparens highlight flycheck haskell-mode company request helm helm-core magit magit-popup git-commit with-editor alert projectile hydra haml-mode js2-mode psci purescript-mode psc-ide yaml-mode xterm-color ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen utop use-package tuareg toc-org tagedit spacemacs-theme spaceline smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters quelpa pug-mode popwin persp-mode pcre2el paradox orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file ocp-indent ob-elixir nginx-mode neotree multi-term move-text mmm-mode merlin markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc intero info+ indent-guide ido-vertical-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md flycheck-pos-tip flycheck-mix flycheck-haskell flycheck-elm flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elm-mode elisp-slime-nav dumb-jump diff-hl define-word company-web company-tern company-statistics company-ghci company-ghc company-emacs-eclim company-cabal column-enforce-mode coffee-mode cmm-mode clean-aindent-mode auto-yasnippet auto-highlight-symbol auto-compile alchemist aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
+    (ranger pyvenv osx-dictionary org-download helm-gitignore company-statistics docker-tramp haml-mode psci purescript-mode psc-ide ob-elixir flycheck-mix alchemist elixir-mode origami pug-mode helm-c-yasnippet magit-popup idris-mode prop-menu rspec-mode simple-httpd auto-complete csv-mode sql-indent web-mode rubocop orgit org live-py-mode intero hide-comnt gitattributes-mode git-gutter-fringe eshell-z docker eclim flycheck haskell-mode company yasnippet skewer-mode js2-mode magit git-commit with-editor inf-ruby utop tuareg caml ocp-indent merlin ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired f s evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build spacemacs-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
