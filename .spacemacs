@@ -315,30 +315,11 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+
+  ;; Allow entering symbols with the right option key.
+  (setq-default mac-right-option-modifier nil)
   )
 
-(defun setup-mac-meta-keys ()
-  (spacemacs/toggle-maximize-frame-on)
-  (let ((m window-numbering-keymap))
-    ;; On UK MBP keyboards, META key is used to insert certain characters clear the key
-    (define-key m "\M-0" nil)
-    (define-key m "\M-1" nil)
-    (define-key m "\M-2" nil)
-    (define-key m "\M-3" nil)
-    (define-key m "\M-4" nil)
-    (define-key m "\M-5" nil)
-    (define-key m "\M-6" nil)
-    (define-key m "\M-7" nil)
-    (define-key m "\M-8" nil)
-    (define-key m "\M-9" nil)
-
-    ;; http://stackoverflow.com/questions/3977069/emacs-question-hash-key
-    (global-set-key (kbd "M-2") '(lambda () (interactive) (insert "€")))
-    (global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
-    (define-key isearch-mode-map (kbd "M-3")
-      '(lambda ()
-         (interactive)
-         (isearch-process-search-char ?\#)))))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -349,8 +330,6 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
   (setq shell-file-name "/bin/bash")
-
-  (setup-mac-meta-keys)
 
   (setq eclim-eclipse-dirs "/Applications/Eclipse.app/Contents/Eclipse"
         eclim-executable "/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclim_2.6.0/bin/eclim")
