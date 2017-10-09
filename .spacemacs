@@ -85,7 +85,11 @@ This function should only modify configuration layer settings."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages
+   '(
+     groovy-mode
+     prettier-js
+     )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -400,9 +404,8 @@ before packages are loaded."
     (require 'org-projectile)
     (push (org-projectile-todo-files) org-agenda-files))
 
-  (setq-default js2-basic-offset 2)
-  (setq-default js-indent-level 2)
-  (setq-default web-mode-code-indent-offset 2)
+  (add-hook 'js2-mode-hook 'prettier-js-mode)
+  (add-hook 'web-mode-hook 'prettier-js-mode)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
