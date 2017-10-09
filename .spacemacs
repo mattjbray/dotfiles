@@ -52,6 +52,8 @@ This function should only modify configuration layer settings."
               haskell-enable-hindent-style "johan-tibell"
               haskell-completion-backend 'intero)
      html
+     (ipl :variables
+          ipl-path-to-language-server "~/code/ai/ipl/fixdsl-vscode/xtext-server/bin/fixdsl-server")
      java
      javascript
      idris
