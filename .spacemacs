@@ -59,6 +59,8 @@ This function should only modify configuration layer settings."
      idris
      markdown
      nginx
+     (node :variables
+           node-add-modules-path t)
      ocaml
      (org :variables
           org-enable-reveal-js-support t
