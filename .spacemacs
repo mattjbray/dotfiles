@@ -41,7 +41,10 @@ This function should only modify configuration layer settings."
      csv
      docker
      elixir
-     elm
+     (elm :variables
+          elm-format-on-save t
+          elm-sort-imports-on-save t
+          )
      emacs-lisp
      git
      idris
