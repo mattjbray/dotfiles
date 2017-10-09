@@ -64,7 +64,7 @@ This function should only modify configuration layer settings."
      ocaml
      (org :variables
           org-enable-reveal-js-support t
-          org-projectile-file "/Users/mattjbray/org/notes.org")
+          org-projectile-file "/Users/mattjbray/Dropbox (Personal)/Notes/projects.org")
      osx
      purescript
      python
@@ -396,6 +396,9 @@ before packages are loaded."
   ;; (add-to-list 'projectile-globally-ignored-directories "node_modules")
   ;; (add-hook 'tuareg-mode-hook opam-env)
 
+  (with-eval-after-load 'org-agenda
+    (require 'org-projectile)
+    (push (org-projectile-todo-files) org-agenda-files))
 
   (setq-default js2-basic-offset 2)
   (setq-default js-indent-level 2)
@@ -409,7 +412,6 @@ before packages are loaded."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/org/notes.org")))
  '(package-selected-packages
    (quote
     (ranger pyvenv osx-dictionary org-download helm-gitignore company-statistics docker-tramp haml-mode psci purescript-mode psc-ide ob-elixir flycheck-mix alchemist elixir-mode origami pug-mode helm-c-yasnippet magit-popup idris-mode prop-menu rspec-mode simple-httpd auto-complete csv-mode sql-indent web-mode rubocop orgit org live-py-mode intero hide-comnt gitattributes-mode git-gutter-fringe eshell-z docker eclim flycheck haskell-mode company yasnippet skewer-mode js2-mode magit git-commit with-editor inf-ruby utop tuareg caml ocp-indent merlin ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired f s evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build spacemacs-theme))))
