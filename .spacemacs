@@ -407,6 +407,10 @@ before packages are loaded."
 
   (add-hook 'js2-mode-hook 'prettier-js-mode)
   (add-hook 'web-mode-hook 'prettier-js-mode)
+
+  ;; Show Git submodules section in Magit status buffer.
+  (with-eval-after-load 'magit
+    (magit-add-section-hook 'magit-status-sections-hook 'magit-insert-submodules))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
