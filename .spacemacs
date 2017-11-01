@@ -376,9 +376,6 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-
-  ;; Allow entering symbols with the right option key.
-  (setq-default mac-right-option-modifier nil)
   )
 
 (defun opam-env ()
@@ -403,9 +400,6 @@ before packages are loaded."
 
   (add-to-list 'auto-mode-alist '("\\.gradle$" . groovy-mode))
   (add-to-list 'auto-mode-alist '("\\jbuild\\'" . lisp-mode))
-
-  ;; (add-to-list 'projectile-globally-ignored-directories "node_modules")
-  ;; (add-hook 'tuareg-mode-hook opam-env)
 
   (with-eval-after-load 'org-agenda
     (require 'org-projectile)
