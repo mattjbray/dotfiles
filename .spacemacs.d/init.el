@@ -38,26 +38,32 @@ This function should only modify configuration layer settings."
      helm
      auto-completion
      ;; better-defaults
-     csv
-     docker
-     elixir
+     ;; clojure
+     ;; csv
+     ;; docker
+     ;; elixir
      (elm :variables
           elm-format-on-save t
           elm-sort-imports-on-save t
           )
+     my-elm
      emacs-lisp
      git
-     idris
+     ;; github
+     ;; go
+     ;; graphviz
      (haskell :variables
               haskell-enable-hindent-style "johan-tibell"
               haskell-completion-backend 'intero)
      html
+     ;; idris
      (ipl :variables
           ipl-path-to-language-server "~/code/ai/ipl/fixdsl-vscode/xtext-server/bin/fixdsl-server")
      java
      javascript
-     idris
+     ;; kubernetes
      markdown
+     my-prolog
      nginx
      (node :variables
            node-add-modules-path t)
@@ -65,11 +71,12 @@ This function should only modify configuration layer settings."
      (org :variables
           org-enable-reveal-js-support t
           org-projectile-file "/Users/mattjbray/Dropbox (Personal)/Notes/projects.org")
-     osx
-     purescript
+     (osx :variables osx-option-as 'meta
+          osx-right-option-as 'none)
+     ;; purescript
      python
-     ranger
-     ruby
+     ;; ranger
+     ;; ruby
      (shell :variables
             ;; shell-default-height 30
             ;; shell-default-position 'bottom
@@ -77,7 +84,9 @@ This function should only modify configuration layer settings."
             )
      spell-checking
      sql
+     my-sql
      syntax-checking
+     ;; typescript
      version-control
      yaml
      )
@@ -121,6 +130,10 @@ It should only modify the values of Spacemacs settings."
    ;; Maximum allowed time in seconds to contact an ELPA repository.
    ;; (default 5)
    dotspacemacs-elpa-timeout 5
+   ;; If non-nil then Spacelpa repository is the primary source to install
+   ;; a locked version of packages. If nil then Spacemacs will install the lastest
+   ;; version of packages from MELPA. (default nil)
+   dotspacemacs-use-spacelpa nil
    ;; If non-nil then verify the signature for downloaded Spacelpa archives.
    ;; (default nil)
    dotspacemacs-verify-spacelpa-archives nil
@@ -198,7 +211,7 @@ It should only modify the values of Spacemacs settings."
    ;; and TAB or `C-m' and `RET'.
    ;; In the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
-   dotspacemacs-distinguish-gui-tab nil
+   dotspacemacs-distinguish-gui-tab t
    ;; If non-nil `Y' is remapped to `y$' in Evil states. (default nil)
    dotspacemacs-remap-Y-to-y$ nil
    ;; If non-nil, the shift mappings `<' and `>' retain visual state if used
@@ -399,7 +412,7 @@ before packages are loaded."
   ;; eclimd-wait-for-process nil
 
   (add-to-list 'auto-mode-alist '("\\.gradle$" . groovy-mode))
-  (add-to-list 'auto-mode-alist '("\\jbuild\\'" . lisp-mode))
+  ;; (add-to-list 'auto-mode-alist '("\\jbuild\\'" . lisp-mode))
 
   (with-eval-after-load 'org-agenda
     (require 'org-projectile)
@@ -411,10 +424,21 @@ before packages are loaded."
   ;; Show Git submodules section in Magit status buffer.
   (with-eval-after-load 'magit
     (magit-add-section-hook 'magit-status-sections-hook 'magit-insert-submodules))
+
+  (setq company-idle-delay nil)
+
+  ;; Noop to stop tuareg-abbrev-hook error popping up when hitting escape
+  (defun tuareg-abbrev-hook ()
+    ())
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -422,10 +446,11 @@ before packages are loaded."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (ranger pyvenv osx-dictionary org-download helm-gitignore company-statistics docker-tramp haml-mode psci purescript-mode psc-ide ob-elixir flycheck-mix alchemist elixir-mode origami pug-mode helm-c-yasnippet magit-popup idris-mode prop-menu rspec-mode simple-httpd auto-complete csv-mode sql-indent web-mode rubocop orgit org live-py-mode intero hide-comnt gitattributes-mode git-gutter-fringe eshell-z docker eclim flycheck haskell-mode company yasnippet skewer-mode js2-mode magit git-commit with-editor inf-ruby utop tuareg caml ocp-indent merlin ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired f s evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build spacemacs-theme))))
+    (sayid ediprolog clojure-snippets clj-refactor inflections edn paredit peg cider-eval-sexp-fu cider seq queue clojure-mode use-package tuareg caml lsp-mode eyebrowse evil-matchit dumb-jump dante ace-window smartparens evil helm helm-core avy markdown-mode company projectile magit magit-popup git-commit org-plus-contrib hydra flycheck imenu-list yapfify yaml-mode xterm-color ws-butler with-editor winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen utop undo-tree toc-org tide tagedit symon string-inflection sql-indent spaceline smeargle slim-mode shell-pop scss-mode sass-mode reveal-in-osx-finder restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode prettier-js popwin pkg-info pip-requirements persp-mode pcre2el pbcopy password-generator paradox ox-reveal osx-trash osx-dictionary origami orgit org-projectile org-present org-pomodoro org-download org-bullets org-brain open-junk-file ocp-indent nginx-mode neotree multi-term move-text mmm-mode merlin meghanada markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode launchctl json-mode js2-refactor js-doc intero info+ indent-guide impatient-mode hy-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets groovy-mode gradle-mode goto-chg google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy flyspell-correct-helm flycheck-pos-tip flycheck-haskell flycheck-elm flx-ido fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime emmet-mode elm-mode elisp-slime-nav editorconfig diminish diff-hl cython-mode company-web company-tern company-statistics company-ghci company-ghc company-emacs-eclim company-cabal company-anaconda column-enforce-mode coffee-mode cmm-mode clean-aindent-mode browse-at-remote bind-key auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent add-node-modules-path adaptive-wrap ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+)
