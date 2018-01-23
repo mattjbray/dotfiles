@@ -420,8 +420,6 @@ before packages are loaded."
   (with-eval-after-load 'magit
     (magit-add-section-hook 'magit-status-sections-hook 'magit-insert-submodules))
 
-  (setq company-idle-delay nil)
-
   ;; Noop to stop tuareg-abbrev-hook error popping up when hitting escape
   (defun tuareg-abbrev-hook ()
     ())
