@@ -17,3 +17,6 @@
 	required = true
 [rerere]
 	enabled = true
+[rebase]
+	instructionFormat = (%an <%ae>) %s
+	instructionFormat = (%an <%ae>) %s
