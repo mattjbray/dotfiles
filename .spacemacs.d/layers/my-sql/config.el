@@ -22,3 +22,9 @@
     (sql-database "sigmax_tests")
     (sql-port 3309))
    ))
+
+(setq-default sql-product 'postgres)
+(setq-default sql-database "user")
+(setq-default sql-password "")
+(setq-default sql-server "localhost")
+(setq-default sql-user "dbname")
