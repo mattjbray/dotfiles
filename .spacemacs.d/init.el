@@ -42,6 +42,7 @@ This function should only modify configuration layer settings."
      helm
      auto-completion
      ;; better-defaults
+     (syntax-checking :variables syntax-checking-enable-tooltips nil)
      ;; clojure
      ;; csv
      ;; docker
@@ -90,7 +91,6 @@ This function should only modify configuration layer settings."
      spell-checking
      sql
      my-sql
-     (syntax-checking :variables syntax-checking-enable-tooltips nil)
      ;; typescript
      (version-control :variables
                       version-control-diff-tool 'diff-hl)
