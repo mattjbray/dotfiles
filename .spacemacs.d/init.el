@@ -507,10 +507,6 @@ before packages are loaded."
   ;; Show Git submodules section in Magit status buffer.
   (with-eval-after-load 'magit
     (magit-add-section-hook 'magit-status-sections-hook 'magit-insert-submodules))
-
-  ;; Noop to stop tuareg-abbrev-hook error popping up when hitting escape
-  (defun tuareg-abbrev-hook ()
-    ())
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
