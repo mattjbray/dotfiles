@@ -86,7 +86,7 @@ This function should only modify configuration layer settings."
      spell-checking
      sql
      my-sql
-     syntax-checking
+     (syntax-checking :variables syntax-checking-enable-tooltips nil)
      ;; typescript
      version-control
      yaml
