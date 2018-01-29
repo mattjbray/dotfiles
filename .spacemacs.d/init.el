@@ -88,7 +88,8 @@ This function should only modify configuration layer settings."
      my-sql
      (syntax-checking :variables syntax-checking-enable-tooltips nil)
      ;; typescript
-     version-control
+     (version-control :variables
+                      version-control-diff-tool 'diff-hl)
      yaml
      )
    ;; List of additional packages that will be installed without being
