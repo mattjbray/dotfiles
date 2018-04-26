@@ -78,6 +78,10 @@ Each entry is either:
 
     (spacemacs/set-leader-keys-for-major-mode 'tuareg-mode
       "scj" 'utop-jbuilder
+      "st" 'tuareg-run-ocaml
+      "eb" 'tuareg-eval-buffer
+      "ep" 'tuareg-eval-phrase
+      "er" 'tuareg-eval-region
       )))
 
 ;;; packages.el ends here
