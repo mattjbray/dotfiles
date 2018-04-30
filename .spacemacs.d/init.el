@@ -44,6 +44,7 @@ This function should only modify configuration layer settings."
      ;; better-defaults
      (syntax-checking :variables syntax-checking-enable-tooltips nil)
      ;; clojure
+     colors
      ;; csv
      ;; docker
      ;; elixir
