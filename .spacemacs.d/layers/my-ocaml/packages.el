@@ -76,6 +76,8 @@ Each entry is either:
 
         (call-interactively #'utop)))
 
+    (add-to-list 'auto-mode-alist '("\\.iml\\'" . tuareg-mode))
+
     (spacemacs/set-leader-keys-for-major-mode 'tuareg-mode
       "scj" 'utop-jbuilder
       "st" 'tuareg-run-ocaml
