@@ -21,7 +21,13 @@
     (sql-server "127.0.0.1")
     (sql-database "sigmax_tests")
     (sql-port 3309))
-   ))
+   ("sigmax_auditor_local"
+    (sql-product 'postgres)
+    (sql-user "postgres")
+    (sql-password "my-secret-pass")
+    (sql-server "127.0.0.1")
+    (sql-database "sigmax_auditor")
+    (sql-port 5432))))
 
 (setq-default sql-product 'postgres)
 (setq-default sql-database "user")
