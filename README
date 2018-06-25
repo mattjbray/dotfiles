@@ -21,12 +21,6 @@ Setup on a new machine:
 
 Initialize stuff:
 
-    $ # setup zsh and zprezto
-    $ git clone --recursive https://github.com/mattjbray/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-    $ setopt EXTENDED_GLOB
-    $ for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-    $   ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-    $ done
     $ chsh -s /usr/bin/zsh
     $ zsh
     $ # setup vim
