@@ -503,6 +503,9 @@ before packages are loaded."
 
   (setq shell-file-name "/bin/bash")
 
+  (let ((gls "/usr/local/bin/gls"))
+    (if (file-exists-p gls) (setq insert-directory-program gls)))
+
   (setq eclim-eclipse-dirs "/Applications/Eclipse.app/Contents/Eclipse"
         eclim-executable "/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclim_2.6.0/bin/eclim")
   ;; eclim-auto-save nil
