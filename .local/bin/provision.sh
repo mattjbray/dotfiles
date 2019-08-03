@@ -100,6 +100,7 @@ printf "Linking dotfiles...\n"
 link-dotfile ".local/bin/provision.sh"
 link-dotfile ".spacemacs.d"
 link-dotfile ".tmux.conf"
+link-dotfile ".zshrc"
 link-dotfile "Library/Application Support/iTerm2/DynamicProfiles/mattjbray.json"
 
 printf "All done!\n"
