@@ -9,6 +9,7 @@ antigen bundle docker-compose
 antigen bundle helm
 antigen bundle kubectl
 antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle chisui/zsh-nix-shell
 
 antigen theme blinks
 
@@ -17,5 +18,6 @@ antigen apply
 # OPAM configuration
 . /Users/mattjbray/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
-# The next line updates PATH for the Google Cloud SDK.
-source '/Users/mattjbray/Downloads/google-cloud-sdk/path.zsh.inc'
+if [ -f "$HOME/.nix-profile/etc/profile.d/nix/sh" ]; then
+    . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+fi
