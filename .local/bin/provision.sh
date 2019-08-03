@@ -80,7 +80,7 @@ if [ ! -f "$HOME/.ssh/id_rsa.pub" ]; then
 fi
 
 < "$HOME/.ssh/id_rsa.pub" pbcopy
-printf "Your SSH pubkey has been copied to the clipboard.\n"
+info "Your SSH pubkey has been copied to the clipboard."
 open-app https://github.com/settings/ssh/new
 
 if [ ! -d "$dotfiles_dir" ]; then
