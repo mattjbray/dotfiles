@@ -2,10 +2,26 @@
 
 set -e
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+CYAN='\033[0;36m'
+YELLOW='\033[0;33m'
+BOLD_YELLOW='\033[1;33m'
+NC='\033[0m'
+
 dotfiles_dir="$HOME/code/mattjbray/dotfiles"
 powerline_fonts_dir="$HOME/code/powerline/fonts"
 
-function open-app() {
+info() {
+    printf "[${CYAN}INFO${NC}] $1\n"
+}
+
+xsudo() {
+    info "sudo required for '$*'"
+    sudo "$@"
+}
+
+open-app() {
     read -n 1 -p "Will now open $1 [Y/n] " ans
     printf "\n"
     if [ "$ans" = "y" ]; then
@@ -13,7 +29,7 @@ function open-app() {
     fi
 }
 
-function link-dotfile() {
+link-dotfile() {
     mkdir -pv "$HOME/$(dirname "$1")"
     ln -sfnv "$dotfiles_dir/$1" "$HOME/$1"
 }
