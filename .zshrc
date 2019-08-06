@@ -21,3 +21,5 @@ antigen apply
 if [ -f "$HOME/.nix-profile/etc/profile.d/nix/sh" ]; then
     . "$HOME/.nix-profile/etc/profile.d/nix.sh"
 fi
+
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh

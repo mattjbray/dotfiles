@@ -37,12 +37,17 @@ link-dotfile() {
 command -v brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 brew install \
+     ag \
      antigen \
      emacs \
+     fzf \
      git \
      python \
      tmux \
      zsh
+
+info "Configuring fzf"
+/usr/local/opt/fzf/install --xdg --key-bindings --completion --no-update-rc
 
 brew cask install \
      contexts \
