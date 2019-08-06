@@ -538,6 +538,10 @@ before packages are loaded."
   (add-hook 'js2-mode-hook 'prettier-js-mode)
   (add-hook 'web-mode-hook 'prettier-js-mode)
 
+  (add-to-list 'treemacs-ignored-file-predicates
+               (lambda (f _)
+                 (string-suffix-p ".bs.js" f)))
+
   ;;on OSX - brew install gnupg gpg-agent pinentry-mac
   ;;$ echo "pinentry-program /usr/local/bin/pinentry-mac" >> ~/.gnupg/gpg-agent.config
   (require 'my-db-config "~/.spacemacs.d/layers/my-sql/my-db-config.el.gpg")
