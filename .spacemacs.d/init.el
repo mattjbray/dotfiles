@@ -83,7 +83,7 @@ This function should only modify configuration layer settings."
      ;; purescript
      python
      ;; ranger
-     reasonml
+     (reasonml :variables reason-auto-refmt t)
      ;; ruby
      (shell :variables
             ;; shell-default-height 30
