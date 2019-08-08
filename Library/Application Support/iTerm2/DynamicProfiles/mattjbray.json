@@ -3,6 +3,7 @@
         {
             "Name": "mattjbray",
             "Guid": "C11F25E0-449E-4B84-B7AE-576F8E06F9DF",
+            "Command": "/usr/local/bin/zsh",
             "Description": "Default",
             "Normal Font" : "Monaco 12",
             "Ansi 0 Color" : {
