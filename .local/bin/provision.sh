@@ -42,8 +42,11 @@ brew install \
      emacs \
      fzf \
      git \
+     jq \
+     ncdu \
      python \
      tmux \
+     watch \
      zsh
 
 info "Configuring fzf"
