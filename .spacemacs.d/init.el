@@ -90,6 +90,7 @@ This function should only modify configuration layer settings."
             ;; shell-default-position 'bottom
             shell-default-shell 'ansi-term
             )
+     shell-scripts
      spell-checking
      sql
      my-sql

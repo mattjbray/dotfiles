@@ -45,6 +45,7 @@ brew install \
      jq \
      ncdu \
      python \
+     shellcheck \
      tmux \
      watch \
      zsh
