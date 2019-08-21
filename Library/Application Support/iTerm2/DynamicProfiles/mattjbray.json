@@ -6,6 +6,7 @@
             "Command": "/usr/local/bin/zsh",
             "Description": "Default",
             "Normal Font" : "Monaco 12",
+            "Option Key Sends": 2,
             "Ansi 0 Color" : {
                 "Red Component" : 0.027450980392156862,
                 "Color Space" : "sRGB",
