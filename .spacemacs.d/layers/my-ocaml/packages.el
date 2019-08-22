@@ -78,12 +78,21 @@ Each entry is either:
 
     (add-to-list 'auto-mode-alist '("\\.iml\\'" . tuareg-mode))
 
+    (with-eval-after-load 'merlin
+      (defun merlin-jump-to-type-definition ()
+        (interactive)
+        (setq merlin-enclosing-types nil)
+        (merlin--type-enclosing-query)
+        (let ((type (car (elt merlin-enclosing-types 0))))
+          (merlin-locate-ident type)))
+
     (spacemacs/set-leader-keys-for-major-mode 'tuareg-mode
       "scj" 'utop-jbuilder
       "st" 'tuareg-run-ocaml
       "eb" 'tuareg-eval-buffer
       "ep" 'tuareg-eval-phrase
       "er" 'tuareg-eval-region
+      "gt" 'merlin-jump-to-type-definition
       )))
 
 ;;; packages.el ends here
