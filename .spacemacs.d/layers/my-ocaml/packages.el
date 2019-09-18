@@ -84,7 +84,7 @@ Each entry is either:
         (setq merlin-enclosing-types nil)
         (merlin--type-enclosing-query)
         (let ((type (car (elt merlin-enclosing-types 0))))
-          (merlin-locate-ident type)))
+          (merlin-locate-ident type))))
 
     (spacemacs/set-leader-keys-for-major-mode 'tuareg-mode
       "scj" 'utop-jbuilder
