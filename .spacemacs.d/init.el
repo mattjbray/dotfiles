@@ -96,6 +96,8 @@ This function should only modify configuration layer settings."
      my-sql
      ;; typescript
      terraform
+     (treemacs :variables
+               treemacs-project-follow-cleanup t)
      (version-control :variables
                       version-control-diff-tool 'diff-hl)
      yaml
