@@ -60,6 +60,17 @@ Each entry is either:
 
 (defun my-ocaml/post-init-tuareg ()
   (progn
+    (when (and (file-exists-p "/usr/local/bin/ocamlformat")
+               (file-directory-p "~/.opam/default/share/emacs/site-lisp"))
+
+      (add-to-list 'load-path "~/.opam/default/share/emacs/site-lisp")
+      (require 'ocamlformat)
+      (add-hook 'tuareg-mode-hook
+                (lambda ()
+                  (add-hook 'before-save-hook (lambda ()
+                                                (when ocamlformat-on-save
+                                                  (ocamlformat-before-save)))))))
+
     ;; Noop to stop tuareg-abbrev-hook error popping up when hitting escape
     (defun tuareg-abbrev-hook () ())
 
