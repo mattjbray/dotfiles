@@ -65,6 +65,10 @@ Each entry is either:
 
       (add-to-list 'load-path "~/.opam/default/share/emacs/site-lisp")
       (require 'ocamlformat)
+
+      (spacemacs/set-leader-keys-for-major-mode 'tuareg-mode
+        "b=" 'ocamlformat)
+
       (add-hook 'tuareg-mode-hook
                 (lambda ()
                   (add-hook 'before-save-hook (lambda ()
