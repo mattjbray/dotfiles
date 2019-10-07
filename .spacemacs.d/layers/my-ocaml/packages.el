@@ -66,14 +66,28 @@ Each entry is either:
       (add-to-list 'load-path "~/.opam/default/share/emacs/site-lisp")
       (require 'ocamlformat)
 
-      (spacemacs/set-leader-keys-for-major-mode 'tuareg-mode
-        "b=" 'ocamlformat)
+
+      ;;stop syntax error popup
+      (setq ocamlformat-show-errors nil)
 
       (add-hook 'tuareg-mode-hook
                 (lambda ()
-                  (add-hook 'before-save-hook (lambda ()
-                                                (when ocamlformat-on-save
-                                                  (ocamlformat-before-save)))))))
+                  (when ocaml-auto-ocamlformat
+                    (add-hook 'before-save-hook 'ocamlformat-before-save nil t)))))
+
+    (spacemacs|add-toggle ocamlformat
+      :documentation "Toggle automatic ocamlformat on save."
+      :status ocaml-auto-ocamlformat
+      :on (progn
+            (setq ocaml-auto-ocamlformat t)
+            (add-hook 'before-save-hook 'ocamlformat-before-save nil t))
+      :off (progn
+             (setq ocaml-auto-ocamlformat nil)
+             (remove-hook 'before-save-hook 'ocamlformat-before-save t)))
+
+    (spacemacs/set-leader-keys-for-major-mode 'tuareg-mode
+      "b=" 'ocamlformat
+      "t=" 'spacemacs/toggle-ocamlformat)
 
     ;; Noop to stop tuareg-abbrev-hook error popping up when hitting escape
     (defun tuareg-abbrev-hook () ())

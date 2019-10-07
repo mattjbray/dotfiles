@@ -1,1 +1,1 @@
-(setq-default ocamlformat-on-save nil)
+(defvar-local ocaml-auto-ocamlformat nil)
