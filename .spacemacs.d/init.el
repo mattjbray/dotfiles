@@ -62,6 +62,7 @@ This function should only modify configuration layer settings."
               haskell-completion-backend 'intero)
      html
      ;; idris
+     imandra
      ;; (ipl :variables
      ;;      ipl-path-to-language-server "~/code/ai/ipl/fixdsl-vscode/xtext-server/bin/fixdsl-server")
      java
