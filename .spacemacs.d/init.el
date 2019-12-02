@@ -529,6 +529,12 @@ before packages are loaded."
   ;; eclimd-default-workspace "/Users/mattjbray/Documents/workspace"
   ;; eclimd-wait-for-process nil
 
+  ;; <TAB> to complete
+  (with-eval-after-load 'company (setq company-idle-delay nil))
+
+  ;; Run flycheck less frequently
+  (setq flycheck-check-syntax-automatically '(save idle-buffer-switch mode-enabled))
+
   (add-to-list 'auto-mode-alist '("\\.gradle$" . groovy-mode))
   ;; (add-to-list 'auto-mode-alist '("\\jbuild\\'" . lisp-mode))
 
