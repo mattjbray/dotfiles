@@ -75,7 +75,7 @@ This function should only modify configuration layer settings."
            node-add-modules-path t)
      ocaml
      (my-ocaml :variables
-               ocamlformat-on-save nil)
+               ocaml-auto-ocamlformat t)
      (org :variables
           org-enable-reveal-js-support t
           org-projectile-file "/Users/mattjbray/Dropbox (Personal)/Notes/projects.org")
