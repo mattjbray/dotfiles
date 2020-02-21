@@ -34,6 +34,9 @@ link-dotfile() {
     ln -sfnv "$dotfiles_dir/$1" "$HOME/$1"
 }
 
+info "Setting key repeat rate"
+defaults write NSGlobalDomain KeyRepeat -int 1
+
 command -v brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 brew install \
