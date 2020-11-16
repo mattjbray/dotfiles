@@ -105,8 +105,6 @@ Each entry is either:
 
         (call-interactively #'utop)))
 
-    (add-to-list 'auto-mode-alist '("\\.iml\\'" . tuareg-mode))
-
     (with-eval-after-load 'merlin
       (defun merlin-jump-to-type-definition ()
         (interactive)

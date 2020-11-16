@@ -8,10 +8,11 @@ antigen bundle docker
 antigen bundle docker-compose
 antigen bundle helm
 antigen bundle kubectl
+antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle chisui/zsh-nix-shell
 
-antigen theme blinks
+antigen theme robbyrussell
 
 antigen apply
 
@@ -23,3 +24,10 @@ if [ -f "$HOME/.nix-profile/etc/profile.d/nix/sh" ]; then
 fi
 
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
+
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+
+alias lessrf=less -R +F
+
+export CLOUDSDK_PYTHON="python2"

@@ -5,7 +5,8 @@
             "Guid": "C11F25E0-449E-4B84-B7AE-576F8E06F9DF",
             "Command": "/usr/local/bin/zsh",
             "Description": "Default",
-            "Normal Font" : "Monaco 12",
+            "Normal Font" : "JetBrainsMono-Regular 13",
+            "Non Ascii Font" : "RobotoMonoForPowerline-Regular 12",
             "Option Key Sends": 2,
             "Silence Bell": 1,
             "Ansi 0 Color" : {
@@ -167,6 +168,6 @@
                 "Blue Component" : 0.25882352941176473,
                 "Green Component" : 0.21176470588235294
             }
-        },
+        }
     ]
 }
