@@ -600,9 +600,9 @@ before packages are loaded."
   (add-to-list 'auto-mode-alist '("\\.gradle$" . groovy-mode))
   ;; (add-to-list 'auto-mode-alist '("\\jbuild\\'" . lisp-mode))
 
-  (with-eval-after-load 'org-agenda
-    (require 'org-projectile)
-    (push (org-projectile-todo-files) org-agenda-files))
+  ;; (with-eval-after-load 'org-agenda
+  ;;   (require 'org-projectile)
+  ;;   (push (org-projectile-todo-files) org-agenda-files))
 
   (add-hook 'js2-mode-hook 'prettier-js-mode)
   (add-hook 'web-mode-hook 'prettier-js-mode)
@@ -615,6 +615,14 @@ before packages are loaded."
   ;;on OSX - brew install gnupg gpg-agent pinentry-mac
   ;;$ echo "pinentry-program /usr/local/bin/pinentry-mac" >> ~/.gnupg/gpg-agent.config
   (require 'my-db-config "~/.spacemacs.d/layers/my-sql/my-db-config.el.gpg")
+
+  (setq org-roam-directory "~/Dropbox (Personal)/Notes/org-roam")
+
+  (setq org-agenda-files
+        (list
+         "~/Dropbox (Personal)/Notes/inbox.org"
+         "~/Dropbox (Personal)/Notes/org-roam/"
+         "~/Dropbox (Personal)/Notes/org-roam/daily/"))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
