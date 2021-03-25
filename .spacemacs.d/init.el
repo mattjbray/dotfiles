@@ -86,9 +86,11 @@ This function should only modify configuration layer settings."
                ocaml-auto-ocamlformat t)
      (org :variables
           org-enable-reveal-js-support t
-          org-projectile-file "/Users/mattjbray/Dropbox (Personal)/Notes/projects.org")
-     (osx :variables osx-option-as 'meta
-          osx-right-option-as 'none)
+          org-enable-roam-support t
+          ;; org-projectile-file "/Users/mattjbray/Dropbox (Personal)/Notes/projects.org"
+          org-default-notes-file "/Users/mattjbray/Dropbox (Personal)/Notes/inbox.org"
+          )
+     (osx :variables osx-option-as 'meta osx-right-option-as 'none)
      ;; purescript
      python
      ;; ranger
