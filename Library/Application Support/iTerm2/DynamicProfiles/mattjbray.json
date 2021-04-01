@@ -9,6 +9,7 @@
             "Non Ascii Font" : "RobotoMonoForPowerline-Regular 12",
             "Option Key Sends": 2,
             "Silence Bell": 1,
+            "Terminal Type" : "xterm-24bit",
             "Ansi 0 Color" : {
                 "Red Component" : 0.027450980392156862,
                 "Color Space" : "sRGB",
