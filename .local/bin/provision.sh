@@ -61,7 +61,6 @@ brew cask install \
      iterm2 \
      firefox \
      keybase \
-     lastpass \
      spectacle
 
 if [ ! -d "$powerline_fonts_dir" ]; then
@@ -69,7 +68,6 @@ if [ ! -d "$powerline_fonts_dir" ]; then
     (cd "$powerline_fonts_dir"; ./install.sh)
 fi
 
-open-app /Applications/LastPass.app
 open-app /Applications/Keybase.app
 
 # Configure iterm2
