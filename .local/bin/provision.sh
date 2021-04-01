@@ -37,8 +37,10 @@ link-dotfile() {
 info "Setting key repeat rate"
 defaults write NSGlobalDomain KeyRepeat -int 1
 
+info "Checking for homebrew"
 command -v brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
+info "Installing homebrew packages"
 brew install \
      ag \
      antigen \
@@ -58,6 +60,10 @@ brew install \
 info "Configuring fzf"
 /usr/local/opt/fzf/install --xdg --key-bindings --completion --no-update-rc
 
+info "Create xterm-24bit.terminfo"
+/usr/bin/tic -x -o ~/.terminfo "${dotfiles_dir}/src/xterm-24bit.terminfo"
+
+info "Installing homebrew casks"
 brew cask install \
      contexts \
      iterm2 \
@@ -65,6 +71,7 @@ brew cask install \
      keybase \
      spectacle
 
+info "Installing powerline fonts"
 if [ ! -d "$powerline_fonts_dir" ]; then
     git clone https://github.com/powerline/fonts.git --depth=1 "$powerline_fonts_dir"
     (cd "$powerline_fonts_dir"; ./install.sh)
@@ -107,7 +114,7 @@ if [ ! -d "$HOME/.emacs.d" ]; then
     git clone https://github.com/syl20bnr/spacemacs "$HOME/.emacs.d" --branch develop
 fi
 
-printf "Linking dotfiles...\n"
+info "Linking dotfiles"
 
 link-dotfile ".local/bin/provision.sh"
 link-dotfile ".spacemacs.d"
@@ -115,4 +122,4 @@ link-dotfile ".tmux.conf"
 link-dotfile ".zshrc"
 link-dotfile "Library/Application Support/iTerm2/DynamicProfiles/mattjbray.json"
 
-printf "All done!\n"
+info "All done!"
