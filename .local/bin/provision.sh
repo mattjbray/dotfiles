@@ -42,9 +42,11 @@ command -v brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.
 brew install \
      ag \
      antigen \
+     coreutils \
      emacs \
      fzf \
      git \
+     gnu-tar \
      jq \
      ncdu \
      python \
