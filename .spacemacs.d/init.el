@@ -67,9 +67,9 @@ This function should only modify configuration layer settings."
      ;; (imandra :variables imandra-mode-backend 'merlin)
      (ipl :variables
           ipl-path-to-language-server
-          "~/code/ai/ipl-worker/vendor/ipl/ipl-vscode/xtext-server/bin/ipl-server"
+          "~/code/ai/ipl/ipl-vscode/xtext-server/bin/ipl-server"
           ipl-java-home
-          "/Library/Java/JavaVirtualMachines/adoptopenjdk-13.jdk/Contents/Home")
+          "/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home")
      java
      javascript
      ;; kubernetes
