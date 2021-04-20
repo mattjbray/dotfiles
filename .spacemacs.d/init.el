@@ -79,10 +79,10 @@ This function should only modify configuration layer settings."
      (lsp :variables lsp-ui-doc-enable nil)
      (node :variables
            node-add-modules-path t)
-     (ocaml :variables
-            tuareg-opam-insinuate t)
-     (my-ocaml :variables
-               ocaml-auto-ocamlformat t)
+     ;; (ocaml :variables
+     ;;        tuareg-opam-insinuate t
+     ;;        ocaml-backend `merlin)
+     (my-ocaml :variables my-ocaml/format-on-save t)
      (org :variables
           org-enable-reveal-js-support t
           org-enable-roam-support t
@@ -93,7 +93,7 @@ This function should only modify configuration layer settings."
      ;; purescript
      python
      ;; ranger
-     (reasonml :variables reason-auto-refmt t)
+     ;; (reasonml :variables reason-auto-refmt t)
      ;; ruby
      (shell :variables
             ;; shell-default-height 30
@@ -596,11 +596,10 @@ before packages are loaded."
   ;; eclimd-default-workspace "/Users/mattjbray/Documents/workspace"
   ;; eclimd-wait-for-process nil
 
-  ;; <TAB> to complete
-  ;; (with-eval-after-load 'company (setq company-idle-delay nil))
- 
   ;; Run flycheck less frequently
   (setq flycheck-check-syntax-automatically '(save idle-buffer-switch mode-enabled))
+
+  (setq lsp-ocaml-lsp-server-command '("opam" "exec" "--" "ocamllsp"))
 
   (add-to-list 'auto-mode-alist '("\\.gradle$" . groovy-mode))
   ;; (add-to-list 'auto-mode-alist '("\\jbuild\\'" . lisp-mode))
