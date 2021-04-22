@@ -601,6 +601,12 @@ before packages are loaded."
 
   (setq lsp-ocaml-lsp-server-command '("opam" "exec" "--" "ocamllsp"))
 
+  ;; Ignore _opam and _build in lsp file watch
+  ;; https://emacs-lsp.github.io/lsp-mode/page/file-watchers/
+  (with-eval-after-load 'lsp-mode
+    (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]_opam")
+    (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]_build"))
+
   (add-to-list 'auto-mode-alist '("\\.gradle$" . groovy-mode))
   ;; (add-to-list 'auto-mode-alist '("\\jbuild\\'" . lisp-mode))
 
