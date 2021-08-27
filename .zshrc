@@ -1,4 +1,9 @@
-source /usr/local/share/antigen/antigen.zsh
+function source-if-exists() {
+    [ -f "$1" ] && source "$1"
+}
+
+source-if-exists /usr/local/share/antigen/antigen.zsh
+source-if-exists /usr/share/zsh-antigen/antigen.zsh
 
 antigen use oh-my-zsh
 
@@ -16,17 +21,14 @@ antigen theme robbyrussell
 
 antigen apply
 
-# OPAM configuration
-. /Users/mattjbray/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+source-if-exists "$HOME/.opam/opam-init/init.zsh"
 
-if [ -f "$HOME/.nix-profile/etc/profile.d/nix/sh" ]; then
-    . "$HOME/.nix-profile/etc/profile.d/nix.sh"
-fi
+source-if-exists "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
+source-if-exists "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
 
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+source-if-exists '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+source-if-exists '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
 
 alias lessrf=less -R +F
 
