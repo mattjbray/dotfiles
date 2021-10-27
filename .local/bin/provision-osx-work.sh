@@ -30,9 +30,11 @@ info "Installing homebrew packages"
 brew install \
      flyway \
      fswatch \
+     node \
      opam \
      postgres \
      slack \
+     yq \
      || exit 1
 
 info "Init opam"
