@@ -133,7 +133,15 @@ This function should only modify configuration layer settings."
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(merlin-eldoc)
+   dotspacemacs-excluded-packages
+   '(
+     merlin-eldoc
+     ;; See https://github.com/syl20bnr/spacemacs/issues/15111
+     gitattributes-mode
+     gitconfig-mode
+     gitignore-mode
+     helm-gitignore
+     )
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
