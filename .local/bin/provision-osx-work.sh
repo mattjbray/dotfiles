@@ -53,6 +53,9 @@ clone-ai-repo imandra-web
 clone-ai-repo sigmax
 clone-ai-repo z3
 
+info "Install Google Cloud SDK"
+command -v gcloud || ( (curl https://sdk.cloud.google.com | bash && gcloud init) || exit 1 )
+
 info "Install Imandra"
 [ ! -f "/usr/local/bin/imandra" ] && \
     (sh <(curl -s "https://storage.googleapis.com/imandra-do/install.sh") || exit 1)
