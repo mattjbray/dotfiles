@@ -1,4 +1,5 @@
 f="/usr/local/share/antigen/antigen.zsh"; [ -f "$f" ] && source "$f"
+f="/opt/homebrew/share/antigen/antigen.zsh"; [ -f "$f" ] && source "$f"
 f="/usr/share/zsh-antigen/antigen.zsh"; [ -f "$f" ] && source "$f"
 
 antigen use oh-my-zsh

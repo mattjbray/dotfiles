@@ -37,8 +37,10 @@ link-dotfile() {
 info "Setting key repeat rate"
 defaults write NSGlobalDomain KeyRepeat -int 1
 
+[ -f "/opt/homebrew/bin/brew" ] && eval "$(/opt/homebrew/bin/brew shellenv)"
+
 info "Checking for homebrew"
-command -v brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+command -v brew || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 info "Upgrading homebrew packages"
 brew upgrade
@@ -61,17 +63,18 @@ brew install \
      zsh
 
 info "Configuring fzf"
-/usr/local/opt/fzf/install --xdg --key-bindings --completion --no-update-rc
+/opt/homebrew/opt/fzf/install --xdg --key-bindings --completion --no-update-rc
 
-info "Create xterm-24bit.terminfo"
-/usr/bin/tic -x -o ~/.terminfo "${dotfiles_dir}/src/xterm-24bit.terminfo"
+info "Install Rosetta"
+/usr/sbin/softwareupdate --install-rosetta --agree-to-license
 
 info "Installing homebrew casks"
 brew install \
+     bitwarden \
      contexts \
      iterm2 \
-     firefox \
      keybase \
+     firefox \
      spectacle
 
 if [ ! -d "$powerline_fonts_dir" ]; then
@@ -79,6 +82,8 @@ if [ ! -d "$powerline_fonts_dir" ]; then
     git clone https://github.com/powerline/fonts.git --depth=1 "$powerline_fonts_dir"
     (cd "$powerline_fonts_dir"; ./install.sh)
 fi
+
+open-app /Applications/Bitwarden.app
 
 open-app /Applications/Keybase.app
 
@@ -108,6 +113,9 @@ open-app https://github.com/settings/ssh/new
 if [ ! -d "$dotfiles_dir" ]; then
     git clone git@github.com:mattjbray/dotfiles.git "$dotfiles_dir"
 fi
+
+info "Create xterm-24bit.terminfo"
+/usr/bin/tic -x -o ~/.terminfo "${dotfiles_dir}/src/xterm-24bit.terminfo"
 
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
     git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
