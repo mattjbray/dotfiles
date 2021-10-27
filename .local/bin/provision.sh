@@ -22,7 +22,7 @@ xsudo() {
 }
 
 open-app() {
-    read -n 1 -p "Will now open $1 [Y/n] " ans
+    read -r -n 1 -p "Will now open $1 [Y/n] " ans
     printf "\n"
     if [ "$ans" = "y" ]; then
         open "$1"
@@ -54,6 +54,7 @@ brew install \
      fzf \
      git \
      gnu-tar \
+     gpg \
      jq \
      ncdu \
      python \
@@ -86,6 +87,12 @@ fi
 open-app /Applications/Bitwarden.app
 
 open-app /Applications/Keybase.app
+
+read -r -n 1 -p "Logged in to Keybase? Ready to export PGP keys to local gpg? [Y/n] " ans
+printf "\n"
+if [ "$ans" = "y" ]; then
+    keybase pgp export | gpg --import
+fi
 
 # Configure iterm2
 # Profile settings are in Library/Application Support/iTerm2/DynamicProfiles/mattjbray.json
