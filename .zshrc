@@ -33,3 +33,6 @@ if [ -f '/Users/mattjbray/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/mattj
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/mattjbray/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/mattjbray/google-cloud-sdk/completion.zsh.inc'; fi
+
+# _l_ess with std_e_rr
+function le() { "$@" 2>&1 | less -S }
