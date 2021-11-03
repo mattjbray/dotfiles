@@ -76,7 +76,8 @@ brew install \
      iterm2 \
      keybase \
      firefox \
-     spectacle
+     spectacle \
+     spotify
 
 if [ ! -d "$powerline_fonts_dir" ]; then
     info "Installing powerline fonts"
