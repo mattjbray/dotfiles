@@ -59,6 +59,7 @@ brew install \
      ncdu \
      python \
      shellcheck \
+     tig \
      tmux \
      watch \
      zsh
@@ -73,6 +74,7 @@ info "Installing homebrew casks"
 brew install \
      bitwarden \
      contexts \
+     google-chrome \
      iterm2 \
      keybase \
      firefox \
