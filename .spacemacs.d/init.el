@@ -614,6 +614,8 @@ before packages are loaded."
 
   (setq shell-file-name "/bin/bash")
 
+  (setq projectile-project-search-path '(("~/code" . 2)))
+
   (let ((gls "/usr/local/bin/gls"))
     (if (file-exists-p gls) (setq insert-directory-program gls)))
 
