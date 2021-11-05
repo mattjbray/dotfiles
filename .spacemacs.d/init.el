@@ -76,7 +76,9 @@ This function should only modify configuration layer settings."
      markdown
      my-prolog
      nginx
-     (lsp :variables lsp-ui-doc-enable nil)
+     (lsp :variables
+          lsp-ui-doc-enable nil
+          lsp-lens-enable nil)
      (node :variables
            node-add-modules-path t)
      ;; (ocaml :variables
