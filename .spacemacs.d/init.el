@@ -138,11 +138,6 @@ This function should only modify configuration layer settings."
    dotspacemacs-excluded-packages
    '(
      merlin-eldoc
-     ;; See https://github.com/syl20bnr/spacemacs/issues/15111
-     gitattributes-mode
-     gitconfig-mode
-     gitignore-mode
-     helm-gitignore
      )
 
    ;; Defines the behaviour of Spacemacs when installing packages.
