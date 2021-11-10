@@ -34,6 +34,7 @@ brew install \
      opam \
      postgres \
      slack \
+     terraform \
      yq \
      homebrew/cask/docker \
      || exit 1

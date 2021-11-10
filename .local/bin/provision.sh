@@ -79,7 +79,8 @@ brew install \
      keybase \
      firefox \
      spectacle \
-     spotify
+     spotify \
+     visual-studio-code
 
 if [ ! -d "$powerline_fonts_dir" ]; then
     info "Installing powerline fonts"
