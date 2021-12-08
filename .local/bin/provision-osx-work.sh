@@ -31,12 +31,14 @@ brew install \
      flyway \
      fswatch \
      fnm \
+     helm \
      opam \
      postgres \
      slack \
      terraform \
      yq \
      homebrew/cask/docker \
+     adoptopenjdk/openjdk/adoptopenjdk11 \
      || exit 1
 
 info "Init opam"

@@ -55,8 +55,10 @@ brew install \
      git \
      gnu-tar \
      gpg \
+     htop \
      jq \
      ncdu \
+     parallel \
      python \
      shellcheck \
      tig \
