@@ -89,7 +89,7 @@ This function should only modify configuration layer settings."
           org-enable-reveal-js-support t
           org-enable-roam-support t
           ;; org-projectile-file "/Users/mattjbray/Dropbox (Personal)/Notes/projects.org"
-          org-default-notes-file "/Users/mattjbray/Dropbox (Personal)/Notes/inbox.org"
+          ;; org-default-notes-file "/Users/mattjbray/Dropbox (Personal)/Notes/inbox.org"
           )
      (osx :variables osx-option-as 'meta osx-right-option-as 'none)
      ;; purescript
@@ -665,14 +665,22 @@ before packages are loaded."
   ;;$ echo "pinentry-program /usr/local/bin/pinentry-mac" >> ~/.gnupg/gpg-agent.config
   (require 'my-db-config "~/.spacemacs.d/layers/my-sql/my-db-config.el.gpg")
 
-  (setq org-roam-directory "~/Dropbox (Personal)/Notes/org-roam")
+  ;; (setq org-roam-directory "~/Dropbox (Personal)/Notes/org-roam")
 
   (setq org-agenda-files
         (list
-         "~/Dropbox (Personal)/Notes/inbox.org"
-         "~/Dropbox (Personal)/Notes/org-roam/"
-         "~/Dropbox (Personal)/Notes/org-roam/daily/"))
+         "~/code/mattjbray/notes/ai/taskdiary.org"))
+
+  (setq org-capture-templates
+        '(("t" "Todo entry" entry
+           (file+olp+datetree "~/code/mattjbray/notes/ai/taskdiary.org")
+           "* TODO %^{Description} %^g\n  CREATED: %U\n%?")
+          ("n" "Notes" entry
+           (file+olp+datetree "~/code/mattjbray/notes/ai/taskdiary.org")
+           "* %^{Description} %^g\n  CREATED: %U\n%?")))
+
   )
+
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
