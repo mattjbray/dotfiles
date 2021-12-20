@@ -615,11 +615,6 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  ;; Fix evil-org-mode for removal of evil-redirect-digit-argument
-  ;; https://github.com/Somelauw/evil-org-mode/issues/93#issuecomment-950306532
-  (add-to-list 'evil-digit-bound-motions 'evil-org-beginning-of-line)
-  (evil-define-key 'motion 'evil-org-mode
-    (kbd "0") 'evil-org-beginning-of-line)
 
   (setq shell-file-name "/bin/bash")
 
