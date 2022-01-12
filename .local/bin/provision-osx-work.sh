@@ -26,6 +26,9 @@ open-app() {
     fi
 }
 
+info "Installing NVM"
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+
 info "Installing homebrew packages"
 brew install \
      flyway \
