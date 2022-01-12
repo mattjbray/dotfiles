@@ -51,9 +51,6 @@ xsudo apt install \
 # info "Configuring fzf"
 # /usr/local/opt/fzf/install --xdg --key-bindings --completion --no-update-rc
 
-info "Create xterm-24bit.terminfo"
-/usr/bin/tic -x -o ~/.terminfo "${dotfiles_dir}/src/xterm-24bit.terminfo"
-
 if ! dpkg -s keybase 2>/dev/null >/dev/null ; then
     info "Installing keybase"
     curl --remote-name https://prerelease.keybase.io/keybase_amd64.deb
@@ -70,6 +67,9 @@ fi
 if [ ! -d "$dotfiles_dir" ]; then
     git clone git@github.com:mattjbray/dotfiles.git "$dotfiles_dir"
 fi
+
+info "Create xterm-24bit.terminfo"
+/usr/bin/tic -x -o ~/.terminfo "${dotfiles_dir}/src/xterm-24bit.terminfo"
 
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
     git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
