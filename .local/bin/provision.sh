@@ -55,6 +55,7 @@ brew install \
      git \
      gnu-tar \
      gpg \
+     graphviz \
      htop \
      jq \
      ncdu \
