@@ -87,4 +87,19 @@ link-dotfile ".tmux.conf"
 link-dotfile ".zshrc"
 link-dotfile ".zshenv"
 
+if [ ! $(command -v opam) ]; then
+    info "Install opam"
+    bash -c "sh <(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)"
+fi
+
+if [ ! -d "$HOME/.opam" ]; then
+    info "Init opam"
+    (opam init || exit 1)
+fi
+
+if [ ! $(command -v fnm) ]; then
+    info "Install fnm (fast node manager)"
+    curl -fsSL https://fnm.vercel.app/install | bash
+fi
+
 info "All done!"
