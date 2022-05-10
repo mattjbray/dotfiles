@@ -128,7 +128,7 @@ This function should only modify configuration layer settings."
       :location (recipe
                  :fetcher github
                  :repo "aestheticintegration/imandra-mode"
-                 :branch "matt/no-merlin")
+                 :branch "master")
       ))
 
    ;; A list of packages that cannot be updated.
