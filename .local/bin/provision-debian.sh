@@ -43,6 +43,7 @@ xsudo apt install \
      git \
      jq \
      ncdu \
+     parallel \
      shellcheck \
      tmux \
      watch \
@@ -100,6 +101,11 @@ fi
 if [ ! $(command -v fnm) ]; then
     info "Install fnm (fast node manager)"
     curl -fsSL https://fnm.vercel.app/install | bash
+fi
+
+if [ ! $(command -v gcloud) ] ; then
+    info "Install Google Cloud SDK"
+    ( (curl https://sdk.cloud.google.com | bash && gcloud init) || exit 1 )
 fi
 
 info "All done!"
