@@ -29,10 +29,14 @@ alias lessrf=less -R +F
 export CLOUDSDK_PYTHON="python3"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/mattjbray/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/mattjbray/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/mattjbray/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/mattjbray/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
 # _l_ess with std_e_rr
 function le() { "$@" 2>&1 | less -S }
+
+# fnm
+export PATH="$HOME/.fnm:$PATH"
+eval "`fnm env`"
