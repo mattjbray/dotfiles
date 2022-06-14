@@ -49,6 +49,7 @@ info "Installing homebrew packages"
 brew install \
      ag \
      antigen \
+     cmake \
      coreutils \
      emacs \
      fzf \
@@ -57,6 +58,7 @@ brew install \
      gpg \
      graphviz \
      htop \
+     ispell \
      jq \
      ncdu \
      parallel \
