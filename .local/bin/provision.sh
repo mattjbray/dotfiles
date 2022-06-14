@@ -77,11 +77,11 @@ info "Installing homebrew casks"
 brew install \
      bitwarden \
      contexts \
+     firefox \
      google-chrome \
      iterm2 \
      keybase \
-     firefox \
-     spectacle \
+     rectangle \
      spotify \
      visual-studio-code
 
