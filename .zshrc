@@ -1,3 +1,5 @@
+#====[ Antigen ]====
+
 f="/usr/local/share/antigen/antigen.zsh"; [ -f "$f" ] && source "$f"
 f="/opt/homebrew/share/antigen/antigen.zsh"; [ -f "$f" ] && source "$f"
 f="/usr/share/zsh-antigen/antigen.zsh"; [ -f "$f" ] && source "$f"
@@ -6,37 +8,48 @@ antigen use oh-my-zsh
 
 antigen bundle vi-mode
 antigen bundle git
-antigen bundle docker
-antigen bundle docker-compose
-antigen bundle helm
-antigen bundle kubectl
-antigen bundle zsh-users/zsh-completions
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle chisui/zsh-nix-shell
+# antigen bundle docker
+# antigen bundle docker-compose
+# antigen bundle helm
+# antigen bundle kubectl
+# antigen bundle zsh-users/zsh-completions
+# antigen bundle zsh-users/zsh-syntax-highlighting
+# antigen bundle chisui/zsh-nix-shell
 
 antigen theme robbyrussell
 
 antigen apply
 
-f="$HOME/.opam/opam-init/init.zsh"; [ -f "$f" ] && source "$f"
+#====[/ Antigen ]====
 
-f="$HOME/.nix-profile/etc/profile.d/nix.sh"; [ -f "$f" ] && source "$f"
+export PATH="/usr/local/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/sbin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
+#====[ FNM ]====
+export PATH="$HOME/.fnm:$PATH"
+eval "`fnm env`"
+
+#====[ Nix ]====
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+
+#====[ Google Cloud SDK ]====
+export CLOUDSDK_PYTHON="python3"
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+
+#====[ Rust / Cargo ]====
+. "$HOME/.cargo/env"
+
+#====[ FZF ]====
 f="${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh; [ -f "$f" ] && source "$f"
 
-alias lessrf=less -R +F
-
-export CLOUDSDK_PYTHON="python3"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
 # _l_ess with std_e_rr
 function le() { "$@" 2>&1 | less -S }
 
-# fnm
-export PATH="$HOME/.fnm:$PATH"
-eval "`fnm env`"
+# echo "PATH:"
+# echo "$PATH" | sed 's/:/\n/g'
