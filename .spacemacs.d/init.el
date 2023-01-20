@@ -85,6 +85,7 @@ This function should only modify configuration layer settings."
      ;;        tuareg-opam-insinuate t
      ;;        ocaml-backend `merlin)
      (my-ocaml :variables my-ocaml/format-on-save t)
+     nixos
      (org :variables
           org-enable-reveal-js-support t
           org-enable-roam-support t
