@@ -49,7 +49,7 @@ f="${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh; [ -f "$f" ] && source "$f"
 
 
 # _l_ess with std_e_rr
-function le() { "$@" 2>&1 | less -S }
+function le() { COLUMNS=$COLUMNS "$@" 2>&1 | less -S }
 
 # echo "PATH:"
 # echo "$PATH" | sed 's/:/\n/g'
