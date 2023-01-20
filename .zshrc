@@ -13,7 +13,7 @@ antigen bundle git
 # antigen bundle helm
 # antigen bundle kubectl
 # antigen bundle zsh-users/zsh-completions
-# antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-syntax-highlighting
 # antigen bundle chisui/zsh-nix-shell
 
 antigen theme robbyrussell
