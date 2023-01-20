@@ -41,6 +41,7 @@ brew install \
      terraform \
      yq \
      homebrew/cask/docker \
+     homebrew/cask/utm \
      adoptopenjdk/openjdk/adoptopenjdk11 \
      || exit 1
 

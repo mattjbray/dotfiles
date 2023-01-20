@@ -46,12 +46,13 @@ info "Upgrading homebrew packages"
 brew upgrade
 
 info "Installing homebrew packages"
+brew tap railwaycat/emacsmacport
 brew install \
      ag \
      antigen \
      cmake \
      coreutils \
-     emacs \
+     emacs-mac \
      fzf \
      git \
      gnu-tar \
@@ -66,6 +67,7 @@ brew install \
      shellcheck \
      tig \
      tmux \
+     trash \
      watch \
      zsh
 
