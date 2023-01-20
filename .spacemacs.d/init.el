@@ -89,6 +89,7 @@ This function should only modify configuration layer settings."
      (org :variables
           org-enable-reveal-js-support t
           org-enable-roam-support t
+          org-enable-roam-ui t
           ;; org-projectile-file "/Users/mattjbray/Dropbox (Personal)/Notes/projects.org"
           ;; org-default-notes-file "/Users/mattjbray/Dropbox (Personal)/Notes/inbox.org"
           )
