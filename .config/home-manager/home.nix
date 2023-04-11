@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+let dotfiles = "${config.home.homeDirectory}/code/mattjbray/dotfiles";
+in
+
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -67,7 +70,7 @@
 
   home.file.".spacemacs.d" = {
     source = config.lib.file.mkOutOfStoreSymlink
-      "${config.home.homeDirectory}/code/mattjbray/dotfiles/.spacemacs.d";
+      "${dotfiles}/.spacemacs.d";
   };
 
   # You can also manage environment variables but you will have to manually
@@ -84,12 +87,33 @@
     # EDITOR = "emacs";
   };
 
+  home.shellAliases = {
+    ll = "ls -al";
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  programs.bash = {
+    enable = true;
+    initExtra = ''
+      set -o vi
+    '';
+  };
 
   programs.git = {
     enable = true;
     userEmail = "mattjbray@gmail.com";
     userName = "Matt Bray";
+  };
+
+  programs.tmux = {
+    customPaneNavigationAndResize = true;
+    enable = true;
+    escapeTime = 0;
+    keyMode = "vi";
+    mouse = true;
+    prefix = "C-a";
+    terminal = "screen-256color";
   };
 }
