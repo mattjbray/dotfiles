@@ -126,7 +126,8 @@ This function should only modify configuration layer settings."
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
-   '((imandra-mode
+   '(direnv
+     (imandra-mode
       :location (recipe
                  :fetcher github
                  :repo "aestheticintegration/imandra-mode"
@@ -642,6 +643,7 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  (direnv-mode)
 
   (setq shell-file-name "/bin/bash")
 
