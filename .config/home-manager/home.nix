@@ -101,6 +101,12 @@ in
     '';
   };
 
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+  };
+
   programs.git = {
     enable = true;
     userEmail = "mattjbray@gmail.com";
