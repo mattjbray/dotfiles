@@ -107,6 +107,12 @@ in
     enableZshIntegration = true;
   };
 
+  programs.fzf = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+  };
+
   programs.git = {
     enable = true;
     userEmail = "mattjbray@gmail.com";
