@@ -40,6 +40,7 @@ in {
     pkgs.coreutils
     pkgs.emacs
     pkgs.nixfmt
+    pkgs.pinentry
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -114,6 +115,10 @@ in {
     enable = true;
     userEmail = "mattjbray@gmail.com";
     userName = "Matt Bray";
+  };
+
+  programs.gpg = {
+    enable = true;
   };
 
   programs.tmux = {
