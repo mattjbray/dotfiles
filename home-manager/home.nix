@@ -37,6 +37,7 @@ in {
     #   echo "Hello, ${config.home.username}!"
     # '')
 
+    pkgs.coreutils
     pkgs.emacs
     pkgs.nixfmt
   ];
