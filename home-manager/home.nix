@@ -37,8 +37,11 @@ in {
     #   echo "Hello, ${config.home.username}!"
     # '')
 
+    pkgs.cloud-sql-proxy
     pkgs.coreutils
     pkgs.emacs
+    (pkgs.google-cloud-sdk.withExtraComponents
+      [ pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin ])
     pkgs.nixfmt
     pkgs.pinentry
   ];
