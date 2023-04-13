@@ -131,5 +131,9 @@ in {
     enableCompletion = true;
     enableSyntaxHighlighting = true;
     defaultKeymap = "viins";
+    initExtra = ''
+      # _l_ess with std_e_rr
+      function le() { COLUMNS=$COLUMNS "$@" 2>&1 | less -RS }
+    '';
   };
 }
