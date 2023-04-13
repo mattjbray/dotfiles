@@ -125,4 +125,11 @@ in {
     prefix = "C-a";
     terminal = "screen-256color";
   };
+
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    enableSyntaxHighlighting = true;
+    defaultKeymap = "viins";
+  };
 }
