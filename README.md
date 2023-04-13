@@ -5,6 +5,7 @@
 ## Nix
 
 ```
-nix run home-manager/master -- switch --flake ~/code/mattjbray/dotfiles/.config/home-manager                                                                                                                   ~
+ln -sv ~/code/mattjbray/dotfiles/home-manager ~/.config/home-manager
+nix run home-manager/master -- switch
 ```
 

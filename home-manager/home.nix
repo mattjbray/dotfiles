@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, username, homeDirectory, ... }:
 
 let dotfiles = "${config.home.homeDirectory}/code/mattjbray/dotfiles";
 in
@@ -6,8 +6,8 @@ in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "mattjbray";
-  home.homeDirectory = "/home/mattjbray";
+  home.username = "${username}";
+  home.homeDirectory = "${homeDirectory}";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -39,7 +39,7 @@ in
     # '')
 
     pkgs.emacs
-    pkgs.tmux
+    pkgs.nixfmt
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
