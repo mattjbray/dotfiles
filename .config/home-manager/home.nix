@@ -125,6 +125,10 @@ in
     escapeTime = 0;
     keyMode = "vi";
     mouse = true;
+    plugins = [
+      pkgs.tmuxPlugins.cpu
+      pkgs.tmuxPlugins.yank
+    ];
     prefix = "C-a";
     terminal = "screen-256color";
   };
