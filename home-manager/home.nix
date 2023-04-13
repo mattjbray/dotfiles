@@ -1,9 +1,8 @@
 { config, pkgs, username, homeDirectory, ... }:
 
 let dotfiles = "${config.home.homeDirectory}/code/mattjbray/dotfiles";
-in
 
-{
+in {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "${username}";
@@ -69,8 +68,7 @@ in
   };
 
   home.file.".spacemacs.d" = {
-    source = config.lib.file.mkOutOfStoreSymlink
-      "${dotfiles}/.spacemacs.d";
+    source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.spacemacs.d";
   };
 
   # You can also manage environment variables but you will have to manually
@@ -87,9 +85,7 @@ in
     # EDITOR = "emacs";
   };
 
-  home.shellAliases = {
-    ll = "ls -al";
-  };
+  home.shellAliases = { ll = "ls -al"; };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -125,10 +121,7 @@ in
     escapeTime = 0;
     keyMode = "vi";
     mouse = true;
-    plugins = [
-      pkgs.tmuxPlugins.cpu
-      pkgs.tmuxPlugins.yank
-    ];
+    plugins = [ pkgs.tmuxPlugins.cpu pkgs.tmuxPlugins.yank ];
     prefix = "C-a";
     terminal = "screen-256color";
   };

@@ -11,16 +11,12 @@
   };
 
   outputs = { nixpkgs, home-manager, ... }:
-    let
-      username = "mattjbray";
-    in
-    {
-      packages."aarch64-darwin".homeConfigurations.mattjbray =
-        let
-          system = "aarch64-darwin";
-          pkgs = nixpkgs.legacyPackages.${system};
-        in
-        home-manager.lib.homeManagerConfiguration {
+    let username = "mattjbray";
+    in {
+      packages."aarch64-darwin".homeConfigurations.mattjbray = let
+        system = "aarch64-darwin";
+        pkgs = nixpkgs.legacyPackages.${system};
+      in home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
         # Specify your home configuration modules here, for example,
@@ -35,12 +31,10 @@
         };
       };
 
-      packages."x86_64-linux".homeConfigurations.mattjbray =
-        let
-          system = "aarch64-darwin";
-          pkgs = nixpkgs.legacyPackages.${system};
-        in
-        home-manager.lib.homeManagerConfiguration {
+      packages."x86_64-linux".homeConfigurations.mattjbray = let
+        system = "aarch64-darwin";
+        pkgs = nixpkgs.legacyPackages.${system};
+      in home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
         # Specify your home configuration modules here, for example,
