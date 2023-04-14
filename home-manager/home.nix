@@ -42,8 +42,13 @@ in {
     pkgs.emacs
     (pkgs.google-cloud-sdk.withExtraComponents
       [ pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin ])
+    pkgs.htop
+    pkgs.ispell
+    pkgs.jq
     pkgs.nixfmt
+    pkgs.parallel
     pkgs.pinentry
+    pkgs.yq
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
