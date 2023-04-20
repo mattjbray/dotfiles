@@ -140,6 +140,9 @@ in {
     plugins = [ pkgs.tmuxPlugins.cpu pkgs.tmuxPlugins.yank ];
     prefix = "C-a";
     terminal = "screen-256color";
+    extraConfig = ''
+      bind ^A last-window
+    '';
   };
 
   programs.zsh = {
