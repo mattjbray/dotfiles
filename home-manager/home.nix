@@ -153,6 +153,24 @@ in {
     initExtra = ''
       # _l_ess with std_e_rr
       function le() { COLUMNS=$COLUMNS "$@" 2>&1 | less -RS }
+
+      date-ts() {
+              date $@ --rfc-3339=seconds | sed 's/ /T/'
+      }
+
+      gke-pod-log() {
+        if [ -z "$1" ] || [ -z "$2" ]; then
+          echo "Usage: gke-pod-log PROJECT_ID POD_ID [START_TIMESTAMP:$(date-ts --date "1 day ago")]"
+          return 1
+        fi
+        local DEFAULT_TS=$(date-ts --date "1 day ago")
+        local TS="$${3:-$DEFAULT_TS}"
+        local QUERY="resource.labels.pod_name=$${2} AND timestamp>=\"$${TS}\""
+        gcloud --project "$1" \
+            logging read "$QUERY" \
+            --format='value(receiveTimestamp, firstof(textPayload, jsonPayload.message))' \
+            --order asc
+      }
     '';
   };
 }
