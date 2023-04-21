@@ -164,8 +164,8 @@ in {
           return 1
         fi
         local DEFAULT_TS=$(date-ts --date "1 day ago")
-        local TS="$${3:-$DEFAULT_TS}"
-        local QUERY="resource.labels.pod_name=$${2} AND timestamp>=\"$${TS}\""
+        local TS="''${3:-$DEFAULT_TS}"
+        local QUERY="resource.labels.pod_name=''${2} AND timestamp>=\"''${TS}\""
         gcloud --project "$1" \
             logging read "$QUERY" \
             --format='value(receiveTimestamp, firstof(textPayload, jsonPayload.message))' \
