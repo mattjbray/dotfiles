@@ -48,6 +48,7 @@ in {
     pkgs.nixfmt
     pkgs.parallel
     pkgs.pinentry
+    pkgs.silver-searcher
     pkgs.watch
     pkgs.yq
   ];
