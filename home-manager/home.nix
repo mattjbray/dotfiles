@@ -126,6 +126,9 @@ in {
     enable = true;
     userEmail = "mattjbray@gmail.com";
     userName = "Matt Bray";
+    ignores = [
+      ".direnv/"
+    ];
   };
 
   programs.gpg = {
