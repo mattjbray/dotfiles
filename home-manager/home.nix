@@ -156,7 +156,14 @@ in {
     defaultKeymap = "viins";
     initExtra = ''
       # _l_ess with std_e_rr
-      function le() { COLUMNS=$COLUMNS "$@" 2>&1 | less -RS }
+      function le() {
+        local less_args=""
+        while [[ $1 = -* || $1 = +* ]]; do
+          less_args="$less_args $1"
+          shift
+        done
+        COLUMNS=$COLUMNS "$@" 2>&1 | less -RS $less_args
+      }
 
       date-ts() {
               date $@ --rfc-3339=seconds | sed 's/ /T/'
