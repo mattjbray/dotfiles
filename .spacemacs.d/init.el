@@ -32,59 +32,39 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(clojure
+   '(rust
+     clojure
      csv
-     rust
+     protobuf
+     systemd
+     html
+     javascript
+     terraform
+     yaml
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
-     (auto-completion :variables auto-completion-idle-delay nil)
+     (auto-completion
+      ;; :variables auto-completion-idle-delay nil
+      )
      ;; better-defaults
      (syntax-checking :variables syntax-checking-enable-tooltips nil)
-     ;; clojure
      colors
-     ;; csv
      docker
-     ;; elixir
-     (elm :variables
-          elm-format-on-save t
-          elm-sort-imports-on-save t
-          )
-     my-elm
      emacs-lisp
      git
-     ;; github
-     ;; go
-     ;; graphviz
-     (haskell :variables
-              haskell-enable-hindent-style "johan-tibell"
-              haskell-completion-backend 'intero)
-     html
-     ;; idris
-     ;; (imandra :variables imandra-mode-backend 'merlin)
-     (ipl :variables
-          ipl-path-to-language-server
-          "~/code/ai/ipl/ipl-vscode/xtext-server/bin/ipl-server"
-          ipl-java-home
-          "/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home")
-     java
-     javascript
-     ;; kubernetes
-     markdown
-     my-prolog
-     nginx
-     (lsp :variables
-          lsp-ui-doc-enable nil
-          lsp-lens-enable nil)
-     (node :variables
-           node-add-modules-path t)
-     ;; (ocaml :variables
-     ;;        tuareg-opam-insinuate t
-     ;;        ocaml-backend `merlin)
-     (my-ocaml :variables my-ocaml/format-on-save t)
+     (imandra :variables imandra-mode-backend 'merlin)
+     ;; (ipl :variables
+     ;;      ipl-path-to-language-server
+     ;;      "~/code/ai/ipl/ipl-vscode/xtext-server/bin/ipl-server"
+     ;;      ipl-java-home
+     ;;      "/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home")
+     (lsp :variables lsp-ui-doc-enable nil lsp-lens-enable nil)
+     (ocaml :variables tuareg-opam-insinuate t ocaml-backend `merlin)
+     ;; (my-ocaml :variables my-ocaml/format-on-save t)
      nixos
      (org :variables
           org-enable-reveal-js-support t
@@ -94,27 +74,15 @@ This function should only modify configuration layer settings."
           ;; org-default-notes-file "/Users/mattjbray/Dropbox (Personal)/Notes/inbox.org"
           )
      (osx :variables osx-option-as 'meta osx-right-option-as 'none)
-     ;; purescript
-     python
-     ;; ranger
-     ;; (reasonml :variables reason-auto-refmt t)
-     ;; ruby
-     (shell :variables
-            ;; shell-default-height 30
-            ;; shell-default-position 'bottom
-            shell-default-shell 'ansi-term
-            )
-     shell-scripts
+     (shell :variables shell-default-shell 'vterm)
      spell-checking
      sql
-     my-sql
+     ;; my-sql
      ;; typescript
-     terraform
-     (treemacs :variables
-               treemacs-project-follow-cleanup t)
-     (version-control :variables
-                      version-control-diff-tool 'diff-hl)
-     yaml
+     ;; terraform
+     ;; (treemacs :variables treemacs-project-follow-cleanup t)
+     ;; (version-control :variables version-control-diff-tool 'diff-hl)
+     ;; yaml
      )
 
    ;; List of additional packages that will be installed without being wrapped
@@ -126,22 +94,14 @@ This function should only modify configuration layer settings."
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
-   '(direnv
-     (imandra-mode
-      :location (recipe
-                 :fetcher github
-                 :repo "aestheticintegration/imandra-mode"
-                 :branch "master")
-      ))
+   '(direnv)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages
-   '(
-     merlin-eldoc
-     )
+   '()
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -268,7 +228,9 @@ It should only modify the values of Spacemacs settings."
    ;; pair of numbers, e.g. `(recents-by-project . (7 .  5))', where the first
    ;; number is the project limit and the second the limit on the recent files
    ;; within a project.
-   dotspacemacs-startup-lists '((recents . 5)
+   dotspacemacs-startup-lists '((agenda . 5)
+                                (todos . 5)
+                                (recents . 5)
                                 (projects . 7))
 
    ;; True if the home buffer should respond to resize events. (default t)
@@ -495,7 +457,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Code folding method. Possible values are `evil', `origami' and `vimish'.
    ;; (default 'evil)
-   dotspacemacs-folding-method 'origami
+   dotspacemacs-folding-method 'evil
 
    ;; If non-nil and `dotspacemacs-activate-smartparens-mode' is also non-nil,
    ;; `smartparens-strict-mode' will be enabled in programming modes.
@@ -623,10 +585,6 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq org-roam-v2-ack t)
-
-  ;; Fix evil-org-mode for removal of evil-redirect-digit-argument
-  ;; https://github.com/Somelauw/evil-org-mode/issues/93#issuecomment-950306532
-  (fset 'evil-redirect-digit-argument 'ignore) ;; before evil-org loaded
   )
 
 (defun dotspacemacs/user-load ()
@@ -659,7 +617,8 @@ before packages are loaded."
   ;; eclimd-wait-for-process nil
 
   ;; Run flycheck less frequently
-  (setq flycheck-check-syntax-automatically '(save idle-buffer-switch mode-enabled))
+  ;; (setq flycheck-check-syntax-automatically '(save idle-buffer-switch mode-enabled))
+  ;; (setq flycheck-display-errors-function 'nil)
 
   (setq lsp-ocaml-lsp-server-command '("opam" "exec" "--" "ocamllsp"))
 
@@ -672,18 +631,12 @@ before packages are loaded."
   (add-to-list 'auto-mode-alist '("\\.gradle$" . groovy-mode))
   ;; (add-to-list 'auto-mode-alist '("\\jbuild\\'" . lisp-mode))
 
-  ;; Imandra
-  (use-package imandra-mode
-    :mode (("\\.iml$" . imandra-mode))
-    :defer t)
-  ;; (add-to-list 'auto-mode-alist '("\\.iml$" . tuareg-mode))
-
   ;; (with-eval-after-load 'org-agenda
   ;;   (require 'org-projectile)
   ;;   (push (org-projectile-todo-files) org-agenda-files))
 
-  (add-hook 'js2-mode-hook 'prettier-js-mode)
-  (add-hook 'web-mode-hook 'prettier-js-mode)
+  ;; (add-hook 'js2-mode-hook 'prettier-js-mode)
+  ;; (add-hook 'web-mode-hook 'prettier-js-mode)
 
   (with-eval-after-load 'treemacs
     (add-to-list 'treemacs-ignored-file-predicates
@@ -692,21 +645,37 @@ before packages are loaded."
 
   ;;on OSX - brew install gnupg gpg-agent pinentry-mac
   ;;$ echo "pinentry-program /usr/local/bin/pinentry-mac" >> ~/.gnupg/gpg-agent.config
-  (require 'my-db-config "~/.spacemacs.d/layers/my-sql/my-db-config.el.gpg")
+  (setq-default epg-pinentry-mode 'loopback)
+  ;; (require 'my-db-config "~/.spacemacs.d/layers/my-sql/my-db-config.el.gpg")
 
-  ;; (setq org-roam-directory "~/Dropbox (Personal)/Notes/org-roam")
+  (setq page-break-lines-modes '(emacs-lisp-mode lisp-mode scheme-mode compilation-mode outline-mode help-mode))
+  ;; (add-to-list 'purpose-action-function-ignore-buffer-names "\\*org-roam\\*")
 
-  (setq org-agenda-files
-        (list
-         "~/code/mattjbray/notes/ai/taskdiary.org"))
+  (with-eval-after-load 'org
+    (setq org-todo-keywords
+          '((sequence "NEXT(n)" "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)"))))
 
-  (setq org-capture-templates
+  (setq-default org-roam-directory "~/code/mattjbray/notes"
+        org-roam-completion-everywhere t)
+
+  (with-eval-after-load 'org-agenda
+    (setq-default org-agenda-files (list "~/code/mattjbray/notes/20220323092054-todo_work.org" "~/code/mattjbray/notes/20220323092044-todo_personal.org"))
+    )
+
+  (setq-default org-capture-templates
         '(("t" "Todo entry" entry
            (file+olp+datetree "~/code/mattjbray/notes/ai/taskdiary.org")
            "* TODO %^{Description} %^g\n  CREATED: %U\n%?")
-          ("n" "Notes" entry
-           (file+olp+datetree "~/code/mattjbray/notes/ai/taskdiary.org")
-           "* %^{Description} %^g\n  CREATED: %U\n%?")))
+          ("p" "Todo entry (personal)" entry
+           (file+olp+datetree "~/code/mattjbray/notes/taskdiary.org")
+           "* TODO %^{Description} %^g\n  CREATED: %U\n%?")))
+
+  (setq lsp-signature-auto-activate nil)
+  (defun bjm/align-whitespace (start end)
+    "Align columns by whitespace"
+    (interactive "r")
+    (align-regexp start end
+                  "\\(\\s-*\\)\\s-" 1 0 t))
 
   )
 
@@ -724,13 +693,14 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(evil-want-Y-yank-to-eol nil)
- '(imandra-lsp-command "/Users/mattjbray/code/ai/imandra/imandra-lsp.sh")
  '(lsp-keymap-prefix "M-l")
+ '(mac-system-move-file-to-trash-use-finder nil)
+ '(magit-diff-refine-hunk t)
+ '(magit-display-buffer-function 'magit-display-buffer-fullcolumn-most-v1)
  '(merlin-eldoc-occurrences nil)
  '(org-confirm-babel-evaluate nil)
- '(org-todo-keywords '((sequence "TODO" "WAITING" "DONE")))
  '(package-selected-packages
-   '(imandra-mode dune ob-elixir flycheck-credo alchemist elixir-mode csv-mode lsp-ui lsp-treemacs lsp-python-ms lsp-java helm-lsp company-lsp dap-mode bui tree-mode counsel swiper ivy graphviz-dot-mode toml-mode racer helm-gtags ggtags flycheck-rust counsel-gtags cargo rust-mode yapfify yaml-mode xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen utop use-package tuareg caml toc-org tagedit sql-indent spaceline powerline smeargle slim-mode shell-pop scss-mode sass-mode reveal-in-osx-finder restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode prettier-js popwin pip-requirements persp-mode pcre2el pbcopy paradox spinner ox-reveal osx-trash osx-dictionary origami orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-plus-contrib org-mime org-download org-bullets open-junk-file ocp-indent nginx-mode neotree multi-term move-text mmm-mode merlin markdown-toc markdown-mode magit-gitflow magit-popup macrostep lorem-ipsum livid-mode skewer-mode simple-httpd live-py-mode linum-relative link-hint launchctl json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc intero indent-guide hydra lv hy-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile projectile helm-mode-manager helm-make helm-hoogle helm-gitignore request helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets haml-mode groovy-mode google-translate golden-ratio gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck-haskell flycheck-elm flycheck pkg-info epl flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit transient git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elm-mode reformatter elisp-slime-nav ediprolog dumb-jump diminish diff-hl cython-mode company-web web-completion-data company-tern dash-functional tern company-statistics company-ghci company-ghc ghc haskell-mode company-emacs-eclim eclim company-cabal company-anaconda company column-enforce-mode color-identifiers-mode coffee-mode cmm-mode clean-aindent-mode bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol auto-dictionary auto-compile packed anaconda-mode pythonic f dash s aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup))
+   '(org-roam-ui websocket company-nixos-options helm-nixos-options nix-mode nixos-options dockerfile-mode docker tablist docker-tramp aio protobuf-mode systemd journalctl-mode impatient-mode counsel-css add-node-modules-path imandra-mode dune ob-elixir flycheck-credo alchemist elixir-mode csv-mode lsp-ui lsp-treemacs lsp-python-ms lsp-java helm-lsp company-lsp dap-mode bui tree-mode counsel swiper ivy graphviz-dot-mode toml-mode racer helm-gtags ggtags flycheck-rust counsel-gtags cargo rust-mode yapfify yaml-mode xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen utop use-package tuareg caml toc-org tagedit sql-indent spaceline powerline smeargle slim-mode shell-pop scss-mode sass-mode reveal-in-osx-finder restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode prettier-js popwin pip-requirements persp-mode pcre2el pbcopy paradox spinner ox-reveal osx-trash osx-dictionary origami orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-plus-contrib org-mime org-download org-bullets open-junk-file ocp-indent nginx-mode neotree multi-term move-text mmm-mode merlin markdown-toc markdown-mode magit-gitflow magit-popup macrostep lorem-ipsum livid-mode skewer-mode simple-httpd live-py-mode linum-relative link-hint launchctl json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc intero indent-guide hydra lv hy-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile projectile helm-mode-manager helm-make helm-hoogle helm-gitignore request helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets haml-mode groovy-mode google-translate golden-ratio gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck-haskell flycheck-elm flycheck pkg-info epl flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit transient git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elm-mode reformatter elisp-slime-nav ediprolog dumb-jump diminish diff-hl cython-mode company-web web-completion-data company-tern dash-functional tern company-statistics company-ghci company-ghc ghc haskell-mode company-emacs-eclim eclim company-cabal company-anaconda company column-enforce-mode color-identifiers-mode coffee-mode cmm-mode clean-aindent-mode bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol auto-dictionary auto-compile packed anaconda-mode pythonic f dash s aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup))
  '(racer-rust-src-path
    "/Users/mattjbray/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/library")
  '(rust-format-on-save t)
@@ -745,13 +715,15 @@ This function is called at the very end of Spacemacs initialization."
      (javascript-backend . tern)
      (javascript-backend . lsp)
      (merlin-command . esy)
-     (refmt-command . esy)))
+     (refmt-command . esy)
+     (lsp-ocaml-lsp-server-command "opam" "exec" "--" "ocamllsp" "--fallback-read-dot-merlin")))
  '(treemacs-sorting 'alphabetic-asc)
+ '(warning-suppress-types '((lsp-mode)))
  '(z3-solver-cmd "z3"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(highlight-parentheses-highlight ((nil (:weight ultra-bold))) t))
 )

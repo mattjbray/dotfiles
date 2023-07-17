@@ -1,0 +1,3 @@
+[submodule ".spacemacs.d/layers/imandra-spacemacs-layer"]
+	path = .spacemacs.d/layers/imandra
+	url = git@github.com:imandra-ai/imandra-spacemacs-layer.git
