@@ -79,6 +79,10 @@ in {
     };
   };
 
+  home.file.".local/bin/imandra_local" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.local/bin/imandra_local";
+  };
+
   home.file.".spacemacs.d" = {
     source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.spacemacs.d";
   };

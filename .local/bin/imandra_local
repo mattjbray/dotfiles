@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+export OPAMSWITCH=/Users/mattjbray/code/ai/imandra
+eval $(opam env)
+imandra_client
