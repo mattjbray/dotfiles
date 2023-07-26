@@ -150,6 +150,8 @@ in {
     terminal = "screen-256color";
     extraConfig = ''
       bind ^A last-window
+      bind '"' split-window -c "#{pane_current_path}"
+      bind % split-window -h -c "#{pane_current_path}"
     '';
   };
 
