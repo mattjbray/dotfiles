@@ -131,6 +131,7 @@ in {
     userEmail = "mattjbray@gmail.com";
     userName = "Matt Bray";
     ignores = [
+      ".DS_Store"
       ".direnv/"
     ];
   };
