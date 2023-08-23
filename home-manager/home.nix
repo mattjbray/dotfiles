@@ -49,6 +49,7 @@ in {
     pkgs.parallel
     pkgs.pinentry
     pkgs.silver-searcher
+    pkgs.util-linux
     pkgs.watch
     pkgs.yq
   ];
@@ -169,7 +170,7 @@ in {
           less_args="$less_args $1"
           shift
         done
-        COLUMNS=$COLUMNS "$@" 2>&1 | less -RS $less_args
+        COLUMNS=$COLUMNS setsid "$@" 2>&1 | less -RS $less_args
       }
 
       date-ts() {
