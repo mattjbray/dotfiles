@@ -159,7 +159,7 @@ in {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    enableSyntaxHighlighting = true;
+    syntaxHighlighting.enable = true;
     defaultKeymap = "viins";
     initExtra = ''
       # _l_ess with std_e_rr
