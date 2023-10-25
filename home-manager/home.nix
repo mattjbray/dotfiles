@@ -48,6 +48,7 @@ in {
     pkgs.nixfmt
     pkgs.parallel
     pkgs.pinentry
+    pkgs.rlwrap
     pkgs.silver-searcher
     pkgs.util-linux
     pkgs.watch
