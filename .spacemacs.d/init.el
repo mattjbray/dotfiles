@@ -94,7 +94,10 @@ This function should only modify configuration layer settings."
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
-   '(direnv)
+   '(
+     direnv
+     solarized-theme
+     )
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -658,8 +661,7 @@ before packages are loaded."
         org-roam-completion-everywhere t)
 
   (with-eval-after-load 'org-agenda
-    (setq-default org-agenda-files (list "~/code/mattjbray/notes/20220323092054-todo_work.org" "~/code/mattjbray/notes/20220323092044-todo_personal.org"))
-    )
+    (setq-default org-agenda-files (list "~/code/mattjbray/notes/" "~/code/mattjbray/notes/daily/")))
 
   (setq-default org-capture-templates
         '(("t" "Todo entry" entry
