@@ -191,6 +191,15 @@ in {
             --format='value(receiveTimestamp, firstof(textPayload, jsonPayload.message))' \
             --order asc
       }
+
+      mksudo() {
+        MINS="''${1:-5}"
+        SECS=$(( $MINS * 60 ))
+        echo Temporarily granting sudo access to $USER for "$MINS"m...
+        DOREVOKE="echo Revoking... && dseditgroup -o edit -d $USER -t user admin && echo Revoked."
+        DOGRANT="dseditgroup -o edit -a $USER -t user admin && echo Granted."
+        su admin -c "sudo bash -c \"trap \\\"$DOREVOKE\\\" EXIT && "$DOGRANT" && sleep $SECS\""
+      }
     '';
   };
 }
