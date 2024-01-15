@@ -50,6 +50,7 @@ in {
     pkgs.pinentry
     pkgs.rlwrap
     pkgs.silver-searcher
+    pkgs.tig
     pkgs.util-linux
     pkgs.watch
     pkgs.yq
