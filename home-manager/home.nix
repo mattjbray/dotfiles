@@ -37,7 +37,7 @@ in {
     #   echo "Hello, ${config.home.username}!"
     # '')
 
-    pkgs.cloud-sql-proxy
+    pkgs.google-cloud-sql-proxy
     pkgs.coreutils
     pkgs.emacs
     (pkgs.google-cloud-sdk.withExtraComponents
@@ -48,8 +48,10 @@ in {
     pkgs.nixfmt
     pkgs.parallel
     pkgs.pinentry
+    pkgs.pkg-config
     pkgs.rlwrap
     pkgs.silver-searcher
+    pkgs.sqlite
     pkgs.tig
     pkgs.util-linux
     pkgs.watch
