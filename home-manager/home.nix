@@ -38,6 +38,7 @@ in {
     # '')
 
     pkgs.google-cloud-sql-proxy
+    pkgs.cachix
     pkgs.coreutils
     pkgs.emacs
     (pkgs.google-cloud-sdk.withExtraComponents
