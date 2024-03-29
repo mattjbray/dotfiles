@@ -48,12 +48,13 @@ in {
     pkgs.jq
     pkgs.nixfmt
     pkgs.parallel
-    pkgs.pinentry
+    # pkgs.pinentry
     pkgs.pkg-config
     pkgs.rlwrap
     pkgs.silver-searcher
     pkgs.sqlite
     pkgs.tig
+    pkgs.tree
     pkgs.util-linux
     pkgs.watch
     pkgs.yq
