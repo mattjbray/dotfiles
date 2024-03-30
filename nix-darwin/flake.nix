@@ -5,10 +5,15 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
     let
+      username = "mattjbray";
       configuration = { pkgs, ... }: {
         # List packages installed in system profile. To search by name, run:
         # $ nix-env -qaP | grep wget
@@ -40,12 +45,25 @@
 
         # The platform the configuration will be used on.
         nixpkgs.hostPlatform = "aarch64-darwin";
+
+        users.users.mattjbray = {
+          name = "mattjbray";
+          home = "/Users/mattjbray";
+        };
+
+        home-manager.users.mattjbray = { pkgs, config, ... }:
+          import ./home.nix {
+            inherit username pkgs config;
+            homeDirectory = "/Users/${username}";
+          };
       };
     in {
       # Build darwin flake using:
       # $ darwin-rebuild build --flake .#Matthews-MacBook-Pro-2
       darwinConfigurations."Matthews-MacBook-Pro-2" =
-        nix-darwin.lib.darwinSystem { modules = [ configuration ]; };
+        nix-darwin.lib.darwinSystem {
+          modules = [ configuration home-manager.darwinModules.default ];
+        };
 
       # Expose the package set, including overlays, for convenience.
       darwinPackages = self.darwinConfigurations."Matthews-MacBook-Pro-2".pkgs;
