@@ -51,6 +51,7 @@ in {
     # pkgs.pinentry
     pkgs.pkg-config
     pkgs.rlwrap
+    pkgs.slack
     pkgs.silver-searcher
     pkgs.sqlite
     pkgs.tig

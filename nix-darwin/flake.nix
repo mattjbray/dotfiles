@@ -43,6 +43,8 @@
         # $ darwin-rebuild changelog
         system.stateVersion = 4;
 
+        nixpkgs.config.allowUnfree = true;
+
         # The platform the configuration will be used on.
         nixpkgs.hostPlatform = "aarch64-darwin";
 
@@ -50,6 +52,16 @@
           name = "mattjbray";
           home = "/Users/mattjbray";
         };
+
+        # From https://nix-community.github.io/home-manager/index.xhtml#sec-install-nix-darwin-module:
+        # By default, Home Manager uses a private pkgs instance that is
+        # configured via the home-manager.users.<name>.nixpkgs options. To
+        # instead use the global pkgs that is configured via the system level
+        # nixpkgs options, set
+        home-manager.useGlobalPkgs = true;
+        # This saves an extra Nixpkgs evaluation, adds consistency, and removes
+        # the dependency on NIX_PATH, which is otherwise used for importing
+        # Nixpkgs.
 
         home-manager.users.mattjbray = { pkgs, config, ... }:
           import ./home.nix {
