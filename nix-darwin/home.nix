@@ -48,6 +48,7 @@ in {
     pkgs.jq
     pkgs.k9s
     pkgs.nixfmt
+    pkgs.nix-output-monitor
     pkgs.parallel
     # pkgs.pinentry
     pkgs.pkg-config
@@ -110,7 +111,10 @@ in {
     # EDITOR = "emacs";
   };
 
-  home.shellAliases = { ll = "ls -al"; };
+  home.shellAliases = {
+    ll = "ls -al";
+    nom-direnv-reload = "nix-direnv-reload |& nom --json";
+  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
