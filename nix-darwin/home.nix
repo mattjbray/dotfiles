@@ -46,6 +46,7 @@ in {
     pkgs.htop
     pkgs.ispell
     pkgs.jq
+    pkgs.k9s
     pkgs.nixfmt
     pkgs.parallel
     # pkgs.pinentry
