@@ -148,6 +148,11 @@ in {
       ".DS_Store"
       ".direnv/"
     ];
+    extraConfig = {
+      github = {
+        user = "mattjbray";
+      };
+    };
   };
 
   programs.gh = {
