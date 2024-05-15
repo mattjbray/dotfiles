@@ -47,6 +47,7 @@ in {
     pkgs.ispell
     pkgs.jq
     pkgs.k9s
+    pkgs.keybase
     pkgs.nixfmt
     pkgs.nix-output-monitor
     pkgs.parallel
