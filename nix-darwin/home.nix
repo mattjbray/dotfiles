@@ -84,8 +84,8 @@ in {
     source = pkgs.fetchFromGitHub {
       owner = "syl20bnr";
       repo = "spacemacs";
-      rev = "4a227fc94651136a8de54bcafa7d22abe1fa0295";
-      sha256 = "sha256-+pvgf+oWJQZbcvoTbQQKnQy/1X4mxtSxFdUjpfqv1f0=";
+      rev = "36b52f1b71f52718b9c35e79d35f41556529c4bd";
+      sha256 = "sha256-ZV9TvtQECgl3DWg5A/UKkqE3vOsaR6Mgs4CYwyz2yf4=";
       # date = "2022-09-13T18:44:48-04:00";
     };
   };
