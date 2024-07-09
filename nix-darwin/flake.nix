@@ -7,7 +7,7 @@
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager = {
-      url = "github:nix-community/home-manager/master";
+      url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -16,6 +16,7 @@
     let
       username = "mattjbray";
       system = "aarch64-darwin";
+      hostname = "Matthews-MacBook-Pro-2";
       unstable = import nixpkgs-unstable { inherit system; };
       configuration = { pkgs, ... }: {
         # List packages installed in system profile. To search by name, run:
@@ -74,15 +75,18 @@
             homeDirectory = "/Users/${username}";
           };
       };
-    in {
+    in
+    rec {
       # Build darwin flake using:
       # $ darwin-rebuild build --flake .#Matthews-MacBook-Pro-2
-      darwinConfigurations."Matthews-MacBook-Pro-2" =
+      darwinConfigurations.${hostname} =
         nix-darwin.lib.darwinSystem {
           modules = [ configuration home-manager.darwinModules.default ];
         };
 
       # Expose the package set, including overlays, for convenience.
       darwinPackages = self.darwinConfigurations."Matthews-MacBook-Pro-2".pkgs;
+
+      formatter.${system} = darwinPackages.nixpkgs-fmt;
     };
 }
