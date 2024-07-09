@@ -1,4 +1,4 @@
-{ config, pkgs, username, homeDirectory, ... }:
+{ config, pkgs, unstable, username, homeDirectory, ... }:
 
 let dotfiles = "${config.home.homeDirectory}/code/mattjbray/dotfiles";
 
@@ -109,7 +109,7 @@ in {
   #
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
-    EDITOR = "vi";
+    # EDITOR = "vi";
   };
 
   home.shellAliases = {
@@ -161,6 +161,16 @@ in {
 
   programs.gpg = {
     enable = true;
+  };
+
+  programs.neovim = {
+    defaultEditor = true;
+    enable = true;
+    package = unstable.neovim-unwrapped;
+  };
+
+  home.file.".config/nvim" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.config/nvim";
   };
 
   programs.tmux = {

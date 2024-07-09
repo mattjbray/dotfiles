@@ -2,7 +2,8 @@
   description = "Example Darwin system flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager = {
@@ -11,9 +12,11 @@
     };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, home-manager }:
     let
       username = "mattjbray";
+      system = "aarch64-darwin";
+      unstable = import nixpkgs-unstable { inherit system; };
       configuration = { pkgs, ... }: {
         # List packages installed in system profile. To search by name, run:
         # $ nix-env -qaP | grep wget
@@ -46,7 +49,7 @@
         nixpkgs.config.allowUnfree = true;
 
         # The platform the configuration will be used on.
-        nixpkgs.hostPlatform = "aarch64-darwin";
+        nixpkgs.hostPlatform = system;
 
         users.users.mattjbray = {
           name = "mattjbray";
@@ -63,9 +66,11 @@
         # the dependency on NIX_PATH, which is otherwise used for importing
         # Nixpkgs.
 
-        home-manager.users.mattjbray = { pkgs, config, ... }:
+        home-manager.extraSpecialArgs = { inherit unstable; };
+
+        home-manager.users.mattjbray = { pkgs, unstable, config, ... }:
           import ./home.nix {
-            inherit username pkgs config;
+            inherit username pkgs config unstable;
             homeDirectory = "/Users/${username}";
           };
       };
