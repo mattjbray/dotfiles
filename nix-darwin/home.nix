@@ -1,4 +1,4 @@
-{ config, pkgs, unstable, username, homeDirectory, ... }:
+{ config, lib, pkgs, unstable, username, homeDirectory, ... }:
 
 let dotfiles = "${config.home.homeDirectory}/code/mattjbray/dotfiles";
 
@@ -16,6 +16,22 @@ in {
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home.stateVersion = "24.05"; # Please read the comment before changing.
+
+  # Copy Mac applications to a folder so Spotlight can find them.
+  # See https://github.com/nix-community/home-manager/issues/1341#issuecomment-2049723843
+  home.activation = {
+    aliasHomeManagerApplications = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      app_folder="${config.home.homeDirectory}/Applications/Home Manager Trampolines"
+      rm -rf "$app_folder"
+      mkdir -p "$app_folder"
+      find "$genProfilePath/home-path/Applications" -type l -print | while read -r app; do
+          app_target="$app_folder/$(basename "$app")"
+          real_app="$(readlink "$app")"
+          echo "mkalias \"$real_app\" \"$app_target\"" >&2
+          $DRY_RUN_CMD ${pkgs.mkalias}/bin/mkalias "$real_app" "$app_target"
+      done
+    '';
+  };
 
   # The home.packages option allows you to install Nix packages into your
   # environment.

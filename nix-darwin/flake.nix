@@ -67,13 +67,12 @@
         # the dependency on NIX_PATH, which is otherwise used for importing
         # Nixpkgs.
 
-        home-manager.extraSpecialArgs = { inherit unstable; };
+        home-manager.extraSpecialArgs = {
+          inherit unstable username pkgs;
+          homeDirectory = "/Users/${username}";
+        };
 
-        home-manager.users.mattjbray = { pkgs, unstable, config, ... }:
-          import ./home.nix {
-            inherit username pkgs config unstable;
-            homeDirectory = "/Users/${username}";
-          };
+        home-manager.users.mattjbray = import ./home.nix;
       };
     in
     rec {
