@@ -1,5 +1,7 @@
 require("config.lazy")
 
+require("config.imandra")
+
 vim.keymap.set("n", "<LEADER>fed", ":e $MYVIMRC<CR>", { desc = "Edit init.lua" })
 vim.keymap.set("n", "<LEADER>qq", ":qa<CR>", { desc = "Quit nvim" })
 vim.keymap.set("n", "<LEADER>bd", ":bd<CR>", { desc = "Delete buffer" })
