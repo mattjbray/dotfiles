@@ -10,6 +10,6 @@ return {
   },
   config = true,
   keys = {
-    { '<leader>gs', ':Neogit<CR>', desc = ':Neogit' },
+    { '<leader>gs', ':Neogit kind=auto<CR>', desc = ':Neogit' },
   },
 }
