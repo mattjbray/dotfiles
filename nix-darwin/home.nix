@@ -68,9 +68,10 @@ in {
     pkgs.parallel
     # pkgs.pinentry
     pkgs.pkg-config
+    pkgs.ripgrep
     pkgs.rlwrap
-    pkgs.slack
     pkgs.silver-searcher
+    pkgs.slack
     pkgs.sqlite
     pkgs.tig
     pkgs.tree
