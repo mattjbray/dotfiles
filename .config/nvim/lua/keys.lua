@@ -1,16 +1,48 @@
 local M = {}
 
 M.setup = function()
-  local tb = require 'telescope.builtin'
+  require('which-key').add {
+    { '<leader>a', group = 'Apps' },
+    { '<leader>c', group = '[C]ode' },
+    { '<leader>d', group = '[D]ocument' },
+    { '<leader>e', group = 'Errors (diagnostics)' },
+    { '<leader>f', group = 'Files' },
+    { '<leader>g', group = 'Git' },
+    { '<leader>h', group = 'Help' },
+    { '<leader>m', group = 'Filetype' },
+    { '<leader>p', group = 'Projects' },
+    { '<leader>r', group = '[R]ename' },
+    { '<leader>s', group = '[S]earch' },
+    { '<leader>t', group = '[T]oggle' },
+    { '<leader>w', group = '[W]orkspace' },
+    { '<leader>x', group = 'Touble' },
+  }
 
-  vim.keymap.set('n', '<leader>bb', tb.buffers, { desc = 'Open buffers (telescope)' })
+  vim.keymap.set('n', '<leader>at', require('telescope.builtin').builtin, { desc = 'Telescope' })
+
+  vim.keymap.set('n', '<leader>ee', vim.diagnostic.open_float, { desc = 'Show diagnostic' })
+  vim.keymap.set('n', '<leader>el', vim.diagnostic.setloclist, { desc = 'Open diagnostic location list' })
+  vim.keymap.set('n', '<leader>en', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
+  vim.keymap.set('n', '<leader>ep', vim.diagnostic.goto_prev, { desc = 'Previous diagnostic' })
+  vim.keymap.set('n', '<leader>e<space>', require('telescope.builtin').diagnostics, { desc = 'Search diagnostics (telescope)' })
+
+  vim.keymap.set('n', '<leader>bb', require('telescope.builtin').buffers, { desc = 'Open buffers (telescope)' })
 
   vim.keymap.set('n', '<leader>fed', ':exe "cd" stdpath("config")<CR>:e $MYVIMRC<CR>', { desc = 'Edit $MYVIMRC' })
   vim.keymap.set('n', '<leader>fek', ':exe "cd" stdpath("config")<CR>:e lua/keys.lua<CR>', { desc = 'Edit keys.lua' })
 
-  vim.keymap.set('n', '<leader>fr', tb.oldfiles, { desc = 'Recent files (telescope)' })
+  vim.keymap.set('n', '<leader>pf', require('telescope.builtin').find_files, { desc = 'Search Files in cwd (telescope)' })
+  vim.keymap.set('n', '<leader>ff', function()
+    require('telescope.builtin').find_files {
+      cwd = require('telescope.utils').buffer_dir(),
+    }
+  end, { desc = 'Search Files (telescope)' })
+  vim.keymap.set('n', '<leader>fr', require('telescope.builtin').oldfiles, { desc = 'Recent files (telescope)' })
 
-  vim.keymap.set('n', '<leader>sc', ':nohlsearch<CR>', { desc = 'Clear search highlight' })
+  vim.keymap.set('n', '<leader>hh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
+  vim.keymap.set('n', '<leader>hk', require('telescope.builtin').keymaps, { desc = '[S]earch [K]eymaps' })
+
+  vim.keymap.set('n', '<leader>sc', '<cmd>nohlsearch<CR>', { desc = 'Clear search highlight' })
 
   local wincmds = {
     { key = 's', desc = 'Split window horizontally' },
