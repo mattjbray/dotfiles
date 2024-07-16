@@ -287,9 +287,11 @@ require('lazy').setup({
       require('which-key').add {
         { '<leader>c', group = '[C]ode' },
         { '<leader>d', group = '[D]ocument' },
-        { '<leader>g', group = '[G]it' },
-        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
-        { '<leader>p', group = '[P]roject' },
+        { '<leader>f', group = 'Files' },
+        { '<leader>g', group = 'Git' },
+        { '<leader>h', group = 'Help' },
+        { '<leader>m', group = 'Filetype' },
+        { '<leader>p', group = 'Projects' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
         { '<leader>t', group = '[T]oggle' },
@@ -297,6 +299,15 @@ require('lazy').setup({
         { '<leader>x', group = 'Touble' },
       }
     end,
+    keys = {
+      {
+        '<leader>h?',
+        function()
+          require('which-key').show { global = false }
+        end,
+        desc = 'Buffer Local keymaps (which-key)',
+      },
+    },
   },
 
   -- NOTE: Plugins can specify dependencies.
@@ -375,16 +386,14 @@ require('lazy').setup({
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
-      vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-      vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-      vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
+      vim.keymap.set('n', '<leader>hh', builtin.help_tags, { desc = '[S]earch [H]elp' })
+      vim.keymap.set('n', '<leader>hk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
+      vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-      vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
@@ -502,6 +511,16 @@ require('lazy').setup({
           -- or a suggestion from your LSP for this to activate.
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
+          map('<leader>mlr', function()
+            vim.lsp.codelens.refresh()
+          end, 'Code[l]ens [r]efresh')
+          map('<leader>mlc', function()
+            vim.lsp.codelens.clear()
+          end, 'Code[l]ens [c]lear')
+          map('<leader>mlx', function()
+            vim.lsp.codelens.run()
+          end, 'Code[l]ens e[x]ecute')
+
           -- Opens a popup that displays documentation about the word under your cursor
           --  See `:help K` for why this keymap.
           map('K', vim.lsp.buf.hover, 'Hover Documentation')
@@ -539,6 +558,12 @@ require('lazy').setup({
             })
           end
 
+          vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
+            buffer = event.buf,
+            group = vim.api.nvim_create_augroup('lsp-codelens-refresh', { clear = true }),
+            callback = vim.lsp.codelens.refresh,
+          })
+
           -- The following autocommand is used to enable inlay hints in your
           -- code, if the language server you are using supports them
           --
@@ -571,7 +596,7 @@ require('lazy').setup({
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
-        -- rust_analyzer = {},
+        rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -625,6 +650,10 @@ require('lazy').setup({
           end,
         },
       }
+
+      local ocamllsp = {}
+      ocamllsp.capabilities = vim.tbl_deep_extend('force', {}, capabilities, ocamllsp.capabilities or {})
+      require('lspconfig').ocamllsp.setup(ocamllsp)
     end,
   },
 
@@ -837,6 +866,8 @@ require('lazy').setup({
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
+
+      require('mini.pairs').setup()
     end,
   },
   { -- Highlight, edit, and navigate code
@@ -888,8 +919,10 @@ require('lazy').setup({
   -- require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
+  require 'plugins.direnv',
   require 'plugins.neogit',
   require 'plugins.nvim-tree',
+  require 'plugins.oil',
   require 'plugins.project',
   require 'plugins.trouble',
 
@@ -921,6 +954,7 @@ require('lazy').setup({
   },
 })
 
+require('keys').setup {}
 require('lang.imandra').setup {}
 
 -- The line beneath this is called `modeline`. See `:help modeline`
