@@ -3,10 +3,10 @@ local M = {}
 M.setup = function()
   local tb = require 'telescope.builtin'
 
-  vim.keymap.set('n', '<LEADER>bb', tb.buffers, { desc = 'Open buffers (telescope)' })
+  vim.keymap.set('n', '<leader>bb', tb.buffers, { desc = 'Open buffers (telescope)' })
 
-  vim.keymap.set('n', '<LEADER>fed', ':exe "cd" stdpath("config")<CR>:e $MYVIMRC<CR>', { desc = 'Edit $MYVIMRC' })
-  vim.keymap.set('n', '<LEADER>fek', ':exe "cd" stdpath("config")<CR>:e lua/keys.lua<CR>', { desc = 'Edit keys.lua' })
+  vim.keymap.set('n', '<leader>fed', ':exe "cd" stdpath("config")<CR>:e $MYVIMRC<CR>', { desc = 'Edit $MYVIMRC' })
+  vim.keymap.set('n', '<leader>fek', ':exe "cd" stdpath("config")<CR>:e lua/keys.lua<CR>', { desc = 'Edit keys.lua' })
 
   vim.keymap.set('n', '<leader>fr', tb.oldfiles, { desc = 'Recent files (telescope)' })
 
