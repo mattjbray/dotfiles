@@ -869,6 +869,7 @@ require('lazy').setup({
   require 'plugins.nvim-tree',
   require 'plugins.oil',
   require 'plugins.project',
+  require 'plugins.telescope-file-browser',
   require 'plugins.trouble',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
