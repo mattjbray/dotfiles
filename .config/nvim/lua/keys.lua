@@ -42,6 +42,41 @@ M.setup = function()
   vim.keymap.set('n', '<leader>hh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
   vim.keymap.set('n', '<leader>hk', require('telescope.builtin').keymaps, { desc = '[S]earch [K]eymaps' })
 
+  vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('keys-lsp-attach', { clear = true }),
+    callback = function(event)
+      local map = function(keys, func, desc)
+        vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+      end
+
+      require('which-key').add {
+        { '<leader>mg', group = 'Go to' },
+        { '<leader>mh', group = 'Help' },
+        { '<leader>ml', group = 'Code lens' },
+        { '<leader>mr', group = 'Refactor' },
+        { '<leader>ms', group = 'Search' },
+      }
+
+      map('<leader>mgg', require('telescope.builtin').lsp_definitions, 'definitions (telescope)')
+      map('<leader>mgr', require('telescope.builtin').lsp_references, 'references (telescope)')
+      map('<leader>mgt', require('telescope.builtin').lsp_type_definitions, 'type definition (telescope)')
+      map('<leader>mhh', vim.lsp.buf.hover, 'Hover Documentation')
+      map('<leader>mrn', vim.lsp.buf.rename, 'rename')
+      map('<leader>msd', require('telescope.builtin').lsp_document_symbols, 'document symbols (telescope)')
+      map('<leader>msw', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'workspace symbols (telescope)')
+
+      map('<leader>mlr', function()
+        vim.lsp.codelens.refresh()
+      end, 'refresh')
+      map('<leader>mlc', function()
+        vim.lsp.codelens.clear()
+      end, 'clear')
+      map('<leader>mlx', function()
+        vim.lsp.codelens.run()
+      end, 'execute')
+    end,
+  })
+
   vim.keymap.set('n', '<leader>sc', '<cmd>nohlsearch<CR>', { desc = 'Clear search highlight' })
 
   local wincmds = {

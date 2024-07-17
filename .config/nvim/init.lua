@@ -466,16 +466,6 @@ require('lazy').setup({
           -- or a suggestion from your LSP for this to activate.
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
-          map('<leader>mlr', function()
-            vim.lsp.codelens.refresh()
-          end, 'Code[l]ens [r]efresh')
-          map('<leader>mlc', function()
-            vim.lsp.codelens.clear()
-          end, 'Code[l]ens [c]lear')
-          map('<leader>mlx', function()
-            vim.lsp.codelens.run()
-          end, 'Code[l]ens e[x]ecute')
-
           -- Opens a popup that displays documentation about the word under your cursor
           --  See `:help K` for why this keymap.
           map('K', vim.lsp.buf.hover, 'Hover Documentation')
