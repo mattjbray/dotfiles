@@ -123,6 +123,27 @@ M.setup = function()
           group = 'Search',
           keys = {
             c = { '<cmd>nohlsearch<cr>', 'Clear search highlight' },
+            g = {
+              require('telescope.builtin').live_grep,
+              'Live grep (telescope)',
+            },
+            r = {
+              require('telescope.builtin').resume,
+              'Resume last search (telescope)',
+            },
+            w = {
+              require('telescope.builtin').grep_string,
+              'Search current word',
+            },
+            ['/'] = {
+              function()
+                require('telescope.builtin').live_grep {
+                  grep_open_files = true,
+                  prompt_title = 'Live Grep in Open Files',
+                }
+              end,
+              'Live grep in open files (telescope)',
+            },
           },
         },
       },
