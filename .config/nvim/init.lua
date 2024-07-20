@@ -273,7 +273,9 @@ require('lazy').setup({
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
-    opts = {},
+    opts = {
+      icons = { mappings = vim.g.have_nerd_font },
+    },
     keys = {
       {
         '<leader>h?',
