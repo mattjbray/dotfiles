@@ -1,80 +1,93 @@
 local M = {}
 
 M.setup = function()
-  require('which-key').add {
-    { '<leader>a', group = 'Apps' },
-    { '<leader>c', group = '[C]ode' },
-    { '<leader>d', group = '[D]ocument' },
-    { '<leader>e', group = 'Errors (diagnostics)' },
-    { '<leader>f', group = 'Files' },
-    { '<leader>g', group = 'Git' },
-    { '<leader>h', group = 'Help' },
-    { '<leader>m', group = 'Filetype' },
-    { '<leader>p', group = 'Projects' },
-    { '<leader>r', group = '[R]ename' },
-    { '<leader>s', group = '[S]earch' },
-    { '<leader>t', group = '[T]oggle' },
-    { '<leader>w', group = '[W]orkspace' },
-    { '<leader>x', group = 'Touble' },
+  -- require('which-key').add {
+  --   { '<leader>a', group = 'Apps' },
+  --   { '<leader>c', group = '[C]ode' },
+  --   { '<leader>d', group = '[D]ocument' },
+  --   { '<leader>e', group = 'Errors (diagnostics)' },
+  --   { '<leader>f', group = 'Files' },
+  --   { '<leader>g', group = 'Git' },
+  --   { '<leader>h', group = 'Help' },
+  --   { '<leader>m', group = 'Filetype' },
+  --   { '<leader>p', group = 'Projects' },
+  --   { '<leader>r', group = '[R]ename' },
+  --   { '<leader>s', group = '[S]earch' },
+  --   { '<leader>t', group = '[T]oggle' },
+  --   { '<leader>w', group = '[W]orkspace' },
+  --   { '<leader>x', group = 'Touble' },
+  -- }
+
+  local map_keys
+  map_keys = function(keys, path)
+    for key, data in pairs(keys) do
+      local this_path = (path or '') .. key
+      if data.group then
+        require('which-key').add { { this_path, group = data.group } }
+      end
+      if data.keys then
+        map_keys(data.keys, this_path)
+      end
+      if not data.group and not data.keys then
+        vim.keymap.set('n', this_path, data[1], { desc = data[2] })
+      end
+    end
+  end
+
+  local keys = {
+    ['<leader>'] = {
+      keys = {
+        a = {
+          group = 'Apps',
+          keys = {
+            t = { require('telescope.builtin').builtin, 'Telescope' },
+          },
+        },
+        b = {
+          group = 'Buffers',
+          keys = {
+            b = {
+              require('telescope.builtin').buffers,
+              'Open buffers (telescope)',
+            },
+          },
+        },
+        e = {
+          group = 'Errors (diagnostics)',
+          keys = {
+            e = { vim.diagnostic.open_float, 'Show diagnostic' },
+            l = { vim.diagnostic.setloclist, 'Open diagnostic location list' },
+            n = { vim.diagnostic.goto_next, 'Next diagnostic' },
+            p = { vim.diagnostic.goto_prev, 'Previous diagnostic' },
+            ['<space>'] = {
+              require('telescope.builtin').diagnostics,
+              'Search diagnostics (telescope)',
+            },
+          },
+        },
+        f = {
+          group = 'Files',
+          keys = {
+            e = {
+              group = 'Edit',
+              keys = {
+                d = {
+                  '<cmd>exe "cd" stdpath("config")<cr><cmd>e $MYVIMRC<cr>',
+                  'Edit $MYVIMRC',
+                },
+                k = {
+                  '<cmd>exe "cd" stdpath("config")<cr><cmd>e lua/keys.lua<cr>',
+                  'Edit keys.lua',
+                },
+              },
+            },
+          },
+        },
+      },
+    },
   }
 
-  vim.keymap.set(
-    'n',
-    '<leader>at',
-    require('telescope.builtin').builtin,
-    { desc = 'Telescope' }
-  )
-
-  vim.keymap.set(
-    'n',
-    '<leader>ee',
-    vim.diagnostic.open_float,
-    { desc = 'Show diagnostic' }
-  )
-  vim.keymap.set(
-    'n',
-    '<leader>el',
-    vim.diagnostic.setloclist,
-    { desc = 'Open diagnostic location list' }
-  )
-  vim.keymap.set(
-    'n',
-    '<leader>en',
-    vim.diagnostic.goto_next,
-    { desc = 'Next diagnostic' }
-  )
-  vim.keymap.set(
-    'n',
-    '<leader>ep',
-    vim.diagnostic.goto_prev,
-    { desc = 'Previous diagnostic' }
-  )
-  vim.keymap.set(
-    'n',
-    '<leader>e<space>',
-    require('telescope.builtin').diagnostics,
-    { desc = 'Search diagnostics (telescope)' }
-  )
-
-  vim.keymap.set(
-    'n',
-    '<leader>bb',
-    require('telescope.builtin').buffers,
-    { desc = 'Open buffers (telescope)' }
-  )
-
-  vim.keymap.set(
-    'n',
-    '<leader>fed',
-    ':exe "cd" stdpath("config")<CR>:e $MYVIMRC<CR>',
-    { desc = 'Edit $MYVIMRC' }
-  )
-  vim.keymap.set(
-    'n',
-    '<leader>fek',
-    ':exe "cd" stdpath("config")<CR>:e lua/keys.lua<CR>',
-    { desc = 'Edit keys.lua' }
-  )
+  map_keys(keys)
 
   vim.keymap.set('n', '<leader>pf', function()
     require('telescope.builtin').find_files { hidden = true }
