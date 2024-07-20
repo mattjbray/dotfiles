@@ -31,7 +31,9 @@ M.setup = function()
   vim.keymap.set('n', '<leader>fed', ':exe "cd" stdpath("config")<CR>:e $MYVIMRC<CR>', { desc = 'Edit $MYVIMRC' })
   vim.keymap.set('n', '<leader>fek', ':exe "cd" stdpath("config")<CR>:e lua/keys.lua<CR>', { desc = 'Edit keys.lua' })
 
-  vim.keymap.set('n', '<leader>pf', require('telescope.builtin').find_files, { desc = 'Search Files in cwd (telescope)' })
+  vim.keymap.set('n', '<leader>pf', function()
+    require('telescope.builtin').find_files { hidden = true }
+  end, { desc = 'Search Files in cwd (telescope)' })
   vim.keymap.set('n', '<leader>ff', '<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>', { desc = 'File browser in buffer dir (telescope)' })
   vim.keymap.set('n', '<leader>fr', require('telescope.builtin').oldfiles, { desc = 'Recent files (telescope)' })
 
