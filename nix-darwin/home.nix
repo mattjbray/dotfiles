@@ -64,6 +64,9 @@ in {
     pkgs.jq
     pkgs.k9s
     pkgs.keybase
+    pkgs.lua-language-server
+    pkgs.stylua
+    pkgs.nil # Nix language server
     pkgs.nix-output-monitor
     pkgs.parallel
     # pkgs.pinentry
