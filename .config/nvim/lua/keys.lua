@@ -8,6 +8,16 @@ M.setup = function()
           group = 'Apps',
           keys = {
             t = { require('telescope.builtin').builtin, 'Telescope' },
+            o = {
+              group = 'Neorg',
+              keys = {
+                o = { '<cmd>Neorg<cr>', 'Neorg' },
+                d = {
+                  group = 'Journal',
+                  keys = { t = { '<cmd>Neorg journal today<cr>', 'today' } },
+                },
+              },
+            },
           },
         },
         b = {
