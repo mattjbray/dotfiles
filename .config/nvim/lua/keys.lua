@@ -60,6 +60,17 @@ M.setup = function()
         },
         g = {
           group = 'Git',
+          keys = {
+            l = {
+              group = 'Link',
+              keys = {
+                l = { '<cmd>GitLink! browse<cr>', 'Open blob URL' },
+                L = { '<cmd>GitLink browse<cr>', 'Copy blob URL' },
+                b = { '<cmd>GitLink! blame<cr>', 'Open blame URL' },
+                B = { '<cmd>GitLink blame<cr>', 'Copy blame URL' },
+              },
+            },
+          },
         },
         h = {
           group = 'Help',

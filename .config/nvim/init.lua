@@ -932,6 +932,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   require 'plugins.direnv',
+  require 'plugins.gitlinker',
   require 'plugins.neogit',
   require 'plugins.nvim-tree',
   require 'plugins.oil',
