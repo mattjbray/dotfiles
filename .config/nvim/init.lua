@@ -961,6 +961,7 @@ require('lazy').setup({
   require 'plugins.project',
   require 'plugins.telescope-file-browser',
   require 'plugins.trouble',
+  require 'plugins.vim-reason-plus',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
