@@ -172,12 +172,64 @@ M.setup = function()
     },
   }
 
+  local lsp_codelens_goto_next = function()
+    -- NOTE: vim lines are 1-indexed; lsp codelens ranges are 0-indexed
+    local pos = vim.api.nvim_win_get_cursor(0)
+    local lenses = vim.lsp.codelens.get(0)
+    table.sort(lenses, function(l1, l2)
+      return l1.range.start.line < l2.range.start.line
+    end)
+    for _, l in ipairs(lenses) do
+      if l.range.start.line + 1 > pos[1] then
+        vim.api.nvim_win_set_cursor(
+          0,
+          { l.range.start.line + 1, l.range.start.character }
+        )
+        return
+      end
+    end
+    -- If we didn't find any, wrap to the first
+    for _, l in ipairs(lenses) do
+      vim.api.nvim_win_set_cursor(
+        0,
+        { l.range.start.line + 1, l.range.start.character }
+      )
+      return
+    end
+  end
+
+  local lsp_codelens_goto_prev = function()
+    local pos = vim.api.nvim_win_get_cursor(0)
+    local lenses = vim.lsp.codelens.get(0)
+    table.sort(lenses, function(l1, l2)
+      return l1.range.start.line > l2.range.start.line
+    end)
+    for _, l in ipairs(lenses) do
+      if l.range.start.line + 1 < pos[1] then
+        vim.api.nvim_win_set_cursor(
+          0,
+          { l.range.start.line + 1, l.range.start.character }
+        )
+        return
+      end
+    end
+    -- If we didn't find any, wrap to the last
+    for _, l in ipairs(lenses) do
+      vim.api.nvim_win_set_cursor(
+        0,
+        { l.range.start.line + 1, l.range.start.character }
+      )
+      return
+    end
+  end
+
   local lsp_keys = {
     ['<leader>'] = {
       keys = {
         m = {
           group = 'Lang / Filetype',
           keys = {
+            a = { vim.lsp.buf.code_action, 'Code Action' },
             g = {
               group = 'Go to',
               keys = {
@@ -218,10 +270,12 @@ M.setup = function()
                 },
                 x = {
                   function()
-                    vim.lsp.codelens.execute()
+                    vim.lsp.codelens.run()
                   end,
                   'execute',
                 },
+                n = { lsp_codelens_goto_next, 'go to next' },
+                p = { lsp_codelens_goto_prev, 'go to prev' },
               },
             },
             r = {
