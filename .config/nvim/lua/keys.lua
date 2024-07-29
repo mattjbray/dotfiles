@@ -8,6 +8,7 @@ M.setup = function()
           group = 'Apps',
           keys = {
             t = { require('telescope.builtin').builtin, 'Telescope' },
+            d = { '<cmd>DBUI<cr>', 'DBUI (Dadbod)' },
             o = {
               group = 'Neorg',
               keys = {
