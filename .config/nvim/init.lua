@@ -962,6 +962,7 @@ require('lazy').setup({
   require 'plugins.oil',
   require 'plugins.project',
   require 'plugins.telescope-file-browser',
+  require 'plugins.telescope-undo',
   require 'plugins.trouble',
   require 'plugins.vim-reason-plus',
 
