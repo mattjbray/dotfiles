@@ -28,6 +28,10 @@ M.setup = function()
               require('telescope.builtin').buffers,
               'Open buffers (telescope)',
             },
+            d = {
+              '<cmd>bdelete<cr>',
+              'Delete buffer',
+            },
           },
         },
         e = {
