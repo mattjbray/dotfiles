@@ -222,6 +222,7 @@ vim.opt.rtp:prepend(lazypath)
 --
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
+  require 'plugins.direnv',
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
@@ -954,7 +955,6 @@ require('lazy').setup({
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   require 'plugins.dadbod',
-  require 'plugins.direnv',
   require 'plugins.gitlinker',
   require 'plugins.neogit',
   require 'plugins.neorg',
