@@ -1,3 +1,5 @@
 return {
-  'direnv/direnv.vim',
+  'actionshrimp/direnv.nvim',
+  branch = 'dave/wip',
+  opts = {},
 }
