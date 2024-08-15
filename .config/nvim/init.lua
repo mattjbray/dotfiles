@@ -619,15 +619,7 @@ require('lazy').setup({
           },
         },
 
-        nil_ls = {
-          settings = {
-            ['nil'] = {
-              formatting = {
-                command = { 'nixpkgs-fmt' },
-              },
-            },
-          },
-        },
+        nixd = {},
         ocamllsp = {},
       }
 
