@@ -952,9 +952,9 @@ require('lazy').setup({
   require 'plugins.neorg',
   require 'plugins.nvim-tree',
   require 'plugins.oil',
-  require 'plugins.project',
   require 'plugins.telescope-file-browser',
   require 'plugins.telescope-undo',
+  require 'plugins.telescope-project',
   require 'plugins.trouble',
   require 'plugins.vim-reason-plus',
 

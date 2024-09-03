@@ -109,7 +109,7 @@ M.setup = function()
               end,
               'Find files in cwd (telescope)',
             },
-            p = { '<cmd>Telescope projects<cr>', 'Projects (telescope)' },
+            p = { '<cmd>Telescope project<cr>', 'Projects (telescope-project)' },
           },
         },
         w = {
