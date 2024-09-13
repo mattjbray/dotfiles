@@ -948,14 +948,16 @@ require('lazy').setup({
 
   require 'plugins.abolish',
   require 'plugins.dadbod',
+  require 'plugins.fugitive',
   require 'plugins.gitlinker',
   require 'plugins.neogit',
   require 'plugins.neorg',
   require 'plugins.nvim-tree',
   require 'plugins.oil',
+  require 'plugins.rhubarb',
   require 'plugins.telescope-file-browser',
-  require 'plugins.telescope-undo',
   require 'plugins.telescope-project',
+  require 'plugins.telescope-undo',
   require 'plugins.trouble',
   require 'plugins.vim-reason-plus',
 
