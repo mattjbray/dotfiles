@@ -98,16 +98,17 @@ in {
     # '';
   };
 
-  home.file.".emacs.d" = {
-    recursive = true;
-    source = pkgs.fetchFromGitHub {
-      owner = "syl20bnr";
-      repo = "spacemacs";
-      rev = "36b52f1b71f52718b9c35e79d35f41556529c4bd";
-      sha256 = "sha256-ZV9TvtQECgl3DWg5A/UKkqE3vOsaR6Mgs4CYwyz2yf4=";
-      # date = "2022-09-13T18:44:48-04:00";
-    };
-  };
+  # Clone syl20bnr/spacemacs to ~/.emacs.d
+  # home.file.".emacs.d" = {
+  #   recursive = true;
+  #   source = pkgs.fetchFromGitHub {
+  #     owner = "syl20bnr";
+  #     repo = "spacemacs";
+  #     rev = "36b52f1b71f52718b9c35e79d35f41556529c4bd";
+  #     sha256 = "sha256-ZV9TvtQECgl3DWg5A/UKkqE3vOsaR6Mgs4CYwyz2yf4=";
+  #     # date = "2022-09-13T18:44:48-04:00";
+  #   };
+  # };
 
   home.file.".local/bin/imandra_local" = {
     source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.local/bin/imandra_local";
