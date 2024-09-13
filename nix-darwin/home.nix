@@ -252,6 +252,13 @@ in {
         DOGRANT="dseditgroup -o edit -a $USER -t user admin && echo Granted."
         su admin -c "sudo bash -c \"trap \\\"$DOREVOKE\\\" EXIT && "$DOGRANT" && sleep $SECS\""
       }
+
+      # <n>ix <r>un
+      nr() {
+        local prog=$1
+        shift
+        nix run -L nixpkgs/nixos-24.05#"$prog" -- "$@"
+      }
     '';
   };
 }
