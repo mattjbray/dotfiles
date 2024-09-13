@@ -64,6 +64,7 @@ in {
     pkgs.jq
     pkgs.k9s
     pkgs.keybase
+    pkgs.lazygit
     pkgs.lua-language-server
     pkgs.stylua
     pkgs.nixd # Nix language server
