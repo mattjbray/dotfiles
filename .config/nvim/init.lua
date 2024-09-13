@@ -946,6 +946,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
+  require 'plugins.abolish',
   require 'plugins.dadbod',
   require 'plugins.gitlinker',
   require 'plugins.neogit',
