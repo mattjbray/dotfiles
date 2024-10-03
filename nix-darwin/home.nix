@@ -169,6 +169,11 @@ in {
       ".DS_Store"
       ".direnv/"
     ];
+    aliases = { 
+      nfb = ''
+        !main=$(git branch | grep -o -m1 '\\(main\\|master\\)') current=$(git rev-parse --abbrev-ref HEAD) && ([[ "$main" == "$current" ]] && (echo Already on "$main" && exit 1) || true ) && set -x && git fetch --prune && git fetch origin "$main:$main" && git checkout -b "$1" "$main" && git branch -d "$current"
+      '';
+    };
     extraConfig = {
       github = {
         user = "mattjbray";
