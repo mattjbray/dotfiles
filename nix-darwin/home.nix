@@ -170,8 +170,8 @@ in {
       ".direnv/"
     ];
     aliases = { 
-      nfb = ''
-        !main=$(git branch | grep -o -m1 '\\(main\\|master\\)') current=$(git rev-parse --abbrev-ref HEAD) && ([[ "$main" == "$current" ]] && (echo Already on "$main" && exit 1) || true ) && set -x && git fetch --prune && git fetch origin "$main:$main" && git checkout -b "$1" "$main" && git branch -d "$current"
+      btm = ''
+        "!main=$(git branch | grep -o -m1 '\\(main\\|master\\)') current=$(git rev-parse --abbrev-ref HEAD) && set -x && git fetch --prune && if [[ "$main" == "$current" ]]; then git pull --ff-only origin "$main"; else git fetch origin "$main:$main"; fi && if [[ "$main" != "$current" ]] ; then git checkout "$main" && git branch -d "$current"; fi"
       '';
     };
     extraConfig = {
