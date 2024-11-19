@@ -100,6 +100,14 @@ M.setup = function()
             },
           },
         },
+        l = {
+          group = 'Layouts (tabs)',
+          keys = {
+            n = { '<cmd>tabnext<cr>', 'Next tab' },
+            p = { '<cmd>tabprev<cr>', 'Prev tab' },
+            x = { '<cmd>tabclose<cr>', 'Close tab' },
+          },
+        },
         p = {
           group = 'Projects',
           keys = {
