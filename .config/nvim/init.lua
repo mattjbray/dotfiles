@@ -991,6 +991,9 @@ require('lazy').setup({
 
 require('keys').setup()
 require('lang.imandra').setup {}
+require('lang.ocaml').setup {}
+require('lang.terraform').setup {}
+require('lang.typescript').setup {}
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
