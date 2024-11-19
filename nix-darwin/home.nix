@@ -53,6 +53,7 @@ in {
     #   echo "Hello, ${config.home.username}!"
     # '')
 
+    pkgs.awscli2
     pkgs.google-cloud-sql-proxy
     pkgs.cachix
     pkgs.coreutils

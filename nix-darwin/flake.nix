@@ -25,15 +25,25 @@
 
         # Auto upgrade nix package and the daemon service.
         services.nix-daemon.enable = true;
-        # nix.package = pkgs.nix;
+        nix.package = pkgs.nixVersions.nix_2_23;
 
         # Necessary for using flakes on this system.
         nix.settings.experimental-features = "nix-command flakes";
 
         # Use cachix cache
-        nix.settings.substituters = [ "https://nix-community.cachix.org" ];
+        nix.settings.substituters = [
+          "https://nix-community.cachix.org"
+          # "https://anmonteiro.nix-cache.workers.dev/"
+          "s3://imandra-nix-cache?profile=imandra-nix-cache&endpoint=https://storage.googleapis.com"
+        ];
+        nix.settings.trusted-substituters = [
+          # "https://anmonteiro.nix-cache.workers.dev/"
+          "s3://imandra-nix-cache?profile=imandra-nix-cache&endpoint=https://storage.googleapis.com"
+        ];
         nix.settings.trusted-public-keys = [
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+          # "ocaml.nix-cache.com-1:/xI2h2+56rwFfKyyFVbkJSeGqSIYMC/Je+7XXqGKDIY="
+          "imandra-nix-cache.1:4rM4urW8DwdkG+ipwCR/DHHB67xOm2A7FIoCLD1DEMQ="
         ];
 
         # Create /etc/zshrc that loads the nix-darwin environment.
