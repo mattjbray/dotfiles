@@ -992,6 +992,7 @@ require('lazy').setup({
 require('keys').setup()
 require('lang.imandra').setup {}
 require('lang.ocaml').setup {}
+require('lang.python').setup {}
 require('lang.terraform').setup {}
 require('lang.typescript').setup {}
 
