@@ -46,6 +46,7 @@ in {
       [ pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin ])
     pkgs.htop
     pkgs.ispell
+    pkgs.iterm2
     pkgs.jq
     pkgs.k9s
     pkgs.keybase
