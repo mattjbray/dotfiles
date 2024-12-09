@@ -10,9 +10,10 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mac-app-util.url = "github:hraban/mac-app-util";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, home-manager }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, home-manager, mac-app-util }:
     let
       username = "mattjbray";
       system = "aarch64-darwin";
@@ -77,6 +78,10 @@
         # the dependency on NIX_PATH, which is otherwise used for importing
         # Nixpkgs.
 
+        home-manager.sharedModules = [
+          mac-app-util.homeManagerModules.default
+        ];
+
         home-manager.extraSpecialArgs = {
           inherit unstable username pkgs;
           homeDirectory = "/Users/${username}";
@@ -90,7 +95,11 @@
       # $ darwin-rebuild build --flake .#Matthews-MacBook-Pro-2
       darwinConfigurations.${hostname} =
         nix-darwin.lib.darwinSystem {
-          modules = [ configuration home-manager.darwinModules.default ];
+          modules = [ 
+            mac-app-util.darwinModules.default
+            configuration
+            home-manager.darwinModules.default
+          ];
         };
 
       # Expose the package set, including overlays, for convenience.
