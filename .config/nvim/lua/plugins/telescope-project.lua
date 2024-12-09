@@ -4,6 +4,7 @@ return {
     require('telescope').setup {
       extensions = {
         project = {
+          theme = 'ivy',
           hidden_files = true,
         },
       },
