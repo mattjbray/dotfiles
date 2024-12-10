@@ -879,7 +879,9 @@ require('lazy').setup({
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
 
+      require('mini.bracketed').setup()
       require('mini.pairs').setup()
+      require('mini.trailspace').setup()
     end,
   },
   { -- Highlight, edit, and navigate code
