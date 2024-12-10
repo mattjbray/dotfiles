@@ -10,6 +10,6 @@ return {
   },
   config = true,
   keys = {
-    { '<leader>gs', ':Neogit kind=tab<CR>', desc = ':Neogit' },
+    { '<leader>gs', ':Neogit kind=vsplit<CR>', desc = ':Neogit' },
   },
 }
