@@ -42,6 +42,7 @@ in {
     pkgs.cachix
     pkgs.coreutils
     pkgs.emacs
+    pkgs.fd
     (pkgs.google-cloud-sdk.withExtraComponents
       [ pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin ])
     pkgs.htop
