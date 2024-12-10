@@ -154,6 +154,7 @@ in {
     ignores = [
       ".DS_Store"
       ".direnv/"
+      ".git/"
     ];
     aliases = { 
       btm = ''
