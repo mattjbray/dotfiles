@@ -10,6 +10,14 @@ return {
   },
   config = true,
   keys = {
-    { '<leader>gs', ':Neogit kind=vsplit<CR>', desc = ':Neogit' },
+    {
+      '<leader>gs',
+      function()
+        require('neogit').open {
+          cwd = vim.fn.expand '%:p:h',
+        }
+      end,
+      desc = ':Neogit',
+    },
   },
 }
