@@ -801,6 +801,7 @@ require('lazy').setup({
   require 'plugins.dadbod',
   require 'plugins.fugitive',
   require 'plugins.gitlinker',
+  require 'plugins.neoformat',
   require 'plugins.neogit',
   require 'plugins.neorg',
   require 'plugins.neotest',
