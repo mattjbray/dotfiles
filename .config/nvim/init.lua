@@ -786,6 +786,7 @@ require('lazy').setup({
   require 'plugins.gitlinker',
   require 'plugins.neogit',
   require 'plugins.neorg',
+  require 'plugins.nvim-emmet',
   require 'plugins.nvim-tree',
   require 'plugins.oil',
   require 'plugins.rhubarb',
