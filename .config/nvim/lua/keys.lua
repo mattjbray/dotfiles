@@ -64,8 +64,13 @@ M.setup = function()
               },
             },
             f = {
-              '<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>',
-              'File browser in buffer dir (telescope)',
+              function()
+                require('telescope.builtin').find_files {
+                  hidden = true,
+                  cwd = require('telescope.utils').buffer_dir(),
+                }
+              end,
+              'Find files in buffer dir (telescope)',
             },
             r = {
               require('telescope.builtin').oldfiles,
@@ -158,6 +163,15 @@ M.setup = function()
           group = 'Search',
           keys = {
             c = { '<cmd>nohlsearch<cr>', 'Clear search highlight' },
+            f = {
+              function()
+                require('telescope.builtin').live_grep {
+                  cwd = require('telescope.utils').buffer_dir(),
+                  prompt_title = 'Live Grep in buffer directory',
+                }
+              end,
+              'Live grep in buffer directory (telescope)',
+            },
             g = {
               require('telescope.builtin').live_grep,
               'Live grep (telescope)',
