@@ -488,7 +488,24 @@ require('lazy').setup({
         },
 
         nixd = {},
-        ocamllsp = {},
+        tailwindcss = {
+          autostart = false,
+          --   -- filetypes = { 'ocaml', 'html' },
+          --   -- settings = {
+          --   --   tailwindCSS = {
+          --   --     classAttributes = {
+          --   --       'class',
+          --   --       'class_',
+          --   --     },
+          --   --     includeLanguages = {
+          --   --       ocaml = 'html',
+          --   --     },
+          --   --     experimental = {
+          --   --       classRegex = { 'class_ "([^"]*)' },
+          --   --     },
+          --   --   },
+          --   -- },
+        },
       }
 
       for server, opts in pairs(servers) do
