@@ -789,6 +789,7 @@ require('lazy').setup({
   require 'plugins.neotest',
   require 'plugins.nvim-emmet',
   require 'plugins.nvim-tree',
+  require 'plugins.nvim-ts-autotag',
   require 'plugins.oil',
   require 'plugins.rhubarb',
   require 'plugins.telescope-file-browser',
