@@ -85,6 +85,7 @@ M.setup = function()
                 B = { '<cmd>GitLink blame<cr>', 'Copy blame URL' },
               },
             },
+            s = { '<cmd>Git<cr>', 'Git (fugitive)' },
           },
         },
         h = {

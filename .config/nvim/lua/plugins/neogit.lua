@@ -9,15 +9,16 @@ return {
     -- 'ibhagwan/fzf-lua', -- optional
   },
   config = true,
-  keys = {
-    {
-      '<leader>gs',
-      function()
-        require('neogit').open {
-          cwd = vim.fn.expand '%:p:h',
-        }
-      end,
-      desc = ':Neogit',
-    },
-  },
+  -- keys = {
+  --   {
+  --     '<leader>gs',
+  --     function()
+  --       require('neogit').open {
+  --         cwd = vim.fn.expand '%:p:h',
+  --         kind = 'floating',
+  --       }
+  --     end,
+  --     desc = ':Neogit',
+  --   },
+  -- },
 }
