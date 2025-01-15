@@ -1,5 +1,7 @@
 local M = {}
 
+local m_group_name = 'Lang / Filetype'
+
 M.setup = function()
   local keys = {
     ['<leader>'] = {
@@ -112,6 +114,12 @@ M.setup = function()
             n = { '<cmd>tabnext<cr>', 'Next tab' },
             p = { '<cmd>tabprev<cr>', 'Prev tab' },
             x = { '<cmd>tabclose<cr>', 'Close tab' },
+          },
+        },
+        m = {
+          group = m_group_name,
+          keys = {
+            ['='] = { '<cmd>Neoformat<cr>', 'Format buffer (neoformat)' },
           },
         },
         p = {
@@ -254,7 +262,7 @@ M.setup = function()
     ['<leader>'] = {
       keys = {
         m = {
-          group = 'Lang / Filetype',
+          group = m_group_name,
           keys = {
             a = { vim.lsp.buf.code_action, 'Code Action' },
             g = {
