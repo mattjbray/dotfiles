@@ -252,7 +252,7 @@ in {
       nr() {
         local prog=$1
         shift
-        nix run -L nixpkgs/nixos-24.05#"$prog" -- "$@"
+        nix run -L nixpkgs/nixos-24.11#"$prog" -- "$@"
       }
     '';
   };
