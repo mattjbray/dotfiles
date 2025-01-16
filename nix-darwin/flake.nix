@@ -16,8 +16,8 @@
   outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, home-manager, mac-app-util }:
     let
       username = "mattjbray";
-      system = "aarch64-darwin";
-      hostname = "Matthews-MacBook-Pro-2";
+      system = "x86_64-darwin";
+      hostname = "Matthews-MacBook-Pro";
       unstable = import nixpkgs-unstable { inherit system; };
       configuration = { pkgs, ... }: {
         # List packages installed in system profile. To search by name, run:
@@ -35,16 +35,13 @@
         nix.settings.substituters = [
           "https://nix-community.cachix.org"
           # "https://anmonteiro.nix-cache.workers.dev/"
-          "s3://imandra-nix-cache?profile=imandra-nix-cache&endpoint=https://storage.googleapis.com"
         ];
         nix.settings.trusted-substituters = [
           # "https://anmonteiro.nix-cache.workers.dev/"
-          "s3://imandra-nix-cache?profile=imandra-nix-cache&endpoint=https://storage.googleapis.com"
         ];
         nix.settings.trusted-public-keys = [
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
           # "ocaml.nix-cache.com-1:/xI2h2+56rwFfKyyFVbkJSeGqSIYMC/Je+7XXqGKDIY="
-          "imandra-nix-cache.1:4rM4urW8DwdkG+ipwCR/DHHB67xOm2A7FIoCLD1DEMQ="
         ];
 
         # Create /etc/zshrc that loads the nix-darwin environment.
