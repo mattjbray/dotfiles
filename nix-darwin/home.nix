@@ -195,11 +195,13 @@ in {
     mouse = true;
     plugins = [ pkgs.tmuxPlugins.cpu pkgs.tmuxPlugins.yank ];
     prefix = "C-a";
-    terminal = "screen-256color";
+    # terminal = "screen-256color";
     extraConfig = ''
       bind ^A last-window
       bind '"' split-window -c "#{pane_current_path}"
       bind % split-window -h -c "#{pane_current_path}"
+      set -gu default-command
+      set -g default-shell "$SHELL"
     '';
   };
 
