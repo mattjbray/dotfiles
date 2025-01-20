@@ -16,8 +16,10 @@
   outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, home-manager, mac-app-util }:
     let
       username = "mattjbray";
+      homeDirectory = "/Users/${username}";
       system = "x86_64-darwin";
       hostname = "Matthews-MacBook-Pro";
+      pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
       pkgs-unstable = import nixpkgs-unstable { inherit system; };
     in
     rec {
@@ -35,6 +37,12 @@
 
       # Expose the package set, including overlays, for convenience.
       darwinPackages = self.darwinConfigurations.${hostname}.pkgs;
+
+      homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [ ./home.nix ];
+        extraSpecialArgs = { inherit pkgs-unstable username homeDirectory; };
+      };
 
       formatter.${system} = darwinPackages.nixpkgs-fmt;
     };
