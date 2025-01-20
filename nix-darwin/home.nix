@@ -37,14 +37,10 @@ in {
     #   echo "Hello, ${config.home.username}!"
     # '')
 
-    pkgs.awscli2
-    pkgs.google-cloud-sql-proxy
     pkgs.cachix
     pkgs.coreutils
     pkgs.emacs
     pkgs.fd
-    (pkgs.google-cloud-sdk.withExtraComponents
-      [ pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin ])
     pkgs.htop
     pkgs.ispell
     pkgs.iterm2
@@ -97,10 +93,6 @@ in {
   #     # date = "2022-09-13T18:44:48-04:00";
   #   };
   # };
-
-  home.file.".local/bin/imandra_local" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.local/bin/imandra_local";
-  };
 
   home.file.".spacemacs.d" = {
     source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.spacemacs.d";
