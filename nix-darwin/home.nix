@@ -1,4 +1,4 @@
-{ config, lib, pkgs, unstable, username, homeDirectory, ... }:
+{ config, pkgs, pkgs-unstable, username, homeDirectory, ... }:
 
 let dotfiles = "${config.home.homeDirectory}/code/mattjbray/dotfiles";
 
@@ -157,7 +157,7 @@ in {
       ".direnv/"
       ".git/"
     ];
-    aliases = { 
+    aliases = {
       btm = ''
         !main=$(git branch | grep -o -m1 '\(main\|master\)') current=$(git rev-parse --abbrev-ref HEAD) && set -x && git fetch --prune && if [[ "$main" == "$current" ]]; then git pull --ff-only origin "$main"; else git fetch origin "$main:$main"; fi && if [[ "$main" != "$current" ]] ; then git checkout "$main" && git branch -d "$current"; fi
       '';
@@ -180,7 +180,7 @@ in {
   programs.neovim = {
     defaultEditor = true;
     enable = true;
-    package = unstable.neovim-unwrapped;
+    package = pkgs-unstable.neovim-unwrapped;
   };
 
   home.file.".config/nvim" = {
