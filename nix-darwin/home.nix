@@ -159,7 +159,7 @@ in {
     ];
     aliases = { 
       btm = ''
-        "!main=$(git branch | grep -o -m1 '\\(main\\|master\\)') current=$(git rev-parse --abbrev-ref HEAD) && set -x && git fetch --prune && if [[ "$main" == "$current" ]]; then git pull --ff-only origin "$main"; else git fetch origin "$main:$main"; fi && if [[ "$main" != "$current" ]] ; then git checkout "$main" && git branch -d "$current"; fi"
+        !main=$(git branch | grep -o -m1 '\(main\|master\)') current=$(git rev-parse --abbrev-ref HEAD) && set -x && git fetch --prune && if [[ "$main" == "$current" ]]; then git pull --ff-only origin "$main"; else git fetch origin "$main:$main"; fi && if [[ "$main" != "$current" ]] ; then git checkout "$main" && git branch -d "$current"; fi
       '';
     };
     extraConfig = {
