@@ -179,6 +179,31 @@ in {
     source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.config/nvim";
   };
 
+  programs.ssh = {
+    enable = true;
+    addKeysToAgent = "yes";
+    matchBlocks = { 
+      "github-mattjbray" = {
+        hostname = "github.com";
+        user = "git";
+        identityFile = "${config.home.homeDirectory}/.ssh/mattjbray.id_ed25519";
+        identitiesOnly = true;
+        extraOptions = {
+          UseKeychain = "yes";
+        };
+      };
+      "github-gn-matt-b" = {
+        hostname = "github.com";
+        user = "git";
+        identityFile = "${config.home.homeDirectory}/.ssh/gn-matt-b.id_ed25519";
+        identitiesOnly = true;
+        extraOptions = {
+          UseKeychain = "yes";
+        };
+      };
+    };
+  };
+
   programs.tmux = {
     customPaneNavigationAndResize = true;
     enable = true;
