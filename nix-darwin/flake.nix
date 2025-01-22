@@ -40,7 +40,10 @@
 
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ ./home.nix ];
+        modules = [
+          mac-app-util.homeManagerModules.default
+          ./home.nix
+        ];
         extraSpecialArgs = { inherit pkgs-unstable username homeDirectory; };
       };
 
