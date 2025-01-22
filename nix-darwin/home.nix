@@ -58,7 +58,7 @@ in {
     pkgs.ripgrep
     pkgs.rlwrap
     pkgs.silver-searcher
-    pkgs.slack
+    # pkgs.slack
     pkgs.sqlite
     pkgs.tig
     pkgs.tree
