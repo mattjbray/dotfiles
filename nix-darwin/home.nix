@@ -39,6 +39,7 @@ in {
 
     pkgs.cachix
     pkgs.coreutils
+    pkgs.devenv
     pkgs.emacs
     pkgs.fd
     pkgs.htop
