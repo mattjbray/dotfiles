@@ -1,7 +1,11 @@
-{ config, pkgs, pkgs-unstable, opts, ... }:
-
-let dotfiles = "${config.home.homeDirectory}/code/mattjbray/dotfiles";
-
+{
+  config,
+  pkgs,
+  pkgs-unstable,
+  opts,
+  ...
+}: let
+  dotfiles = "${config.home.homeDirectory}/code/mattjbray/dotfiles";
 in {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -184,7 +188,7 @@ in {
   programs.ssh = {
     enable = true;
     addKeysToAgent = "yes";
-    matchBlocks = { 
+    matchBlocks = {
       "github-mattjbray" = {
         hostname = "github.com";
         user = "git";
@@ -212,7 +216,7 @@ in {
     escapeTime = 0;
     keyMode = "vi";
     mouse = true;
-    plugins = [ pkgs.tmuxPlugins.cpu pkgs.tmuxPlugins.yank ];
+    plugins = [pkgs.tmuxPlugins.cpu pkgs.tmuxPlugins.yank];
     prefix = "C-a";
     # terminal = "screen-256color";
     extraConfig = ''

@@ -10,49 +10,88 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-utils.url = "github:numtide/flake-utils";
     mac-app-util.url = "github:hraban/mac-app-util";
+    mac-app-util.inputs.flake-utils.follows = "flake-utils";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, home-manager, mac-app-util }:
-    let
-      opts = rec {
+  outputs = inputs @ {
+    self,
+    nix-darwin,
+    nixpkgs,
+    nixpkgs-unstable,
+    home-manager,
+    mac-app-util,
+    flake-utils,
+  }: let
+    opts = {
+      home = rec {
+        system = "x86_64-darwin";
+        username = "mattjbray";
+        homeDirectory = "/Users/${username}";
+        github.email = "mattjbray@gmail.com";
+        github.user = "mattjbray";
+      };
+      work = rec {
+        system = "aarch64-darwin";
         username = "mattjbray";
         homeDirectory = "/Users/${username}";
         github.email = "matt.b@goodnotesapp.com";
         github.user = "gn-matt-b";
       };
-      system = "aarch64-darwin";
-      hostname = "Matthews-MacBook-Pro";
-      pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
-      pkgs-unstable = import nixpkgs-unstable { inherit system; };
+    };
+
+    mkDarwinConfiguration = opts: let
+      system = opts.system;
+      # pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
+      pkgs-unstable = import nixpkgs-unstable {inherit system;};
     in
-      rec {
-      # Build darwin flake using:
-      # $ darwin-rebuild build --flake .#Matthews-MacBook-Pro-2
-      darwinConfigurations.${hostname} =
-        nix-darwin.lib.darwinSystem {
-          modules = [
-            mac-app-util.darwinModules.default
-            ./configuration.nix
-            home-manager.darwinModules.default
-          ];
-          specialArgs = { inherit inputs pkgs-unstable self system opts; };
-        };
+      nix-darwin.lib.darwinSystem {
+        modules = [
+          mac-app-util.darwinModules.default
+          ./configuration.nix
+          home-manager.darwinModules.default
+        ];
+        specialArgs = {inherit inputs pkgs-unstable self system opts;};
+      };
 
-      # Expose the package set, including overlays, for convenience.
-      darwinPackages = self.darwinConfigurations.${hostname}.pkgs;
-
-      homeConfigurations.${opts.username} = home-manager.lib.homeManagerConfiguration {
+    mkHomeConfiguration = opts: let
+      system = opts.system;
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      pkgs-unstable = import nixpkgs-unstable {inherit system;};
+    in
+      home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
           mac-app-util.homeManagerModules.default
           ./home.nix
         ];
-        extraSpecialArgs = { 
+        extraSpecialArgs = {
           inherit pkgs-unstable opts;
         };
       };
+    configs = {
+      # Build darwin flake using:
+      # $ darwin-rebuild build --flake .#home
+      darwinConfigurations.home = mkDarwinConfiguration opts.home;
 
-      formatter.${system} = darwinPackages.nixpkgs-fmt;
+      # Expose the package set, including overlays, for convenience.
+      darwinPackages = self.darwinConfigurations.home.pkgs;
+
+      # Build darwin flake using:
+      # $ home-manager build --flake .#work
+      homeConfigurations.work = mkHomeConfiguration opts.work;
     };
+  in
+    configs
+    // flake-utils.lib.eachDefaultSystem (
+      system: let
+        pkgs = import nixpkgs {inherit system;};
+      in {
+        formatter = pkgs.alejandra;
+      }
+    );
 }
