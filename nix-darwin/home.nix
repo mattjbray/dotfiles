@@ -1,12 +1,12 @@
-{ config, pkgs, pkgs-unstable, username, homeDirectory, ... }:
+{ config, pkgs, pkgs-unstable, opts, ... }:
 
 let dotfiles = "${config.home.homeDirectory}/code/mattjbray/dotfiles";
 
 in {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "${username}";
-  home.homeDirectory = "${homeDirectory}";
+  home.username = "${opts.username}";
+  home.homeDirectory = "${opts.homeDirectory}";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -144,7 +144,7 @@ in {
 
   programs.git = {
     enable = true;
-    userEmail = "mattjbray@gmail.com";
+    userEmail = opts.github.email;
     userName = "Matt Bray";
     ignores = [
       ".DS_Store"
@@ -158,7 +158,7 @@ in {
     };
     extraConfig = {
       github = {
-        user = "mattjbray";
+        user = opts.github.user;
       };
     };
   };
@@ -188,16 +188,16 @@ in {
       "github-mattjbray" = {
         hostname = "github.com";
         user = "git";
-        identityFile = "${config.home.homeDirectory}/.ssh/mattjbray.id_ed25519";
+        identityFile = "~/.ssh/mattjbray.id_ed25519";
         identitiesOnly = true;
         extraOptions = {
           UseKeychain = "yes";
         };
       };
-      "github-gn-matt-b" = {
+      "github-gn-matt-b github.com" = {
         hostname = "github.com";
         user = "git";
-        identityFile = "${config.home.homeDirectory}/.ssh/gn-matt-b.id_ed25519";
+        identityFile = "~/.ssh/gn-matt-b.id_ed25519";
         identitiesOnly = true;
         extraOptions = {
           UseKeychain = "yes";

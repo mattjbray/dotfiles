@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, self, system, username, inputs, ... }:
+{ pkgs, pkgs-unstable, self, system, opts, inputs, ... }:
 {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
@@ -40,9 +40,9 @@
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = system;
 
-  users.users.${username} = {
-    name = username;
-    home = "/Users/${username}";
+  users.users.${opts.username} = {
+    name = opts.username;
+    home = opts.homeDirectory;
   };
 
   # From https://nix-community.github.io/home-manager/index.xhtml#sec-install-nix-darwin-module:
@@ -60,9 +60,8 @@
   ];
 
   home-manager.extraSpecialArgs = {
-    inherit pkgs-unstable username pkgs;
-    homeDirectory = "/Users/${username}";
+    inherit pkgs-unstable pkgs opts;
   };
 
-  home-manager.users.${username} = import ./home.nix;
+  home-manager.users.${opts.username} = import ./home.nix;
 }

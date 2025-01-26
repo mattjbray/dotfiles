@@ -15,14 +15,18 @@
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, home-manager, mac-app-util }:
     let
-      username = "mattjbray";
-      homeDirectory = "/Users/${username}";
-      system = "x86_64-darwin";
+      opts = rec {
+        username = "mattjbray";
+        homeDirectory = "/Users/${username}";
+        github.email = "matt.b@goodnotesapp.com";
+        github.user = "gn-matt-b";
+      };
+      system = "aarch64-darwin";
       hostname = "Matthews-MacBook-Pro";
       pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
       pkgs-unstable = import nixpkgs-unstable { inherit system; };
     in
-    rec {
+      rec {
       # Build darwin flake using:
       # $ darwin-rebuild build --flake .#Matthews-MacBook-Pro-2
       darwinConfigurations.${hostname} =
@@ -32,19 +36,21 @@
             ./configuration.nix
             home-manager.darwinModules.default
           ];
-          specialArgs = { inherit inputs pkgs-unstable self system username; };
+          specialArgs = { inherit inputs pkgs-unstable self system opts; };
         };
 
       # Expose the package set, including overlays, for convenience.
       darwinPackages = self.darwinConfigurations.${hostname}.pkgs;
 
-      homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations.${opts.username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
           mac-app-util.homeManagerModules.default
           ./home.nix
         ];
-        extraSpecialArgs = { inherit pkgs-unstable username homeDirectory; };
+        extraSpecialArgs = { 
+          inherit pkgs-unstable opts;
+        };
       };
 
       formatter.${system} = darwinPackages.nixpkgs-fmt;
