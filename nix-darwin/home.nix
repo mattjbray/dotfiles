@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   pkgs-unstable,
   opts,
@@ -188,24 +189,24 @@ in {
   programs.ssh = {
     enable = true;
     addKeysToAgent = "yes";
-    matchBlocks = {
-      "github-mattjbray" = {
+    extraConfig = ''
+      UseKeychain yes
+    '';
+    matchBlocks = let
+      github-mattjbray = "github-mattjbray" + (lib.strings.optionalString (opts.github.user == "mattjbray") " github.com");
+      github-gn-matt-b = "github-gn-matt-b" + (lib.strings.optionalString (opts.github.user == "gn-matt-b") " github.com");
+    in {
+      ${github-mattjbray} = {
         hostname = "github.com";
         user = "git";
         identityFile = "~/.ssh/mattjbray.id_ed25519";
         identitiesOnly = true;
-        extraOptions = {
-          UseKeychain = "yes";
-        };
       };
-      "github-gn-matt-b github.com" = {
+      ${github-gn-matt-b} = {
         hostname = "github.com";
         user = "git";
         identityFile = "~/.ssh/gn-matt-b.id_ed25519";
         identitiesOnly = true;
-        extraOptions = {
-          UseKeychain = "yes";
-        };
       };
     };
   };
