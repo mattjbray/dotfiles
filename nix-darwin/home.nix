@@ -37,6 +37,7 @@ in {
     #   echo "Hello, ${config.home.username}!"
     # '')
 
+    pkgs.bash-language-server
     pkgs.cachix
     pkgs.coreutils
     pkgs.devenv
