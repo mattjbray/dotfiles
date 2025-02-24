@@ -162,9 +162,12 @@ in {
       '';
     };
     extraConfig = {
+      commit.gpgsign = true;
+      gpg.format = "ssh";
       github = {
         user = opts.github.user;
       };
+      user.signingkey = "${config.home.homeDirectory}/.ssh/${opts.github.user}.id_ed25519.pub";
     };
   };
 
