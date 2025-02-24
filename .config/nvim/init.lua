@@ -798,6 +798,7 @@ require('lazy').setup({
 
   require 'plugins.avante',
   require 'plugins.abolish',
+  require 'plugins.copilot',
   require 'plugins.dadbod',
   require 'plugins.fugitive',
   require 'plugins.gitlinker',
