@@ -117,12 +117,6 @@ M.setup = function()
             x = { '<cmd>tabclose<cr>', 'Close tab' },
           },
         },
-        m = {
-          group = m_group_name,
-          keys = {
-            ['='] = { '<cmd>Neoformat<cr>', 'Format buffer (neoformat)' },
-          },
-        },
         p = {
           group = 'Projects',
           keys = {
