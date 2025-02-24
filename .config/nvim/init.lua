@@ -846,6 +846,7 @@ require('lazy').setup({
 })
 
 require('keys').setup()
+require('lang.bash').setup {}
 require('lang.imandra').setup {}
 require('lang.ocaml').setup {}
 require('lang.python').setup {}
