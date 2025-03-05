@@ -70,6 +70,7 @@ in {
     pkgs.tig
     pkgs.tree
     pkgs.util-linux
+    pkgs.vscode-langservers-extracted
     pkgs.watch
     pkgs.yq
   ];
