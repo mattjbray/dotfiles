@@ -36,6 +36,14 @@ M.setup = function()
             },
           },
         },
+        d = {
+          group = 'Diff (diffview)',
+          keys = {
+            c = { '<cmd>DiffviewClose<cr>', 'DiffviewClose' },
+            d = { '<cmd>DiffviewOpen<cr>', 'DiffviewOpen' },
+            f = { '<cmd>DiffviewFileHistory<cr>', 'DiffviewFileHistory' },
+          },
+        },
         e = {
           group = 'Errors (diagnostics)',
           keys = {
@@ -92,7 +100,7 @@ M.setup = function()
                 B = { '<cmd>GitLink blame<cr>', 'Copy blame URL' },
               },
             },
-            s = { '<cmd>Neogit kind=replace<cr>', 'Git (neogit)' },
+            s = { '<cmd>Neogit kind=floating<cr>', 'Git (neogit)' },
             S = { '<cmd>Git<cr>', 'Git (fugitive)' },
           },
         },
