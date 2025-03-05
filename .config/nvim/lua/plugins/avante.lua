@@ -4,7 +4,7 @@ return {
   lazy = false,
   opts = {
     ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
-    provider = 'claude', -- Recommend using Claude
+    provider = 'copilot', -- Recommend using Claude
     auto_suggestions_provider = 'claude', -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
     claude = {
       endpoint = 'https://api.anthropic.com',
@@ -121,6 +121,7 @@ return {
     'MunifTanjim/nui.nvim',
     --- The below dependencies are optional,
     'hrsh7th/nvim-cmp', -- autocompletion for avante commands and mentions
+    'zbirenbaum/copilot.lua',
     {
       -- Make sure to set this up properly if you have lazy=true
       'MeanderingProgrammer/render-markdown.nvim',
