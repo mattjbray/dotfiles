@@ -169,6 +169,23 @@ in {
       };
       user.signingkey = "${config.home.homeDirectory}/.ssh/${opts.github.user}.id_ed25519.pub";
     };
+    includes = [{
+      path = "${config.home.homeDirectory}/.config/git/config.mattjbray";
+      condition = "gitdir:~/code/mattjbray/";
+    }];
+  };
+
+  home.file.".config/git/config.mattjbray" = {
+    text = ''
+      [core]
+          sshCommand = ssh -i ~/.ssh/mattjbray.id_ed25519 -o IdentityAgent=none
+      [user]
+          name = Matt Bray
+          email = mattjbray@gmail.com
+          signingkey = /Users/mattjbray/.ssh/mattjbray.id_ed25519.pub
+      [github]
+          user = mattjbray
+    '';
   };
 
   programs.gh = {
@@ -195,23 +212,6 @@ in {
     extraConfig = ''
       UseKeychain yes
     '';
-    matchBlocks = let
-      github-mattjbray = "github-mattjbray" + (lib.strings.optionalString (opts.github.user == "mattjbray") " github.com");
-      github-gn-matt-b = "github-gn-matt-b" + (lib.strings.optionalString (opts.github.user == "gn-matt-b") " github.com");
-    in {
-      ${github-mattjbray} = {
-        hostname = "github.com";
-        user = "git";
-        identityFile = "~/.ssh/mattjbray.id_ed25519";
-        identitiesOnly = true;
-      };
-      ${github-gn-matt-b} = {
-        hostname = "github.com";
-        user = "git";
-        identityFile = "~/.ssh/gn-matt-b.id_ed25519";
-        identitiesOnly = true;
-      };
-    };
   };
 
   programs.tmux = {
