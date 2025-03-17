@@ -29,14 +29,12 @@
         system = "x86_64-darwin";
         username = "mattjbray";
         homeDirectory = "/Users/${username}";
-        github.email = "mattjbray@gmail.com";
         github.user = "mattjbray";
       };
       work = rec {
         system = "aarch64-darwin";
         username = "mattjbray";
         homeDirectory = "/Users/${username}";
-        github.email = "matt.b@goodnotesapp.com";
         github.user = "gn-matt-b";
       };
     };

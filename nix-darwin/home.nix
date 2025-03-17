@@ -48,6 +48,7 @@ in {
     pkgs.devenv
     pkgs.emacs
     pkgs.fd
+    pkgs.gnupg
     pkgs.htop
     pkgs.ispell
     pkgs.iterm2
@@ -60,7 +61,7 @@ in {
     pkgs.nixd # Nix language server
     pkgs.nix-output-monitor
     pkgs.parallel
-    # pkgs.pinentry
+    pkgs.pinentry_mac
     pkgs.pkg-config
     pkgs.ripgrep
     pkgs.rlwrap
@@ -73,6 +74,8 @@ in {
     pkgs.vscode-langservers-extracted
     pkgs.watch
     pkgs.yq
+    pkgs.yubikey-manager
+    pkgs.yubikey-personalization
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -150,8 +153,6 @@ in {
 
   programs.git = {
     enable = true;
-    userEmail = opts.github.email;
-    userName = "Matt Bray";
     ignores = [
       ".DS_Store"
       ".direnv/"
@@ -163,29 +164,63 @@ in {
       '';
     };
     extraConfig = {
-      commit.gpgsign = true;
-      gpg.format = "ssh";
-      github = {
-        user = opts.github.user;
-      };
-      user.signingkey = "${config.home.homeDirectory}/.ssh/${opts.github.user}.id_ed25519.pub";
+      rebase.autoStash = true;
     };
-    includes = [{
-      path = "${config.home.homeDirectory}/.config/git/config.mattjbray";
-      condition = "gitdir:~/code/mattjbray/";
-    }];
+    includes =
+      if opts.github.user == "gn-matt-b"
+      then [
+        {
+          path = "${config.home.homeDirectory}/.config/git/config.gn-matt-b";
+        }
+        {
+          path = "${config.home.homeDirectory}/.config/git/config.mattjbray";
+          condition = "gitdir:~/code/mattjbray/";
+        }
+      ]
+      else if opts.github.user == "mattjbray"
+      then [
+        {
+          path = "${config.home.homeDirectory}/.config/git/config.mattjbray";
+        }
+        {
+          path = "${config.home.homeDirectory}/.config/git/config.gn-matt-b";
+          condition = "gitdir:~/code/gn/";
+        }
+      ]
+      else [];
+  };
+
+  home.file.".config/git/config.gn-matt-b" = {
+    text = ''
+      [commit]
+          gpgSign = true
+      [core]
+          sshCommand = ssh -i ${config.home.homeDirectory}/.ssh/gn-matt-b.id_ed25519 -o IdentityAgent=none
+      [github]
+          user = gn-matt-b
+      [gpg]
+          program = gpg
+      [user]
+          name = Matt B
+          email = matt.b@goodnotesapp.com
+          signingkey = 0x5B8C26B59D07A9E3
+    '';
   };
 
   home.file.".config/git/config.mattjbray" = {
     text = ''
+      [commit]
+          gpgSign = true
       [core]
-          sshCommand = ssh -i ~/.ssh/mattjbray.id_ed25519 -o IdentityAgent=none
+          sshCommand = ssh -i ${config.home.homeDirectory}/.ssh/mattjbray.id_ed25519 -o IdentityAgent=none
+      [github]
+          user = mattjbray
+      [gpg]
+          format = ssh
       [user]
           name = Matt Bray
           email = mattjbray@gmail.com
-          signingkey = /Users/mattjbray/.ssh/mattjbray.id_ed25519.pub
-      [github]
-          user = mattjbray
+          signingkey = ${config.home.homeDirectory}/.ssh/mattjbray.id_ed25519.pub
     '';
   };
 
