@@ -47,6 +47,7 @@ in {
     pkgs.coreutils
     pkgs.devenv
     pkgs.emacs
+    pkgs.emmet-language-server
     pkgs.fd
     pkgs.gnupg
     pkgs.htop
@@ -60,16 +61,21 @@ in {
     pkgs.stylua
     pkgs.nixd # Nix language server
     pkgs.nix-output-monitor
+    pkgs.nodejs
     pkgs.parallel
     pkgs.pinentry_mac
     pkgs.pkg-config
+    pkgs.postgresql
+    pkgs.prettierd
     pkgs.ripgrep
     pkgs.rlwrap
     pkgs.silver-searcher
     # pkgs.slack
     pkgs.sqlite
+    pkgs.teleport_16
     pkgs.tig
     pkgs.tree
+    pkgs.typescript-language-server
     pkgs.util-linux
     pkgs.vscode-langservers-extracted
     pkgs.watch
