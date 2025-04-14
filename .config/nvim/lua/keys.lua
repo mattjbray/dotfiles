@@ -31,7 +31,7 @@ M.setup = function()
               'Open buffers (telescope)',
             },
             d = {
-              '<cmd>bdelete<cr>',
+              '<cmd>bprevious | bdelete #<cr>',
               'Delete buffer',
             },
           },
