@@ -100,8 +100,8 @@ M.setup = function()
                 B = { '<cmd>GitLink blame<cr>', 'Copy blame URL' },
               },
             },
-            s = { '<cmd>Neogit kind=floating<cr>', 'Git (neogit)' },
-            S = { '<cmd>Git<cr>', 'Git (fugitive)' },
+            S = { '<cmd>Neogit kind=floating<cr>', 'Git (neogit)' },
+            s = { '<cmd>Git<cr>', 'Git (fugitive)' },
           },
         },
         h = {
