@@ -45,7 +45,7 @@ in {
     pkgs.bash-language-server
     pkgs.cachix
     pkgs.coreutils
-    pkgs.devenv
+    pkgs-unstable.devenv
     pkgs.emacs
     pkgs.emmet-language-server
     pkgs.fd
