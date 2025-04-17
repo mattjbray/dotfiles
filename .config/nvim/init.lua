@@ -108,6 +108,27 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Open previous tab after closing a tab
+local prev_tabnr = nil
+vim.api.nvim_create_autocmd('TabLeave', {
+  desc = 'Save previous tab number before TabClose',
+  group = vim.api.nvim_create_augroup('kickstart-tab-leave', { clear = true }),
+  callback = function()
+    -- Get the tab number of the previous tab before this tab closes
+    prev_tabnr = vim.fn.tabpagenr '#'
+  end,
+})
+vim.api.nvim_create_autocmd('TabClosed', {
+  desc = 'Open previous tab after closing a tab',
+  group = vim.api.nvim_create_augroup('kickstart-tab-close', { clear = true }),
+  callback = function()
+    local last_tabnr = vim.fn.tabpagenr '$'
+    if prev_tabnr > 0 and prev_tabnr <= last_tabnr then
+      vim.cmd.tabnext(prev_tabnr)
+    end
+  end,
+})
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
