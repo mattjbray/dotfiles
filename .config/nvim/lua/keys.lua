@@ -125,6 +125,67 @@ M.setup = function()
             x = { '<cmd>tabclose<cr>', 'Close tab' },
           },
         },
+        m = {
+          group = m_group_name,
+          keys = {
+            t = {
+              group = 'Test (neotest)',
+              keys = {
+                a = {
+                  function()
+                    require('neotest').run.attach()
+                  end,
+                  'Attach to nearest test',
+                },
+                f = {
+                  function()
+                    require('neotest').run.run(vim.fn.expand '%')
+                  end,
+                  'Run current file',
+                },
+                l = {
+                  '<cmd>lua require("neotest").summary.toggle()<cr>',
+                  'Summary window (toggle)',
+                },
+                o = {
+                  function()
+                    require('neotest').output.open { enter = false }
+                  end,
+                  'Show test output',
+                },
+                t = {
+                  function()
+                    require('neotest').run.run()
+                  end,
+                  'Run nearest',
+                },
+                s = {
+                  function()
+                    require('neotest').run.stop()
+                  end,
+                  'Stop',
+                },
+                w = {
+                  group = 'Watch',
+                  keys = {
+                    f = {
+                      function()
+                        require('neotest').watch.toggle(vim.fn.expand '%')
+                      end,
+                      'Watch current file (toggle)',
+                    },
+                    t = {
+                      function()
+                        require('neotest').watch.toggle()
+                      end,
+                      'Watch nearest (toggle)',
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
         p = {
           group = 'Projects',
           keys = {
