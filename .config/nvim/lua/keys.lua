@@ -244,9 +244,9 @@ M.setup = function()
               end,
               'Live grep in buffer directory (telescope)',
             },
-            g = {
+            p = {
               require('telescope.builtin').live_grep,
-              'Live grep (telescope)',
+              'Live grep in project directory (telescope)',
             },
             r = {
               require('telescope.builtin').resume,
