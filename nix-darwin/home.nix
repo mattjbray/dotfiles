@@ -45,7 +45,7 @@ in {
     pkgs.bash-language-server
     pkgs.cachix
     pkgs.coreutils
-    pkgs-unstable.devenv
+    pkgs.devenv
     pkgs.emacs
     pkgs.emmet-language-server
     pkgs.fd
@@ -241,7 +241,7 @@ in {
   programs.neovim = {
     defaultEditor = true;
     enable = true;
-    package = pkgs-unstable.neovim-unwrapped;
+    package = pkgs.neovim-unwrapped;
   };
 
   home.file.".config/nvim" = {
@@ -279,7 +279,10 @@ in {
     enableCompletion = true;
     syntaxHighlighting.enable = true;
     defaultKeymap = "viins";
-    initExtra = ''
+    # profileExtra = ''
+    #   eval "$(/opt/homebrew/bin/brew shellenv)"
+    # '';
+    initContent = ''
       # _l_ess with std_e_rr
       function le() {
         local less_args=""
