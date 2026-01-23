@@ -39,7 +39,9 @@ return {
       },
     },
     scope = {},
-    words = {},
+    words = {
+      debounce = 100,
+    },
   },
   keys = {
     {
@@ -50,11 +52,25 @@ return {
       desc = 'Pickers (snacks.picker)',
     },
     {
+      '<leader>bb',
+      function()
+        require('snacks').picker.buffers()
+      end,
+      desc = 'Buffers (snacks.picker.buffers)',
+    },
+    {
       '<leader>bd',
       function()
         require('snacks').bufdelete.delete()
       end,
       desc = 'Delete this buffer (snacks.bufdelete)',
+    },
+    {
+      '<leader>bh',
+      function()
+        require('snacks').dashboard()
+      end,
+      desc = 'Open snacks dashboard (snacks.dashboard)',
     },
     {
       '<leader>bo',
