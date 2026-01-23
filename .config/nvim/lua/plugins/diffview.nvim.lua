@@ -1,5 +1,6 @@
 return {
-  'sindrets/diffview.nvim',
+  'actionshrimp/diffview.nvim',
+  branch = '3-way-staging',
   cmd = { 'DiffviewOpen', 'DiffviewFileHistory' },
   opts = {
     use_icons = false,
