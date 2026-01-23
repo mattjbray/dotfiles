@@ -8,6 +8,11 @@ return {
     { '<leader>dd', '<cmd>DiffviewOpen<cr>', desc = 'Open Diffview' },
     {
       '<leader>df',
+      '<cmd>DiffviewFileHistory %<cr>',
+      desc = 'Diffview File History (current file)',
+    },
+    {
+      '<leader>dl',
       '<cmd>DiffviewFileHistory<cr>',
       desc = 'Diffview File History',
     },
