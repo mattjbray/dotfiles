@@ -101,6 +101,13 @@ return {
       desc = 'Open snacks explorer (snacks.explorer)',
     },
     {
+      '<leader>fE',
+      function()
+        require('snacks').explorer.reveal()
+      end,
+      desc = 'Reveal current file in snacks explorer (snacks.explorer.reveal)',
+    },
+    {
       '<leader>ff',
       function()
         require('snacks').picker.files {
