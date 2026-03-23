@@ -29,12 +29,35 @@ return {
     explorer = {},
     gitbrowse = {},
     picker = {
+      actions = {
+        parent_dir = function(picker)
+          picker:set_cwd(vim.fn.fnamemodify(picker:cwd(), ':h'))
+          picker:find()
+        end,
+        child_dir = function(picker, item)
+          if item and item.file then
+            local first = item.file:match('^([^/]+)')
+            if first then
+              picker:set_cwd(picker:cwd() .. '/' .. first)
+              picker:find()
+            end
+          end
+        end,
+      },
       sources = {
         explorer = {
           hidden = true,
         },
         files = {
           hidden = true,
+          win = {
+            input = {
+              keys = {
+                ['<c-h>'] = { 'parent_dir', mode = { 'i', 'n' } },
+                ['<c-l>'] = { 'child_dir', mode = { 'i', 'n' } },
+              },
+            },
+          },
         },
       },
     },
@@ -112,9 +135,10 @@ return {
       function()
         require('snacks').picker.files {
           hidden = true,
+          cwd = vim.fn.expand '%:p:h',
         }
       end,
-      desc = 'Files (snacks.picker.files)',
+      desc = 'Files (buffer directory) (snacks.picker.files)',
     },
     {
       '<leader>fr',
@@ -166,11 +190,60 @@ return {
       desc = 'Git browse (snacks.gitbrowse)',
     },
     {
+      '<leader>pf',
+      function()
+        require('snacks').picker.files {
+          hidden = true,
+        }
+      end,
+      desc = 'Project files (snacks.picker.files)',
+    },
+    {
       '<leader>pp',
       function()
         require('snacks').picker.projects()
       end,
       desc = 'Projects (snacks.picker.projects)',
+    },
+    {
+      '<leader>sf',
+      function()
+        require('snacks').picker.grep {
+          hidden = true,
+          cwd = vim.fn.expand '%:p:h',
+        }
+      end,
+      desc = 'Grep (buffer directory) (snacks.picker.grep)',
+    },
+    {
+      '<leader>sF',
+      function()
+        require('snacks').picker.grep_word {
+          hidden = true,
+          cwd = vim.fn.expand '%:p:h',
+        }
+      end,
+      mode = { 'n', 'x' },
+      desc = 'Grep word (buffer directory) (snacks.picker.grep_word)',
+    },
+    {
+      '<leader>sp',
+      function()
+        require('snacks').picker.grep {
+          hidden = true,
+        }
+      end,
+      desc = 'Grep project (snacks.picker.grep)',
+    },
+    {
+      '<leader>sP',
+      function()
+        require('snacks').picker.grep_word {
+          hidden = true,
+        }
+      end,
+      mode = { 'n', 'x' },
+      desc = 'Grep word project (snacks.picker.grep_word)',
     },
   },
 }
