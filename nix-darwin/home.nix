@@ -131,6 +131,10 @@ in {
     # EDITOR = "vi";
   };
 
+  home.sessionPath = [
+    "$HOME/.local/bin"
+  ];
+
   home.shellAliases = {
     ll = "ls -al";
     nom-direnv-reload = "nix-direnv-reload |& nom --json";
@@ -281,9 +285,9 @@ in {
     enableCompletion = true;
     syntaxHighlighting.enable = true;
     defaultKeymap = "viins";
-    # profileExtra = ''
-    #   eval "$(/opt/homebrew/bin/brew shellenv)"
-    # '';
+    profileExtra = lib.optionalString (config.home.sessionPath != [ ]) ''
+      export PATH="$PATH''${PATH:+:}${lib.concatStringsSep ":" config.home.sessionPath}"
+    '';
     initContent = ''
       # _l_ess with std_e_rr
       function le() {
