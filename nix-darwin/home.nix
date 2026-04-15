@@ -448,6 +448,13 @@ in {
         shift
         nix run -L --inputs-from ${dotfiles}/nix-darwin nixpkgs#"$prog" -- "$@"
       }
+
+      # <n>ix <s>shell
+      ns() {
+        local prog=$1
+        shift
+        nix shell -L --inputs-from ${dotfiles}/nix-darwin nixpkgs#"$prog"
+      }
     '';
   };
 }
