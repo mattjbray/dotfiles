@@ -285,10 +285,11 @@ in {
       ".DS_Store"
       ".direnv/"
       ".git/"
+      ".worktrees/"
     ];
     aliases = {
       btm = ''
-        !main=$(git branch | grep -o -m1 '\(main\|master\)') current=$(git rev-parse --abbrev-ref HEAD) && set -x && git fetch --prune && if [[ "$main" == "$current" ]]; then git pull --ff-only origin "$main"; else git fetch origin "$main:$main"; fi && if [[ "$main" != "$current" ]] ; then git checkout "$main" && git branch -d "$current"; fi
+        !main=$(git branch | grep -o -m1 '\(develop\|main\|master\)') current=$(git rev-parse --abbrev-ref HEAD) && set -x && git fetch --prune && if [[ "$main" == "$current" ]]; then git pull --ff-only origin "$main"; else git fetch origin "$main:$main"; fi && if [[ "$main" != "$current" ]] ; then git checkout "$main" && git branch -d "$current"; fi
       '';
     };
     extraConfig = {
@@ -327,11 +328,13 @@ in {
       [github]
           user = gn-matt-b
       [gpg]
-          program = gpg
+          format = ssh
+      [gpg "ssh"]
+          program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
       [user]
           name = Matt B
           email = matt.b@goodnotesapp.com
-          signingkey = 0x5B8C26B59D07A9E3
+          signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID2zrMDsXoH4wIdfJydSdS4txKj4F+wINQNAzGnt8pYm
     '';
   };
 
@@ -345,6 +348,8 @@ in {
           user = mattjbray
       [gpg]
           format = ssh
+      [gpg "ssh"]
+          program = "ssh-keygen"
       [user]
           name = Matt Bray
           email = mattjbray@gmail.com
@@ -375,6 +380,7 @@ in {
     addKeysToAgent = "yes";
     extraConfig = ''
       UseKeychain yes
+      IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
     '';
   };
 
