@@ -365,6 +365,13 @@ in {
     enable = true;
   };
 
+  programs.kitty = {
+    enable = true;
+    font.name = "Monaco";
+    settings.enable_audio_bell = false;
+    settings.macos_option_as_alt = "left";
+  };
+
   programs.neovim = {
     defaultEditor = true;
     enable = true;
