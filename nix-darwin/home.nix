@@ -396,6 +396,10 @@ in {
     '';
   };
 
+  programs.z-lua = {
+    enable = true;
+  };
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
