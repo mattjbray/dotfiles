@@ -455,6 +455,8 @@ in {
         shift
         nix shell -L --inputs-from ${dotfiles}/nix-darwin nixpkgs#"$prog"
       }
+
+      source <(docker completion zsh)
     '';
   };
 }
