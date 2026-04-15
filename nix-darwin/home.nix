@@ -49,10 +49,12 @@ in {
     pkgs.emacs
     pkgs.emmet-language-server
     pkgs.fd
+    pkgs.git-lfs
     pkgs.gnupg
     pkgs.htop
     pkgs.ispell
     pkgs.iterm2
+    pkgs.jira-cli-go
     pkgs.jq
     pkgs.k9s
     pkgs.keybase
@@ -72,7 +74,7 @@ in {
     pkgs.silver-searcher
     # pkgs.slack
     pkgs.sqlite
-    pkgs.teleport_16
+    pkgs.terminal-notifier
     pkgs.tig
     pkgs.tree
     pkgs.typescript-language-server
