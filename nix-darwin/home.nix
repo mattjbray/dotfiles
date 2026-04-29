@@ -471,7 +471,7 @@ in {
       ns() {
         local prog=$1
         shift
-        nix shell -L --inputs-from ${dotfiles}/nix-darwin nixpkgs#"$prog"
+        nix shell -L --inputs-from ${dotfiles}/nix-darwin nixpkgs#"$prog" "$@"
       }
 
       source <(docker completion zsh)
