@@ -211,7 +211,7 @@ in {
       mode.service.binding = {
         esc = ["reload-config" "mode main"];
         alt-shift-semicolon = "mode main";
-	e = ["enable toggle"];
+        e = ["enable toggle"];
         r = ["flatten-workspace-tree" "mode main"]; # reset layout
         f = ["layout floating tiling"]; # Toggle between floating and tiling layout
         backspace = ["close-all-windows-but-current" "mode main"];
@@ -250,7 +250,6 @@ in {
         minus = "resize smart -50";
         equal = "resize smart +50";
       };
-
 
       # A mode to just pass keys through!
       mode.X.binding = {
@@ -419,7 +418,7 @@ in {
     enableCompletion = true;
     syntaxHighlighting.enable = true;
     defaultKeymap = "viins";
-    profileExtra = lib.optionalString (config.home.sessionPath != [ ]) ''
+    profileExtra = lib.optionalString (config.home.sessionPath != []) ''
       export PATH="$PATH''${PATH:+:}${lib.concatStringsSep ":" config.home.sessionPath}"
     '';
     initContent = ''

@@ -14,8 +14,7 @@
       environment.systemPackages = [pkgs.vim];
 
       # Auto upgrade nix package and the daemon service.
-      services.nix-daemon.enable = true;
-      nix.package = pkgs.nixVersions.nix_2_23;
+      nix.package = pkgs.nixVersions.nix_2_30;
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
@@ -53,7 +52,8 @@
         name = opts.username;
         home = opts.homeDirectory;
       };
-    };
+    }
+    // opts.configuration;
   homeManangerConfig = {
     # From https://nix-community.github.io/home-manager/index.xhtml#sec-install-nix-darwin-module:
     # By default, Home Manager uses a private pkgs instance that is

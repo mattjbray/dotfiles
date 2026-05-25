@@ -31,6 +31,9 @@
         homeDirectory = "/Users/${username}";
         github.user = "mattjbray";
         nixDarwinHomeManager = false;
+        configuration = {
+          ids.gids.nixbld = 350;
+        };
       };
       work = rec {
         system = "aarch64-darwin";
