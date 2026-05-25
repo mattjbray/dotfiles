@@ -30,12 +30,14 @@
         username = "mattjbray";
         homeDirectory = "/Users/${username}";
         github.user = "mattjbray";
+        nixDarwinHomeManager = false;
       };
       work = rec {
         system = "aarch64-darwin";
         username = "mattjbray";
         homeDirectory = "/Users/${username}";
         github.user = "gn-matt-b";
+        nixDarwinHomeManager = false;
       };
     };
 
@@ -45,11 +47,18 @@
       pkgs-unstable = import nixpkgs-unstable {inherit system;};
     in
       nix-darwin.lib.darwinSystem {
-        modules = [
-          mac-app-util.darwinModules.default
-          ./configuration.nix
-          home-manager.darwinModules.default
-        ];
+        modules =
+          [
+            mac-app-util.darwinModules.default
+            ./configuration.nix
+          ]
+          ++ (
+            if opts.nixDarwinHomeManager
+            then [
+              home-manager.darwinModules.default
+            ]
+            else []
+          );
         specialArgs = {inherit inputs pkgs-unstable self system opts;};
       };
 
