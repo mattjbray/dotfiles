@@ -25,7 +25,7 @@
     flake-utils,
   }: let
     opts = {
-      home = rec {
+      personal = rec {
         system = "x86_64-darwin";
         username = "mattjbray";
         homeDirectory = "/Users/${username}";
@@ -73,8 +73,8 @@
       };
     configs = {
       # Build darwin flake using:
-      # $ darwin-rebuild build --flake .#home
-      darwinConfigurations.home = mkDarwinConfiguration opts.home;
+      # $ darwin-rebuild build --flake .#personal
+      darwinConfigurations.personal = mkDarwinConfiguration opts.personal;
 
       # Expose the package set, including overlays, for convenience.
       darwinPackages = self.darwinConfigurations.home.pkgs;
@@ -82,6 +82,7 @@
       # Build darwin flake using:
       # $ home-manager build --flake .#work
       homeConfigurations.work = mkHomeConfiguration opts.work;
+      homeConfigurations.personal = mkHomeConfiguration opts.personal;
     };
   in
     configs
