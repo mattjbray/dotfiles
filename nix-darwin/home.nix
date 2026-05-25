@@ -474,7 +474,7 @@ in {
         nix shell -L --inputs-from ${dotfiles}/nix-darwin nixpkgs#"$prog" "$@"
       }
 
-      source <(docker completion zsh)
+      (which docker && source <(docker completion zsh)) || true
     '';
   };
 }
