@@ -23,6 +23,7 @@
       nix.settings.substituters = [
         "https://nix-community.cachix.org"
         # "https://anmonteiro.nix-cache.workers.dev/"
+	"https://devenv.cachix.org"
       ];
       nix.settings.trusted-substituters = [
         # "https://anmonteiro.nix-cache.workers.dev/"
@@ -30,6 +31,7 @@
       nix.settings.trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         # "ocaml.nix-cache.com-1:/xI2h2+56rwFfKyyFVbkJSeGqSIYMC/Je+7XXqGKDIY="
+	"devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       ];
 
       # Create /etc/zshrc that loads the nix-darwin environment.
