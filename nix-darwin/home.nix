@@ -267,8 +267,8 @@ in {
 
   programs.direnv = {
     enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
+    enableBashIntegration = false;
+    enableZshIntegration = false;
     nix-direnv.enable = true;
   };
 
@@ -474,6 +474,11 @@ in {
       }
 
       (/usr/bin/which -s docker && source <(docker completion zsh)) || true
+
+
+      dl() {
+        pushd $(git worktree list | head -n1 | awk '{ print $1 };') && eval $(direnv export zsh) && popd
+      }
     '';
   };
 }
