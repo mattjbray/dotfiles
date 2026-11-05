@@ -44,6 +44,29 @@ vim.opt.scrolloff = 5
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+vim.keymap.set(
+  'n',
+  '<leader>fy',
+  '<cmd>let @+ = expand("%")<CR>',
+  { desc = 'Copy current file path to clipboard' }
+)
+vim.keymap.set(
+  'n',
+  '<leader>fl',
+  '<cmd>let @+ = expand("%:p") . ":" . line(".") . ":" . col(".")<CR>',
+  {
+    desc = 'Copy current file path, line number, and column number to clipboard',
+  }
+)
+vim.keymap.set(
+  'v',
+  '<leader>fl',
+  'y:let @+ = expand("%") . ":" . line("\'<") . ":" . col("\'<") . "-" . line("\'>") . ":" . col("\'>")<CR>',
+  {
+    desc = 'Copy current file path and selected range to clipboard',
+  }
+)
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -61,4 +84,4 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-require("config.lazy")
+require 'config.lazy'
